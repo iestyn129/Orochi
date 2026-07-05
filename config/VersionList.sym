@@ -1,5 +1,6 @@
 @rtld = nnrtld
-@rhg = game_rhythm.nss
+@aloha = game_rhythm.nss
+010 = 02688274b7383bdb369d21663d2c3f3f33db5423
 100 = 03ff4a3bec96bde3a2e37ce3aa4caa0cae8935a8
 @multimedia
 @sdk = nnSdk
