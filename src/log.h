@@ -1,8 +1,9 @@
 #pragma once
 
+#include <cstdarg>
+#include <cstdio>
 #include "hk/prim/traits/Integer.h"
-#include "cstdarg"
-#include "cstdio"
+#include "global.h"
 
 extern void initLog();
 extern void vlog(const char* fmt, va_list args);

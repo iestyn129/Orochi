@@ -1,7 +1,9 @@
 #include "hk/hook/Trampoline.h"
 #include "nn/fs.h"
 #include "arm_neon.h"
+#include "global.h"
 #include "log.h"
+#include "scripting.h"
 
 
 HkTrampoline initHook = [](TrampolineStatic(), u64* a1) -> void {

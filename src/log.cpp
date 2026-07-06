@@ -1,10 +1,9 @@
+#include "log.h"
+
 #include "hk/svc/api.h"
 #include "nn/fs.h"
 #include "nn/time.h"
 #include "cstdio"
-#include "log.h"
-
-#define LOG_FILE "sdmc:/Pyrite/log.txt"
 
 
 void initLog() {
