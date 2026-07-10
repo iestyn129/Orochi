@@ -7,8 +7,8 @@
 
 
 HkTrampoline initHook = [](TrampolineStatic(), u64* a1) -> void {
-    nn::fs::MountSdCard("sdmc");
-    nn::fs::CreateDirectory("sdmc:/Pyrite");
+    nn::fs::MountSdCard(SD_DRIVE);
+    nn::fs::CreateDirectory(ROOT_FOLDER);
 
     initLog();
 
