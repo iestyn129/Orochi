@@ -5,6 +5,29 @@
 #include "log.h"
 #include "scripting.h"
 
+#define check_thread(a2) \
+    if (is_thread_stopping(a2)) \
+        return;
+
+#define restb(beats) rest_ticks(a2, 480 * beats); \
+    check_thread(a2);
+
+#define scene_change_r(scene) \
+    do { \
+        v1 = sub_7100514FB0(a2); \
+        change_scene(a1 + 28168, a2, scene); \
+        unk_thread_check(a2, v1); \
+        check_thread(a2); \
+    } while (0);
+
+#define scene_change_f(a1, a2, scene) \
+    do { \
+        v1 = sub_7100514FB0(a2); \
+        change_scene_fade(a1 + 28168, a2, scene, 2); \
+        unk_thread_check(a2, v1); \
+        check_thread(a2); \
+    } while (0);
+
 
 HkTrampoline initHook = [](TrampolineStatic(), u64* a1) -> void {
     nn::fs::MountSdCard(SD_DRIVE);
@@ -23,41 +46,52 @@ HkTrampoline mainLoopHook = [](TrampolineStatic(), s32 a1) -> void {
 
 
 void remix20Main(s64 a1, s64 a2) {
-    runLuaChart(a1, a2, MAIN_SCRIPT);
+    //runLuaChart(a1, a2, MAIN_SCRIPT);
+
+    restb(464);
 
     sub_7100138CD0(a1);
     sub_71001366E0(a1);
 
-    rest_ticks(a2, 480);
-
-    if (is_thread_stopping(a2)) {
-        return;
-    }
+    restb(1);
 
     sub_7100138FC0(a1);
 
-    rest_ticks(a2, 480 * 3);
-
-    if (is_thread_stopping(a2)) {
-        return;
-    }
+    restb(3);
 
     sub_7100137140(a1);
 }
 
 
 void remix20Control(s64 a1, s64 a2) {
-    runLuaChart(a1, a2, CONTROL_SCRIPT);
+    //runLuaChart(a1, a2, CONTROL_SCRIPT);
+    s64 v1;
+
+    restb(35.5);
+
+    scene_change_r(1);
+    restb(8);
+
+    scene_change_r(26);
+    restb(8);
+
+    scene_change_r(29);
+    restb(8);
+
+    scene_change_r(8);
+    restb(8);
+
+    scene_change_r(22);
+    restb(8);
 }
 
 
-HkTrampoline remix20AnimHook = [](TrampolineStatic(), s64 a1, s64 a2) -> s64 {
-    reinterpret_cast<u32*>(a2)[4] -= sub_7100137990();
+void remix20Anim(s64 a1, s64 a2) {
+    // runLuaChart(a1, a2, ANIM_SCRIPT);
+    restb(20);
 
-    runLuaChart(a1, a2, ANIM_SCRIPT);
-
-    return sub_7100514FD0(a2);
-};
+    set_anim(a1, a2, 0, 480, 0);
+}
 
 
 HkTrampoline remix20Cues00Hook = [](TrampolineStatic(), s64 a1, s64 a2) -> s64 {
@@ -136,17 +170,24 @@ extern "C" void hkMain() {
     initHook.installAtMainOffset(0x50CBA0);
     mainLoopHook.installAtMainOffset(0x509E10);
 
-    hk::hook::a64::assemble<"mov x0, x20">().installAtMainOffset(0x417574);
-    hk::hook::a64::assemble<"mov x1, x19">().installAtMainOffset(0x417578);
-    hk::hook::writeBranchLinkAtMainOffset(0x41757C, &remix20Main);
-    hk::hook::writeBranchAtMainOffset(0x417580, reinterpret_cast<void*>(mainBase + 0x41799C));
+    constexpr u64 remix20MainOffset = 0x417574;
+    hk::hook::a64::assemble<"mov x0, x20">().installAtMainOffset(remix20MainOffset);
+    hk::hook::a64::assemble<"mov x1, x19">().installAtMainOffset(remix20MainOffset + 4);
+    hk::hook::writeBranchLinkAtMainOffset(remix20MainOffset + 8, &remix20Main);
+    hk::hook::writeBranchAtMainOffset(remix20MainOffset + 12, reinterpret_cast<void*>(mainBase + 0x41799C));
 
-    hk::hook::a64::assemble<"mov x0, x21">().installAtMainOffset(0x41F198);
-    hk::hook::a64::assemble<"mov x1, x19">().installAtMainOffset(0x41F19C);
-    hk::hook::writeBranchLinkAtMainOffset(0x41F1A0, &remix20Control);
-    hk::hook::writeBranchAtMainOffset(0x41F1A4, reinterpret_cast<void*>(mainBase + 0x42029C));
+    constexpr u64 remix20ControlOffset = 0x41F198;
+    hk::hook::a64::assemble<"mov x0, x21">().installAtMainOffset(remix20ControlOffset);
+    hk::hook::a64::assemble<"mov x1, x19">().installAtMainOffset(remix20ControlOffset + 4);
+    hk::hook::writeBranchLinkAtMainOffset(remix20ControlOffset + 8, &remix20Control);
+    hk::hook::writeBranchAtMainOffset(remix20ControlOffset + 12, reinterpret_cast<void*>(mainBase + 0x42029C));
 
-    remix20AnimHook.installAtMainOffset(0x4179C0);
+    constexpr u64 remix20AnimOffset = 0x4179F0;
+    hk::hook::a64::assemble<"mov x0, x20">().installAtMainOffset(remix20AnimOffset);
+    hk::hook::a64::assemble<"mov x1, x19">().installAtMainOffset(remix20AnimOffset + 4);
+    hk::hook::writeBranchLinkAtMainOffset(remix20AnimOffset + 8, &remix20Anim);
+    hk::hook::writeBranchAtMainOffset(remix20AnimOffset + 12, reinterpret_cast<void*>(mainBase + 0x41800C));
+
     remix20Cues00Hook.installAtMainOffset(0x418AE0);
     remix20Cues01Hook.installAtMainOffset(0x4194D0);
     remix20Cues02Hook.installAtMainOffset(0x41A020);

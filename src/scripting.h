@@ -30,6 +30,9 @@ extern "C" s32 lua_set_marking_criteria(lua_State* L);
 
 extern "C" s32 lua_spawn_parasol_cue(lua_State* L);
 extern "C" s32 lua_spawn_birds_cue(lua_State* L);
+extern "C" s32 lua_spawn_talk_cue01(lua_State* L);
+extern "C" s32 lua_spawn_wiper_cue01(lua_State* L);
+extern "C" s32 lua_spawn_wiper_cue02(lua_State* L);
 
 extern "C" s32 lua_set_anim(lua_State* L);
 extern "C" s32 lua_stop_anim(lua_State* L);

@@ -12,6 +12,9 @@ sub_7100514FD0 = 0x514FD0
 
 spawn_parasol_cue = 0x204970
 spawn_birds_cue = 0x14A3E0
+spawn_talk_cue01 = 0x254A70
+spawn_wiper_cue01 = 0x2AA4F0
+spawn_wiper_cue02 = 0x2AA6F0
 
 sub_7100137990 = 0x137990
 set_anim = 0x1379A0

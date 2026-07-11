@@ -32,6 +32,12 @@ lua_State* initLua() {
     lua_setglobal(L, "spawn_parasol_cue");
     lua_pushcfunction(L, lua_spawn_birds_cue);
     lua_setglobal(L, "spawn_birds_cue");
+    lua_pushcfunction(L, lua_spawn_talk_cue01);
+    lua_setglobal(L, "spawn_talk_cue01");
+    lua_pushcfunction(L, lua_spawn_wiper_cue01);
+    lua_setglobal(L, "spawn_wiper_cue01");
+    lua_pushcfunction(L, lua_spawn_wiper_cue02);
+    lua_setglobal(L, "spawn_wiper_cue02");
 
     lua_pushcfunction(L, lua_set_anim);
     lua_setglobal(L, "set_anim");
@@ -197,6 +203,39 @@ s32 lua_spawn_birds_cue(lua_State* L) {
     log("spawning birds cue: %s", cue);
 
     spawn_birds_cue(reinterpret_cast<s64*>(ctx->a1)[7265], ctx->a2, const_cast<char*>(cue));
+
+    return 0;
+}
+
+
+s32 lua_spawn_talk_cue01(lua_State* L) {
+    const ChartContext* ctx = getChartContext(L);
+
+    log("spawning talk cue01");
+
+    spawn_talk_cue01(reinterpret_cast<s64*>(ctx->a1)[7340]);
+
+    return 0;
+}
+
+
+s32 lua_spawn_wiper_cue01(lua_State* L) {
+    const ChartContext* ctx = getChartContext(L);
+
+    log("spawning wiper cue01");
+
+    spawn_wiper_cue01(reinterpret_cast<s64*>(ctx->a1)[7349]);
+
+    return 0;
+}
+
+
+s32 lua_spawn_wiper_cue02(lua_State* L) {
+    const ChartContext* ctx = getChartContext(L);
+
+    log("spawning wiper cue02");
+
+    spawn_wiper_cue02(reinterpret_cast<s64*>(ctx->a1)[7349]);
 
     return 0;
 }
