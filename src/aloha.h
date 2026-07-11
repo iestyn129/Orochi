@@ -1,6 +1,7 @@
 #pragma once
 
-extern "C" unsigned int* rest_ticks(unsigned int*, int);
+extern "C" unsigned int* rest_ticks(long long int, int);
+extern "C" bool is_thread_stopping(long long int);
 extern "C" long long int sub_7100514FB0(long long int);
 extern "C" long long int change_cue_scene(long long int, long long int, int);
 extern "C" long long int set_marking_criteria(long long int, char*);

@@ -47,33 +47,32 @@ HkTrampoline remix20AnimHook = [](TrampolineStatic(), s64 a1, u32* a2) -> s64 {
 };
 
 
-void remix20Main(s64 a1, u32* a2) {
-    rest_ticks(a2, 480 * 4);
+void remix20Main(s64 a1, s64 a2) {
+    runLuaChart(a1, a2, MAIN_SCRIPT);
 
     sub_7100138CD0(a1);
     sub_71001366E0(a1);
 
     rest_ticks(a2, 480);
 
+    if (is_thread_stopping(a2)) {
+        return;
+    }
+
     sub_7100138FC0(a1);
 
-    rest_ticks(a2, 480 * 15);
+    rest_ticks(a2, 480 * 3);
+
+    if (is_thread_stopping(a2)) {
+        return;
+    }
 
     sub_7100137140(a1);
 }
 
 
-void remix20Control(s64 a1, u32* a2) {
-    log("remix20Control - start");
-
-    rest_ticks(a2, 480 * 17);
-
-    s64 v1 = sub_7100514FB0((s64)a2);
-    change_scene_fade(a1 + 28168, (s64)a2, 1, 2);
-    unk_thread_check((s64)a2, v1);
-    sub_71004F8260(*(s64*)(((s64*)a1)[7265] + 15208LL), (char*)"SetupCloud");
-
-    log("remix20Control - end");
+void remix20Control(s64 a1, s64 a2) {
+    runLuaChart(a1, a2, CONTROL_SCRIPT);
 }
 
 

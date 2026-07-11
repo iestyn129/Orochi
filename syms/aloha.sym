@@ -1,6 +1,7 @@
 @aloha:100
 
 rest_ticks = 0x514D70
+is_thread_stopping = 0x514DD0
 sub_7100514FB0 = 0x514FB0
 change_cue_scene = 0x4DAA70
 set_marking_criteria = 0x1390E0

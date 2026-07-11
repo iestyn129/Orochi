@@ -2,6 +2,7 @@
 
 #include <cstdio>
 #include <vector>
+#include "aloha.h"
 #include "log.h"
 #include "nn/fs.h"
 
@@ -19,13 +20,50 @@ lua_State* initLua() {
     lua_pushcfunction(L, lua_print);
     lua_setglobal(L, "print");
 
+    lua_pushcfunction(L, lua_rest);
+    lua_setglobal(L, "rest");
+
+    lua_pushcfunction(L, lua_change_scene);
+    lua_setglobal(L, "change_scene");
+    lua_pushcfunction(L, lua_change_scene_fade);
+    lua_setglobal(L, "change_scene_fade");
+
+    *static_cast<ChartContext**>(lua_getextraspace(L)) = new ChartContext{};
+
     return L;
 }
 
 
-void runLua(lua_State* L, const char* script) {
-    luaL_loadbuffer(L, script, static_cast<s32>(strlen(script)), "runLua");
-    lua_pcall(L, 0, 0, 0);
+void destroyLua(lua_State* L) {
+    if (!L) {
+        return;
+    }
+
+    if (auto** ctx = static_cast<ChartContext**>(lua_getextraspace(L)); *ctx) {
+        delete *ctx;
+        *ctx = nullptr;
+    }
+
+    lua_close(L);
+}
+
+
+ChartContext* getChartContext(lua_State* L) {
+    return *static_cast<ChartContext**>(lua_getextraspace(L));
+}
+
+
+void runLua(lua_State* L, const char* script, const char* scriptName) {
+    if (luaL_loadbuffer(L, script, strlen(script), scriptName) != LUA_OK) {
+        log("Lua load error: %s", lua_tostring(L, -1));
+        lua_pop(L, 1);
+        return;
+    }
+
+    if (lua_pcall(L, 0, 0, 0) != LUA_OK) {
+        log("Lua error: %s", lua_tostring(L, -1));
+        lua_pop(L, 1);
+    }
 }
 
 
@@ -48,12 +86,24 @@ void runLuaScript(lua_State* L, const char* scriptPath) {
 
         buffer[bytesRead] = '\0';
 
-        runLua(L, buffer.data());
+        runLua(L, buffer.data(), scriptPath);
 
         break;
     }
 
     nn::fs::CloseFile(file);
+}
+
+
+void runLuaChart(s64 a1, s64 a2, const char* scriptPath) {
+    lua_State* L = initLua();
+
+    const ChartContext* ctx = getChartContext(L);
+    ctx->a1 = a1;
+    ctx->a2 = a2;
+
+    runLuaScript(L, scriptPath);
+    destroyLua(L);
 }
 
 
@@ -65,6 +115,39 @@ s32 lua_print(lua_State* L) {
             log("LUA: %s", str);
         }
     }
+
+    return 0;
+}
+
+
+s32 lua_rest(lua_State* L) {
+    const auto ticks = static_cast<s32>(luaL_checkinteger(L, 1));
+    const ChartContext* ctx = getChartContext(L);
+
+    rest_ticks(ctx->a2, ticks);
+
+    check_thread_stopping(ctx, L);
+
+    return 0;
+}
+
+
+s32 lua_change_scene(lua_State* L) {
+    return 0;
+}
+
+
+s32 lua_change_scene_fade(lua_State* L) {
+    const auto scene = static_cast<u32>(luaL_checkinteger(L, 1));
+    const ChartContext* ctx = getChartContext(L);
+
+    s64 v1 = sub_7100514FB0(ctx->a2);
+    change_scene_fade(ctx->a1 + 28168, ctx->a2, scene, 2);
+    unk_thread_check(ctx->a2, v1);
+
+    check_thread_stopping(ctx, L);
+
+    //sub_71004F8260(*(s64*)(((s64*)a1)[7265] + 15208LL), (char*)"SetupCloud");
 
     return 0;
 }
