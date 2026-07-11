@@ -10,6 +10,9 @@ spawn_guardian_cue01 = 0x1A82F0
 spawn_guardian_cue02 = 0x1A9120
 sub_7100514FD0 = 0x514FD0
 
+spawn_parasol_cue = 0x204970
+spawn_birds_cue = 0x14A3E0
+
 sub_7100137990 = 0x137990
 set_anim = 0x1379A0
 stop_anim = 0x137A80

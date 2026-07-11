@@ -10,6 +10,9 @@ extern "C" void spawn_guardian_cue01(long long int, long long int, long long int
 extern "C" void spawn_guardian_cue02(long long int, long long int, long long int, long long int);
 extern "C" long long int sub_7100514FD0(long long int);
 
+extern "C" void spawn_parasol_cue(long long int, long long int, unsigned int, unsigned int, unsigned int, unsigned int);
+extern "C" void spawn_birds_cue(long long int, long long int, char*);
+
 extern "C" long long int sub_7100137990();
 extern "C" long long int set_anim(long long int, long long int, int ticks, int alsoTicks, int maybeAnID); // ???
 extern "C" long long int stop_anim(long long int); // ???
