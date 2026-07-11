@@ -33,3 +33,8 @@ extern "C" long long int sub_71003BE7D0(long long int, long long int, unsigned i
 extern "C" long long int sub_71004F4610(long long int, char*, char*, char, unsigned int);
 extern "C" long long int sub_71004DA400(long long int, int, int);
 extern "C" long long int unk_thread_check(long long int, long long int);
+
+extern "C" long long int sub_7100138CD0(long long int);
+extern "C" long long int sub_71001366E0(long long int);
+extern "C" long long int sub_7100138FC0(long long int);
+extern "C" void sub_7100137140(long long int);
