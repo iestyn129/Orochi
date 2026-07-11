@@ -7,8 +7,11 @@
 
 
 void initLog() {
-    nn::fs::CreateFile(LOG_FILE, 0);
+   if (nn::fs::CreateFile(LOG_FILE, 0).IsFailure()) {
+       log("\n"); // print a new line if log already exists (assuming that's the only cause for this to fail)
+   }
 
+    log("=== Initialising Pyrite ===");
     log("Log initialised!");
 }
 

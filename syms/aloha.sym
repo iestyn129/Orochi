@@ -11,8 +11,8 @@ spawn_guardian_cue02 = 0x1A9120
 sub_7100514FD0 = 0x514FD0
 
 sub_7100137990 = 0x137990
-anim_unk_sub_71001379A0 = 0x1379A0
-sub_7100137A80 = 0x137A80
+set_anim = 0x1379A0
+stop_anim = 0x137A80
 
 sub_7100514A90 = 0x514A90
 sub_71005153A0 = 0x5153A0

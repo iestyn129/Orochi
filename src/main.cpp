@@ -1,6 +1,5 @@
 #include "hk/hook/Trampoline.h"
 #include "nn/fs.h"
-#include "arm_neon.h"
 #include "aloha.h"
 #include "global.h"
 #include "log.h"
@@ -13,37 +12,13 @@ HkTrampoline initHook = [](TrampolineStatic(), u64* a1) -> void {
 
     initLog();
 
+    log("=== Pyrite Initialised! ===");
     orig(a1);
 };
 
 
 HkTrampoline mainLoopHook = [](TrampolineStatic(), s32 a1) -> void {
     orig(a1);
-};
-
-
-HkTrampoline remix20AnimHook = [](TrampolineStatic(), s64 a1, u32* a2) -> s64 {
-    a2[4] -= sub_7100137990();
-
-    //rest_ticks(a2, 480 * 18);
-    //anim_unk_sub_71001379A0(a1, (s64)a2, 0, 480, 0);
-    //rest_ticks(a2, 480 * 153);
-    //sub_7100137A80(a1);
-    //rest_ticks(a2, 480 * 7);
-    //anim_unk_sub_71001379A0(a1, (s64)a2, 0, 480, 0);
-    //rest_ticks(a2, 480 * 349);
-    //sub_7100137A80(a1);
-    //rest_ticks(a2, 480 * 3);
-    //anim_unk_sub_71001379A0(a1, (s64)a2, 0, 480, 0);
-    //rest_ticks(a2, 480 * 32);
-    //sub_7100137A80(a1);
-    //rest_ticks(a2, 480 * 4);
-    //anim_unk_sub_71001379A0(a1, (s64)a2, 0, 480, 0);
-    //rest_ticks(a2, 480 * 12);
-    //sub_7100137A80(a1);
-    //rest_ticks(a2, 480 * 4);
-
-    return sub_7100514FD0((s64)a2);
 };
 
 
@@ -76,58 +51,83 @@ void remix20Control(s64 a1, s64 a2) {
 }
 
 
-HkTrampoline remix20Cues00Hook = [](TrampolineStatic(), s64 a1, u32* a2) -> s64 {
-    return sub_7100514FD0((s64)a2);
+HkTrampoline remix20AnimHook = [](TrampolineStatic(), s64 a1, s64 a2) -> s64 {
+    reinterpret_cast<u32*>(a2)[4] -= sub_7100137990();
+
+    runLuaChart(a1, a2, ANIM_SCRIPT);
+
+    return sub_7100514FD0(a2);
 };
 
 
-HkTrampoline remix20Cues01Hook = [](TrampolineStatic(), s64 a1, u32* a2) -> s64 {
-    return sub_7100514FD0((s64)a2);
+HkTrampoline remix20Cues00Hook = [](TrampolineStatic(), s64 a1, s64 a2) -> s64 {
+    runLuaChart(a1, a2, CUES00_SCRIPT);
+
+    return sub_7100514FD0(a2);
 };
 
 
-HkTrampoline remix20Cues02Hook = [](TrampolineStatic(), s64 a1, u32* a2) -> s64 {
-    return sub_7100514FD0((s64)a2);
+HkTrampoline remix20Cues01Hook = [](TrampolineStatic(), s64 a1, s64 a2) -> s64 {
+    runLuaChart(a1, a2, CUES01_SCRIPT);
+
+    return sub_7100514FD0(a2);
 };
 
 
-HkTrampoline remix20Cues03Hook = [](TrampolineStatic(), s64 a1, u32* a2) -> s64 {
-    return sub_7100514FD0((s64)a2);
+HkTrampoline remix20Cues02Hook = [](TrampolineStatic(), s64 a1, s64 a2) -> s64 {
+    runLuaChart(a1, a2, CUES02_SCRIPT);
+
+    return sub_7100514FD0(a2);
 };
 
 
-HkTrampoline remix20Cues04Hook = [](TrampolineStatic(), s64 a1, u32* a2) -> s64 {
-    return sub_7100514FD0((s64)a2);
+HkTrampoline remix20Cues03Hook = [](TrampolineStatic(), s64 a1, s64 a2) -> s64 {
+    runLuaChart(a1, a2, CUES03_SCRIPT);
+
+    return sub_7100514FD0(a2);
 };
 
 
-HkTrampoline remix20Cues05Hook = [](TrampolineStatic(), s64 a1, u32* a2) -> s64 {
-    return sub_7100514FD0((s64)a2);
+HkTrampoline remix20Cues04Hook = [](TrampolineStatic(), s64 a1, s64 a2) -> s64 {
+    runLuaChart(a1, a2, CUES04_SCRIPT);
+
+    return sub_7100514FD0(a2);
 };
 
 
-HkTrampoline remix20Cues06Hook = [](TrampolineStatic(), s64 a1, u32* a2) -> s64 {
+HkTrampoline remix20Cues05Hook = [](TrampolineStatic(), s64 a1, s64 a2) -> s64 {
+    runLuaChart(a1, a2, CUES05_SCRIPT);
+
+    return sub_7100514FD0(a2);
+};
+
+
+HkTrampoline remix20Cues06Hook = [](TrampolineStatic(), s64 a1, s64 a2) -> s64 {
+    runLuaChart(a1, a2, CUES06_SCRIPT);
+
     //rest_ticks(a2, 480 * 58);
 
-    //sub_7100514FB0((s64)a2);
-    //change_cue_scene(a1, (s64)a2, 10);
+    //sub_7100514FB0(a2);
+    //change_cue_scene(a1, a2, 10);
 
     //set_marking_criteria(a1, (char*)"basic");
-    //spawn_guardian_cue02(*(s64*)(a1 + 58336), (s64)a2, 0, 0);
+    //spawn_guardian_cue02(*(s64*)(a1 + 58336), a2, 0, 0);
 
     //rest_ticks(a2, 480 * 8);
 
     //set_marking_criteria(a1, (char*)"basic");
-    //spawn_guardian_cue02(*(s64*)(a1 + 58336), (s64)a2, 0, 0);
+    //spawn_guardian_cue02(*(s64*)(a1 + 58336), a2, 0, 0);
 
     //rest_ticks(a2, 480 * 504);
 
-    return sub_7100514FD0((s64)a2);
+    return sub_7100514FD0(a2);
 };
 
 
-HkTrampoline remix20Cues07Hook = [](TrampolineStatic(), s64 a1, u32* a2) -> s64 {
-    return sub_7100514FD0((s64)a2);
+HkTrampoline remix20Cues07Hook = [](TrampolineStatic(), s64 a1, s64 a2) -> s64 {
+    runLuaChart(a1, a2, CUES07_SCRIPT);
+
+    return sub_7100514FD0(a2);
 };
 
 extern "C" void hkMain() {

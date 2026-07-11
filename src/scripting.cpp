@@ -23,6 +23,11 @@ lua_State* initLua() {
     lua_pushcfunction(L, lua_rest);
     lua_setglobal(L, "rest");
 
+    lua_pushcfunction(L, lua_set_anim);
+    lua_setglobal(L, "set_anim");
+    lua_pushcfunction(L, lua_stop_anim);
+    lua_setglobal(L, "stop_anim");
+
     lua_pushcfunction(L, lua_change_scene);
     lua_setglobal(L, "change_scene");
     lua_pushcfunction(L, lua_change_scene_fade);
@@ -132,7 +137,30 @@ s32 lua_rest(lua_State* L) {
 }
 
 
+s32 lua_set_anim(lua_State* L) {
+    const auto ticks = static_cast<s32>(luaL_checkinteger(L, 1));
+    const auto alsoTicks = static_cast<s32>(luaL_checkinteger(L, 2));
+    const auto maybeAnID = static_cast<s32>(luaL_checkinteger(L, 3));
+    const ChartContext* ctx = getChartContext(L);
+
+    set_anim(ctx->a1, ctx->a2, ticks, alsoTicks, maybeAnID);
+
+    return 0;
+}
+
+
+s32 lua_stop_anim(lua_State* L) {
+    const ChartContext* ctx = getChartContext(L);
+
+    stop_anim(ctx->a1);
+
+    return 0;
+}
+
+
 s32 lua_change_scene(lua_State* L) {
+    const ChartContext* ctx = getChartContext(L);
+
     return 0;
 }
 

@@ -21,5 +21,7 @@ extern void runLuaScript(lua_State* L, const char* scriptPath);
 extern void runLuaChart(s64 a1, s64 a2, const char* scriptPath);
 extern "C" s32 lua_print(lua_State* L);
 extern "C" s32 lua_rest(lua_State* L);
+extern "C" s32 lua_set_anim(lua_State* L);
+extern "C" s32 lua_stop_anim(lua_State* L);
 extern "C" s32 lua_change_scene(lua_State* L);
 extern "C" s32 lua_change_scene_fade(lua_State* L);
