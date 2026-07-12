@@ -15,6 +15,8 @@ extern "C" void spawn_birds_cue(long long int, long long int, char*);
 extern "C" void spawn_talk_cue01(long long int);
 extern "C" void spawn_wiper_cue01(long long int);
 extern "C" void spawn_wiper_cue02(long long int);
+extern "C" void spawn_flydisc_cue(long long int, long long int, unsigned int, unsigned int, int, char);
+extern "C" void spawn_rope_cue(long long int, long long int, int, char);
 
 extern "C" long long int sub_7100137990();
 extern "C" long long int set_anim(long long int, long long int, int ticks, int alsoTicks, int maybeAnID); // ???

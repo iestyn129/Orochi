@@ -15,6 +15,8 @@ spawn_birds_cue = 0x14A3E0
 spawn_talk_cue01 = 0x254A70
 spawn_wiper_cue01 = 0x2AA4F0
 spawn_wiper_cue02 = 0x2AA6F0
+spawn_flydisc_cue = 0x18D3F0
+spawn_rope_cue = 0x226AA0
 
 sub_7100137990 = 0x137990
 set_anim = 0x1379A0
