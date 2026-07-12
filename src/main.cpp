@@ -172,7 +172,8 @@ void remix20Control(s64 a1, s64 a2) {
     restb(15.5); // -0.5
 
     scene_change_sf(4);
-    sub_7100162DE0(((s64*)a1)[7274], sub_71004EFE80(((s64*)a1)[7353], const_cast<char*>("s00_m_tv_00"), 0));
+    // crashes on hardware
+    //sub_7100162DE0(((s64*)a1)[7274], sub_71004EFE80(((s64*)a1)[7353], const_cast<char*>("s00_m_tv_00"), 0));
     restb(21.5); // -1.0
 
     scene_change_sf(0);
