@@ -290,7 +290,5 @@ s32 lua_change_scene_fade(lua_State* L) {
 
     check_thread_stopping(ctx, L);
 
-    //sub_71004F8260(*(s64*)(((s64*)a1)[7265] + 15208LL), (char*)"SetupCloud");
-
     return 0;
 }

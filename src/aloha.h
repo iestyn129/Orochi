@@ -16,10 +16,21 @@ extern "C" void spawn_talk_cue01(long long int);
 extern "C" void spawn_wiper_cue01(long long int);
 extern "C" void spawn_wiper_cue02(long long int);
 extern "C" void spawn_flydisc_cue(long long int, long long int, unsigned int, unsigned int, int, char);
-extern "C" void spawn_rope_cue(long long int, long long int, int, char);
+extern "C" void spawn_rope_cue00(long long int, long long int, int, char);
+extern "C" void spawn_rope_cue01(long long int, long long int, int, char, char);
+extern "C" void spawn_crab_cue02(long long int, long long int, int, int, int);
+extern "C" void spawn_clap_123(long long int);
+extern "C" void spawn_clap_321(long long int);
+extern "C" void spawn_clap_cue00(long long int, long long int, int);
+extern "C" void spawn_clap_cue01(long long int, long long int);
+extern "C" void spawn_clap_cue02(long long int);
+extern "C" void spawn_clap_cue03(long long int, long long int);
+extern "C" void spawn_clap_cue04(long long int);
+extern "C" void spawn_bacteria_cue00(long long int, long long int, int, char);
+extern "C" void spawn_bacteria_cue01(long long int, long long int, char);
 
 extern "C" long long int sub_7100137990();
-extern "C" long long int set_anim(long long int, long long int, int ticks, int alsoTicks, int maybeAnID); // ???
+extern "C" long long int set_anim(long long int, long long int, int ticks, int alsoTicks, int numLoops); // ???
 extern "C" long long int stop_anim(long long int); // ???
 
 extern "C" long long int sub_7100514A90(long long int, long long int, int, long long int, long long int, long long int);
@@ -29,7 +40,7 @@ extern "C" unsigned int* sub_71004D9E10(unsigned int*, int);
 extern "C" long long int change_scene(long long int, long long int, unsigned int);
 extern "C" long long int change_scene_fade(long long int, long long int, unsigned int, unsigned int);
 extern "C" long long int sub_71004F8260(long long int, char*);
-extern "C" long long int sub_71003B8770(long long int, long long int, unsigned int, unsigned int);
+extern "C" long long int change_scene_slow_fade(long long int, long long int, unsigned int, unsigned int);
 extern "C" void sub_710018C730(long long int, char*);
 extern "C" long long int sub_71002A8E10(long long int);
 extern "C" long long int sub_71004FBA20(long long int, char*, char);
@@ -41,6 +52,8 @@ extern "C" long long int sub_71001B24D0(long long int);
 extern "C" long long int sub_71003BE7D0(long long int, long long int, unsigned int, unsigned int);
 extern "C" long long int sub_71004F4610(long long int, char*, char*, char, unsigned int);
 extern "C" long long int sub_71004DA400(long long int, int, int);
+extern "C" long long int sub_71004EFE80(long long int, char*, long long int);
+extern "C" void sub_7100162DE0(long long int, long long int);
 extern "C" long long int unk_thread_check(long long int, long long int);
 
 extern "C" long long int sub_7100138CD0(long long int);
