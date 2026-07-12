@@ -28,6 +28,7 @@ extern "C" void spawn_clap_cue03(long long int, long long int);
 extern "C" void spawn_clap_cue04(long long int);
 extern "C" void spawn_bacteria_cue00(long long int, long long int, int, char);
 extern "C" void spawn_bacteria_cue01(long long int, long long int, char);
+extern "C" void spawn_bacteria_cue03(long long int);
 
 extern "C" long long int sub_7100137990();
 extern "C" long long int set_anim(long long int, long long int, int ticks, int alsoTicks, int numLoops); // ???

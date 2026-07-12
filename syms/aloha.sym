@@ -28,6 +28,7 @@ spawn_clap_cue03 = 0x1634F0
 spawn_clap_cue04 = 0x1642F0
 spawn_bacteria_cue00 = 0x146120
 spawn_bacteria_cue01 = 0x1473A0
+spawn_bacteria_cue03 = 0x147CD0
 
 sub_7100137990 = 0x137990
 set_anim = 0x1379A0

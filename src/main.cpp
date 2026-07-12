@@ -108,6 +108,9 @@
 #define bacteria_cue01(a3) \
     spawn_bacteria_cue01(reinterpret_cast<s64*>(a1)[7262], a2, a3)
 
+#define bacteria_cue03() \
+    spawn_bacteria_cue03(reinterpret_cast<s64*>(a1)[7262])
+
 
 HkTrampoline initHook = [](TrampolineStatic(), u64* a1) -> void {
     nn::fs::MountSdCard(SD_DRIVE);
@@ -155,7 +158,7 @@ void remix20Control(s64 a1, s64 a2) {
     sub_71004F8260(*(s64*)(((s64*)a1)[7265] + 15208), const_cast<char*>("SetupCloud"));
     restb(8);
 
-    scene_change_r(26);
+    scene_change_f(26);
     restb(8);
 
     scene_change_r(29);
@@ -163,29 +166,27 @@ void remix20Control(s64 a1, s64 a2) {
 
     scene_change_f(8);
     sub_710018C730(((s64*)a1)[7286], const_cast<char*>("BG_IMG_B"));
-    restb(6.5); // -1.5
+    restb(7.25); // -0.75
 
-    scene_change_sf(22);
-    restb(33.5); // +1.5
+    scene_change_f(22);
+    restb(32.75); // +0.75
 
-    scene_change_f(6);
-    restb(15.5); // -0.5
+    scene_change_sf(6);
+    restb(16);
 
-    scene_change_sf(4);
+    scene_change_f(4);
     // crashes on hardware
     //sub_7100162DE0(((s64*)a1)[7274], sub_71004EFE80(((s64*)a1)[7353], const_cast<char*>("s00_m_tv_00"), 0));
-    restb(21.5); // -1.0
+    restb(21); // -2.0 -1.0
 
     scene_change_sf(0);
-    restb(3.5); // + 1.5
+    restb(3); // +2.0 +1.0
 }
 
 
 void remix20Anim(s64 a1, s64 a2) {
     //runLuaChart(a1, a2, ANIM_SCRIPT);
-    restb(20);
-    set_anim(a1, a2, 0, 480, 0);
-    restb(14);
+    restb(34);
 
     set_anim(a1, a2, 0, 192, 0);
     restb(2);
@@ -222,8 +223,14 @@ HkTrampoline remix20Cues00Hook = [](TrampolineStatic(), s64 a1, s64 a2) -> s64 {
 
     restbc(1);
 
-    bacteria_cue00(15, 1);
-    restbc(15);
+    bacteria_cue00(13, 1);
+    restbc(13);
+    bacteria_cue03();
+    restbc(2);
+    bacteria_cue00(14, 0);
+    restbc(14);
+    bacteria_cue03();
+    restbc(2);
     bacteria_cue01(0);
 
     return sub_7100514FD0(a2);
