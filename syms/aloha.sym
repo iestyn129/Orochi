@@ -5,9 +5,6 @@ is_thread_stopping = 0x514DD0
 sub_7100514FB0 = 0x514FB0
 change_cue_scene = 0x4DAA70
 set_marking_criteria = 0x1390E0
-spawn_guardian_cue00 = 0x1A89E0
-spawn_guardian_cue01 = 0x1A82F0
-spawn_guardian_cue02 = 0x1A9120
 sub_7100514FD0 = 0x514FD0
 
 spawn_parasol_cue = 0x204970
@@ -29,6 +26,12 @@ spawn_clap_cue04 = 0x1642F0
 spawn_bacteria_cue00 = 0x146120
 spawn_bacteria_cue01 = 0x1473A0
 spawn_bacteria_cue03 = 0x147CD0
+spawn_insect_cue01 = 0x1B5A60
+spawn_insect_cue02 = 0x1B60F0
+spawn_hungry_cue = 0x1AF800
+spawn_guardian_cue00 = 0x1A89E0
+spawn_guardian_cue01 = 0x1A82F0
+spawn_guardian_cue02 = 0x1A9120
 
 sub_7100137990 = 0x137990
 set_anim = 0x1379A0

@@ -5,9 +5,6 @@ extern "C" bool is_thread_stopping(long long int);
 extern "C" long long int sub_7100514FB0(long long int);
 extern "C" long long int change_cue_scene(long long int, long long int, int);
 extern "C" long long int set_marking_criteria(long long int, char*);
-extern "C" void spawn_guardian_cue00(long long int, long long int, long long int, long long int);
-extern "C" void spawn_guardian_cue01(long long int, long long int, long long int, long long int);
-extern "C" void spawn_guardian_cue02(long long int, long long int, long long int, long long int);
 extern "C" long long int sub_7100514FD0(long long int);
 
 extern "C" void spawn_parasol_cue(long long int, long long int, unsigned int, unsigned int, unsigned int, unsigned int);
@@ -29,6 +26,12 @@ extern "C" void spawn_clap_cue04(long long int);
 extern "C" void spawn_bacteria_cue00(long long int, long long int, int, char);
 extern "C" void spawn_bacteria_cue01(long long int, long long int, char);
 extern "C" void spawn_bacteria_cue03(long long int);
+extern "C" void spawn_insect_cue01(long long int, long long int, unsigned int, unsigned int, char);
+extern "C" void spawn_insect_cue02(long long int, long long int, unsigned int, unsigned int, char);
+extern "C" void spawn_hungry_cue(long long int, long long int, int);
+extern "C" void spawn_guardian_cue00(long long int, long long int, long long int, long long int);
+extern "C" void spawn_guardian_cue01(long long int, long long int, long long int, long long int);
+extern "C" void spawn_guardian_cue02(long long int, long long int, long long int, long long int);
 
 extern "C" long long int sub_7100137990();
 extern "C" long long int set_anim(long long int, long long int, int ticks, int alsoTicks, int numLoops); // ???

@@ -111,6 +111,24 @@
 #define bacteria_cue03() \
     spawn_bacteria_cue03(reinterpret_cast<s64*>(a1)[7262])
 
+#define insect_cue01(ticks, alsoTicks, a5) \
+    spawn_insect_cue01(reinterpret_cast<s64*>(a1)[7304], a2, ticks, alsoTicks, a5)
+
+#define insect_cue02(ticks, alsoTicks, a5) \
+    spawn_insect_cue02(reinterpret_cast<s64*>(a1)[7304], a2, ticks, alsoTicks, a5)
+
+#define hungry_cue(a3) \
+    spawn_hungry_cue(reinterpret_cast<s64*>(a1)[7298], a2, a3)
+
+#define guardian_cue00(a3, a4) \
+    spawn_guardian_cue00(reinterpret_cast<s64*>(a1)[7292], a2, a3, a4)
+
+#define guardian_cue01(a3, a4) \
+    spawn_guardian_cue01(reinterpret_cast<s64*>(a1)[7292], a2, a3, a4)
+
+#define guardian_cue02(a3, a4) \
+    spawn_guardian_cue02(reinterpret_cast<s64*>(a1)[7292], a2, a3, a4)
+
 
 HkTrampoline initHook = [](TrampolineStatic(), u64* a1) -> void {
     nn::fs::MountSdCard(SD_DRIVE);
@@ -131,7 +149,7 @@ HkTrampoline mainLoopHook = [](TrampolineStatic(), s32 a1) -> void {
 void remix20Main(s64 a1, s64 a2) {
     //runLuaChart(a1, a2, MAIN_SCRIPT);
 
-    restb(464);
+    restb(462);
 
     sub_7100138CD0(a1);
     sub_71001366E0(a1);
@@ -150,7 +168,7 @@ void remix20Control(s64 a1, s64 a2) {
     //runLuaChart(a1, a2, CONTROL_SCRIPT);
     s64 v1;
 
-    restb(35.5);
+    restb(33.5);
 
     scene_change_r(1);
     // if you're wondering about why I have horrid pointer math like this,
@@ -177,16 +195,25 @@ void remix20Control(s64 a1, s64 a2) {
     scene_change_f(4);
     // crashes on hardware
     //sub_7100162DE0(((s64*)a1)[7274], sub_71004EFE80(((s64*)a1)[7353], const_cast<char*>("s00_m_tv_00"), 0));
-    restb(21); // -2.0 -1.0
+    restb(20.5); // -2.0 -1.5
 
     scene_change_sf(0);
-    restb(3); // +2.0 +1.0
+    restb(35);
+
+    scene_change_f(14);
+    restb(27.75); // -0.25
+
+    scene_change_r(12);
+    restb(16.25); // +0.25
+
+    scene_change_f(10);
+    restb(16);
 }
 
 
 void remix20Anim(s64 a1, s64 a2) {
     //runLuaChart(a1, a2, ANIM_SCRIPT);
-    restb(34);
+    restb(32);
 
     set_anim(a1, a2, 0, 192, 0);
     restb(2);
@@ -204,7 +231,7 @@ HkTrampoline remix20Cues00Hook = [](TrampolineStatic(), s64 a1, s64 a2) -> s64 {
     //runLuaChart(a1, a2, CUES00_SCRIPT);
     s64 v1;
 
-    restbc(16);
+    restbc(14);
 
     cue_scene_change(17);
     set_criteria("basic");
@@ -241,13 +268,39 @@ HkTrampoline remix20Cues01Hook = [](TrampolineStatic(), s64 a1, s64 a2) -> s64 {
     //runLuaChart(a1, a2, CUES01_SCRIPT);
     s64 v1;
 
-    restbc(34);
+    restbc(32);
 
     cue_scene_change(1);
     set_criteria("basic");
     restbc(1);
 
     birds_cue("D...U...D...U?..");
+    restbc(8);
+
+    restbc(122);
+
+    cue_scene_change(14);
+    set_criteria("basic");
+    restbc(1);
+
+    restbc(4);
+
+    insect_cue01(240, 480 * 4, 0);
+    restbc(4);
+    insect_cue01(240, 480 * 4, 0);
+    restbc(4);
+
+    insect_cue01(240, 480 * 4, 0);
+    restbc(2);
+    insect_cue01(240, 480 * 4, 0);
+    restbc(2);
+    insect_cue01(240, 480 * 4, 0);
+    restbc(4);
+
+    insect_cue02(480, 480 * 4, 0);
+    restbc(5);
+    insect_cue02(480, 480 * 4, 0);
+    restbc(3);
 
     return sub_7100514FD0(a2);
 };
@@ -257,7 +310,7 @@ HkTrampoline remix20Cues02Hook = [](TrampolineStatic(), s64 a1, s64 a2) -> s64 {
     //runLuaChart(a1, a2, CUES02_SCRIPT);
     s64 v1;
 
-    restbc(42);
+    restbc(40);
 
     cue_scene_change(26);
     set_criteria("basic");
@@ -268,6 +321,31 @@ HkTrampoline remix20Cues02Hook = [](TrampolineStatic(), s64 a1, s64 a2) -> s64 {
     talk_cue01();
     restbc(4);
 
+    restbc(140); // -2.0
+
+    cue_scene_change(12);
+    set_criteria("basic");
+    restbc(1);
+
+    hungry_cue(0);
+    restbc(1);
+    hungry_cue(0);
+    restbc(1);
+    hungry_cue(1);
+    restbc(2);
+
+    restbc(4);
+
+    hungry_cue(0);
+    restbc(1);
+    hungry_cue(0);
+    hungry_cue(1);
+    restbc(2);
+    hungry_cue(1);
+    restbc(1);
+
+    restbc(2); // +2.0
+
     return sub_7100514FD0(a2);
 };
 
@@ -276,7 +354,7 @@ HkTrampoline remix20Cues03Hook = [](TrampolineStatic(), s64 a1, s64 a2) -> s64 {
     //runLuaChart(a1, a2, CUES03_SCRIPT);
     s64 v1;
 
-    restbc(50);
+    restbc(48);
 
     cue_scene_change(29);
     set_criteria("basic");
@@ -287,6 +365,24 @@ HkTrampoline remix20Cues03Hook = [](TrampolineStatic(), s64 a1, s64 a2) -> s64 {
     wiper_cue02();
     restbc(4);
 
+    restbc(144); // -10.0
+
+    cue_scene_change(10);
+    set_criteria("basic");
+    restbc(1);
+
+    guardian_cue00(0, 0);
+    restbc(4);
+    guardian_cue02(0, 0);
+    restbc(4);
+
+    guardian_cue00(0, 0);
+    restbc(4);
+    guardian_cue01(0, 0);
+    restbc(4);
+
+    restbc(10); // +10.0
+
     return sub_7100514FD0(a2);
 };
 
@@ -295,7 +391,7 @@ HkTrampoline remix20Cues04Hook = [](TrampolineStatic(), s64 a1, s64 a2) -> s64 {
     //runLuaChart(a1, a2, CUES04_SCRIPT);
     s64 v1;
 
-    restbc(55);
+    restbc(53);
 
     cue_scene_change(8);
     set_criteria("must");
@@ -312,7 +408,7 @@ HkTrampoline remix20Cues05Hook = [](TrampolineStatic(), s64 a1, s64 a2) -> s64 {
     //runLuaChart(a1, a2, CUES05_SCRIPT);
     s64 v1;
 
-    restbc(63);
+    restbc(61);
 
     cue_scene_change(22);
     set_criteria("basic");
@@ -354,7 +450,7 @@ HkTrampoline remix20Cues06Hook = [](TrampolineStatic(), s64 a1, s64 a2) -> s64 {
     //runLuaChart(a1, a2, CUES06_SCRIPT);
     s64 v1;
 
-    restbc(95);
+    restbc(93);
 
     cue_scene_change(6);
     set_criteria("tech");
@@ -374,7 +470,7 @@ HkTrampoline remix20Cues07Hook = [](TrampolineStatic(), s64 a1, s64 a2) -> s64 {
     //runLuaChart(a1, a2, CUES07_SCRIPT);
     s64 v1;
 
-    restbc(109);
+    restbc(107);
 
     cue_scene_change(4);
     set_criteria("basic");
