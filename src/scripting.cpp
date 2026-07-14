@@ -224,7 +224,7 @@ s32 lua_spawn_wiper_cue01(lua_State* L) {
 
     log("spawning wiper cue01");
 
-    spawn_wiper_cue01(reinterpret_cast<s64*>(ctx->a1)[7349]);
+    spawn_wiper_cue_LQ(reinterpret_cast<s64*>(ctx->a1)[7349]);
 
     return 0;
 }
@@ -235,7 +235,7 @@ s32 lua_spawn_wiper_cue02(lua_State* L) {
 
     log("spawning wiper cue02");
 
-    spawn_wiper_cue02(reinterpret_cast<s64*>(ctx->a1)[7349]);
+    spawn_wiper_cue_BQ(reinterpret_cast<s64*>(ctx->a1)[7349]);
 
     return 0;
 }

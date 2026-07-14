@@ -9,9 +9,15 @@ sub_7100514FD0 = 0x514FD0
 
 spawn_parasol_cue = 0x204970
 spawn_birds_cue = 0x14A3E0
+spawn_talk_cue00 = 0x255100
 spawn_talk_cue01 = 0x254A70
-spawn_wiper_cue01 = 0x2AA4F0
-spawn_wiper_cue02 = 0x2AA6F0
+spawn_talk_cue02 = 0x2556C0
+spawn_wiper_cue_RS = 0x2A9700
+spawn_wiper_cue_LS = 0x2A9900
+spawn_wiper_cue_BS = 0x2A9B00
+spawn_wiper_cue_RQ = 0x2AA2F0
+spawn_wiper_cue_LQ = 0x2AA4F0
+spawn_wiper_cue_BQ = 0x2AA6F0
 spawn_flydisc_cue = 0x18D3F0
 spawn_rope_cue00 = 0x226AA0
 spawn_rope_cue01 = 0x2276A0

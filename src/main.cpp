@@ -60,14 +60,32 @@
 #define birds_cue(cue) \
     spawn_birds_cue(reinterpret_cast<s64*>(a1)[7265], a2, const_cast<char*>(cue))
 
+#define talk_cue00() \
+    spawn_talk_cue00(reinterpret_cast<s64*>(a1)[7340])
+
 #define talk_cue01() \
     spawn_talk_cue01(reinterpret_cast<s64*>(a1)[7340])
 
-#define wiper_cue01() \
-    spawn_wiper_cue01(reinterpret_cast<s64*>(a1)[7349])
+#define talk_cue02() \
+    spawn_talk_cue02(reinterpret_cast<s64*>(a1)[7340])
 
-#define wiper_cue02() \
-    spawn_wiper_cue02(reinterpret_cast<s64*>(a1)[7349])
+#define wiper_cue_RS(a3) \
+    spawn_wiper_cue_RS(reinterpret_cast<s64*>(a1)[7349], a2, a3)
+
+#define wiper_cue_LS(a3) \
+    spawn_wiper_cue_LS(reinterpret_cast<s64*>(a1)[7349], a2, a3)
+
+#define wiper_cue_BS() \
+    spawn_wiper_cue_BS(reinterpret_cast<s64*>(a1)[7349])
+
+#define wiper_cue_RQ() \
+    spawn_wiper_cue_RQ(reinterpret_cast<s64*>(a1)[7349])
+
+#define wiper_cue_LQ() \
+    spawn_wiper_cue_LQ(reinterpret_cast<s64*>(a1)[7349])
+
+#define wiper_cue_BQ() \
+    spawn_wiper_cue_BQ(reinterpret_cast<s64*>(a1)[7349])
 
 #define flydisc_cue(a3, ticks, a5, a6) \
     spawn_flydisc_cue(reinterpret_cast<s64*>(a1)[7286], a2, a3, ticks, a5, a6)
@@ -211,39 +229,55 @@ void remix20Control(s64 a1, s64 a2) {
 
     scene_change_sf(0);
     sub_71004DA400(a1, 0, 1);
-    restb(35.5);
+    restb(36);
 
     scene_change_f(14);
     sub_71004DA400(a1, 14, 1);
-    restb(27.25); // -0.75
+    restb(27.75); // -0.25
 
     scene_change_r(12);
     sub_71004DA400(a1, 12, 1);
-    restb(16.75); // +0.75
+    restb(16.25); // +0.25
 
     scene_change_f(10);
     sub_71004DA400(a1, 10, 1);
-    restb(15.25); // -0.75
+    restb(14.5); // -1.5
 
     scene_change_f(22);
-    sub_71004DA400(a1, 22, 2);
-    restb(32.75); // +0.75
+    restb(33.5); // +1.5
 
     scene_change_sf(6);
-    sub_71004DA400(a1, 6, 2);
-    restb(16);
+    restb(15.5); // -0.5
 
     scene_change_f(4);
-    sub_71004DA400(a1, 4, 2);
-    restb(20.5);
+    restb(17); // -0.5 +0.5
 
     scene_change_sf(0);
-    sub_71004DA400(a1, 0, 2);
-    restb(4); // +0.5
+    restb(7); // +0.5 -1.0
 
     scene_change_r(29);
-    sub_71004DA400(a1, 29, 2);
-    restb(15.5); // -0.5
+    restb(8); // +1.0 -1.0s
+
+    scene_change_f(1);
+    restb(15); // -1.0
+
+    scene_change_f(12);
+    restb(9); // +1.0
+
+    scene_change_r(17);
+    restb(8);
+
+    scene_change_f(8);
+    restb(8);
+
+    scene_change_f(14);
+    restb(8);
+
+    scene_change_f(26);
+    restb(8);
+
+    scene_change_r(1);
+    restb(8);
 }
 
 
@@ -296,14 +330,28 @@ HkTrampoline remix20Cues00Hook = [](TrampolineStatic(), s64 a1, s64 a2) -> s64 {
     restbc(2);
     bacteria_cue01(0);
 
-    restbc(132); // +8
+    restbc(128); // +4
 
     cue_scene_change(4);
     set_criteria("basic");
     restbc(1);
 
-    // im evil
-    bacteria_cue00(0, 1);
+    bacteria_cue00(4, 1);
+
+    restbc(37);
+
+    cue_scene_change(17);
+    set_criteria("basic");
+    restbc(1);
+
+    parasol_cue(480, 1, 0, 0);
+    restbc(4);
+    parasol_cue(240, 0, 0, 0);
+    restbc(2);
+    parasol_cue(240, 1, 0, 0);
+    restbc(2);
+
+    //restbc(); // -4
 
     return sub_7100514FD0(a2);
 };
@@ -347,6 +395,41 @@ HkTrampoline remix20Cues01Hook = [](TrampolineStatic(), s64 a1, s64 a2) -> s64 {
     insect_cue02(480, 480 * 4, 0);
     restbc(3);
 
+    restbc(116);
+
+    cue_scene_change(1);
+    set_criteria("basic");
+    restbc(1);
+
+    birds_cue("D...U...D?......");
+    restbc(8);
+
+    birds_cue("U...D...U?......");
+    restbc(8);
+
+    restbc(20);
+
+    cue_scene_change(14);
+    set_criteria("basic");
+    restbc(1);
+
+    insect_cue01(240, 480 * 4, 0);
+    restbc(2);
+    insect_cue01(240, 480 * 4, 0);
+    restbc(2);
+    insect_cue02(480, 480 * 4, 0);
+    insect_cue01(240, 480 * 4, 0);
+    restbc(4);
+
+    restbc(10);
+
+    cue_scene_change(1);
+    set_criteria("basic");
+    restbc(1);
+
+    birds_cue("D...U...D...U?..");
+    restbc(8);
+
     return sub_7100514FD0(a2);
 };
 
@@ -379,17 +462,47 @@ HkTrampoline remix20Cues02Hook = [](TrampolineStatic(), s64 a1, s64 a2) -> s64 {
     hungry_cue(1);
     restbc(2);
 
-    restbc(4);
+    restbc(3);
+    hungry_cue(1);
+    restbc(1);
 
     hungry_cue(0);
     restbc(1);
-    hungry_cue(0);
     hungry_cue(1);
     restbc(2);
     hungry_cue(1);
     restbc(1);
 
-    restbc(2); // +2.0
+    restbc(111); // +2.0
+
+    cue_scene_change(12);
+    set_criteria("basic");
+    restbc(1);
+
+    hungry_cue(1);
+    restbc(1);
+    hungry_cue(1);
+    restbc(1);
+    hungry_cue(1);
+    restbc(1);
+    hungry_cue(1);
+    restbc(4); // +3.0
+
+    hungry_cue(0);
+    restbc(2);
+    hungry_cue(0);
+    restbc(2);
+
+    restbc(31);
+
+    cue_scene_change(26);
+    set_criteria("basic");
+    restbc(1);
+
+    talk_cue02();
+    restbc(4);
+    talk_cue00();
+    restbc(4);
 
     return sub_7100514FD0(a2);
 };
@@ -405,9 +518,9 @@ HkTrampoline remix20Cues03Hook = [](TrampolineStatic(), s64 a1, s64 a2) -> s64 {
     set_criteria("basic");
     restbc(1);
 
-    wiper_cue01();
+    wiper_cue_LQ();
     restbc(4);
-    wiper_cue02();
+    wiper_cue_BQ();
     restbc(4);
 
     restbc(144); // -10.0
@@ -426,7 +539,21 @@ HkTrampoline remix20Cues03Hook = [](TrampolineStatic(), s64 a1, s64 a2) -> s64 {
     guardian_cue01(0, 0);
     restbc(4);
 
-    restbc(10); // +10.0
+    restbc(78); // +10.0 -5.0
+
+    cue_scene_change(29);
+    set_criteria("basic");
+    restbc(1);
+
+    wiper_cue_RS(1);
+    restbc(1);
+    wiper_cue_LS(1);
+    restbc(4); // +1.0
+
+    wiper_cue_BS();
+    restbc(8);
+
+    restbc(4); // +4.0
 
     return sub_7100514FD0(a2);
 };
@@ -437,6 +564,15 @@ HkTrampoline remix20Cues04Hook = [](TrampolineStatic(), s64 a1, s64 a2) -> s64 {
     s64 v1;
 
     restbc(53);
+
+    cue_scene_change(8);
+    set_criteria("must");
+    restbc(1);
+
+    flydisc_cue(0, 7 * 480, -1, 0);
+    restbc(11);
+
+    restbc(272);
 
     cue_scene_change(8);
     set_criteria("must");
@@ -623,7 +759,6 @@ HkTrampoline remix20Cues07Hook = [](TrampolineStatic(), s64 a1, s64 a2) -> s64 {
     restbc(2);
     //set_criteria("must"); // why the hell does this seg fault
     clap_cue04(); // cl-cl-clap!
-
     restbc(1);
     clap_321();
     restbc(1);
@@ -659,16 +794,13 @@ HkTrampoline remix20Cues07Hook = [](TrampolineStatic(), s64 a1, s64 a2) -> s64 {
     clap_cue04(); // cl-cl-clap!
     restbc(2);
 
-    clap_cue03(); // show it go!
-    restbc(2);
-    clap_cue04(); // cl-cl-clap!
-
+    clap_cue03();
     restbc(1);
     clap_321();
     restbc(1);
-
-    clap_cue00(0);
+    clap_cue04();
     restbc(2);
+
     clap_cue00(0);
     restbc(2);
 
