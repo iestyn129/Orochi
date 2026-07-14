@@ -78,6 +78,9 @@
 #define rope_cue01(ticks, a4, a5) \
     spawn_rope_cue01(reinterpret_cast<s64*>(a1)[7328], a2, ticks, a4, a5)
 
+#define crab_cue00(a3, a4, a5) \
+    spawn_crab_cue00(reinterpret_cast<s64*>(a1)[7280], a2, a3, a4, a5)
+
 #define crab_cue02(a3, a4, a5) \
     spawn_crab_cue02(reinterpret_cast<s64*>(a1)[7280], a2, a3, a4, a5)
 
@@ -170,44 +173,77 @@ void remix20Control(s64 a1, s64 a2) {
 
     restb(33.5);
 
+    sub_71004DA400(a1, 17, 1);
+
     scene_change_r(1);
+    sub_71004DA400(a1, 1, 1);
     // if you're wondering about why I have horrid pointer math like this,
     // it's because sometimes when I do it nicely it seg faults
     sub_71004F8260(*(s64*)(((s64*)a1)[7265] + 15208), const_cast<char*>("SetupCloud"));
     restb(8);
 
     scene_change_f(26);
+    sub_71004DA400(a1, 26, 1);
     restb(8);
 
     scene_change_r(29);
+    sub_71004DA400(a1, 29, 1);
     restb(8);
 
     scene_change_f(8);
+    sub_71004DA400(a1, 8, 1);
     sub_710018C730(((s64*)a1)[7286], const_cast<char*>("BG_IMG_B"));
     restb(7.25); // -0.75
 
     scene_change_f(22);
+    sub_71004DA400(a1, 22, 1);
     restb(32.75); // +0.75
 
     scene_change_sf(6);
+    sub_71004DA400(a1, 6, 1);
     restb(16);
 
     scene_change_f(4);
+    sub_71004DA400(a1, 4, 1);
     // crashes on hardware
     //sub_7100162DE0(((s64*)a1)[7274], sub_71004EFE80(((s64*)a1)[7353], const_cast<char*>("s00_m_tv_00"), 0));
     restb(20.5); // -2.0 -1.5
 
     scene_change_sf(0);
-    restb(35);
+    sub_71004DA400(a1, 0, 1);
+    restb(35.5);
 
     scene_change_f(14);
-    restb(27.75); // -0.25
+    sub_71004DA400(a1, 14, 1);
+    restb(27.25); // -0.75
 
     scene_change_r(12);
-    restb(16.25); // +0.25
+    sub_71004DA400(a1, 12, 1);
+    restb(16.75); // +0.75
 
     scene_change_f(10);
+    sub_71004DA400(a1, 10, 1);
+    restb(15.25); // -0.75
+
+    scene_change_f(22);
+    sub_71004DA400(a1, 22, 2);
+    restb(32.75); // +0.75
+
+    scene_change_sf(6);
+    sub_71004DA400(a1, 6, 2);
     restb(16);
+
+    scene_change_f(4);
+    sub_71004DA400(a1, 4, 2);
+    restb(20.5);
+
+    scene_change_sf(0);
+    sub_71004DA400(a1, 0, 2);
+    restb(4); // +0.5
+
+    scene_change_r(29);
+    sub_71004DA400(a1, 29, 2);
+    restb(15.5); // -0.5
 }
 
 
@@ -259,6 +295,15 @@ HkTrampoline remix20Cues00Hook = [](TrampolineStatic(), s64 a1, s64 a2) -> s64 {
     bacteria_cue03();
     restbc(2);
     bacteria_cue01(0);
+
+    restbc(132); // +8
+
+    cue_scene_change(4);
+    set_criteria("basic");
+    restbc(1);
+
+    // im evil
+    bacteria_cue00(0, 1);
 
     return sub_7100514FD0(a2);
 };
@@ -442,6 +487,70 @@ HkTrampoline remix20Cues05Hook = [](TrampolineStatic(), s64 a1, s64 a2) -> s64 {
     rope_cue00(480, 1);
     restbc(1);
 
+    restbc(131);
+
+    cue_scene_change(22);
+    set_criteria("basic");
+    restbc(1);
+
+    for (s32 i = 0; i < 7; i++) {
+        rope_cue00(480, 0);
+        restbc(1);
+    }
+
+    set_criteria("tech");
+    rope_cue01(480, 0, 0);
+    restbc(1.5);
+
+    set_criteria("basic");
+    for (s32 i = 0; i < 6; i++) {
+        rope_cue00(480, 0);
+        restbc(1);
+    }
+
+    set_criteria("tech");
+    rope_cue01(480, 0, 0);
+    restbc(1.5);
+
+    set_criteria("basic");
+    for (s32 i = 0; i < 4; i++) {
+        rope_cue00(480, 0);
+        restbc(1);
+    }
+
+    set_criteria("tech");
+    rope_cue01(480, 0, 0);
+    restbc(1.5);
+
+    set_criteria("basic");
+    for (s32 i = 0; i < 2; i++) {
+        rope_cue00(480, 0);
+        restbc(1);
+    }
+
+    set_criteria("must");
+    rope_cue01(480, 0, 0);
+    restbc(1.5);
+    rope_cue01(480, 0, 0);
+    restbc(1.5);
+
+    set_criteria("basic");
+    rope_cue00(480, 0);
+    restbc(1);
+
+    set_criteria("tech");
+    rope_cue01(480, 0, 0);
+    restbc(1.5);
+
+    set_criteria("basic");
+    for (s32 i = 0; i < 2; i++) {
+        rope_cue00(480, 0);
+        restbc(1);
+    }
+
+    rope_cue00(480, 1);
+    restbc(1);
+
     return sub_7100514FD0(a2);
 };
 
@@ -460,6 +569,20 @@ HkTrampoline remix20Cues06Hook = [](TrampolineStatic(), s64 a1, s64 a2) -> s64 {
     crab_cue02(-1, -1, -1);
     restbc(8);
     crab_cue02(-1, -1, -1);
+    restbc(5);
+
+    restbc(147);
+
+    cue_scene_change(6);
+    set_criteria("tech");
+    restbc(1);
+
+    restbc(3);
+    crab_cue02(-1, -1, -1);
+    crab_cue00(-1, -1, -1);
+    restbc(8);
+    crab_cue02(-1, -1, -1);
+    crab_cue00(-1, -1, -1);
     restbc(5);
 
     return sub_7100514FD0(a2);
@@ -506,6 +629,44 @@ HkTrampoline remix20Cues07Hook = [](TrampolineStatic(), s64 a1, s64 a2) -> s64 {
     restbc(1);
 
     //set_criteria("basic");
+    clap_cue00(0);
+    restbc(2);
+    clap_cue00(0);
+    restbc(2);
+
+    restbc(140);
+
+    cue_scene_change(4);
+    set_criteria("basic");
+    restbc(1);
+
+    clap_123();
+    restbc(3);
+
+    clap_cue00(0);
+    restbc(2);
+
+    clap_cue01(); // check it out!
+    restbc(2);
+    clap_cue02(); // clap clap!
+    restbc(2);
+
+    clap_cue00(0);
+    restbc(2);
+
+    clap_cue03(); // show it go!
+    restbc(2);
+    clap_cue04(); // cl-cl-clap!
+    restbc(2);
+
+    clap_cue03(); // show it go!
+    restbc(2);
+    clap_cue04(); // cl-cl-clap!
+
+    restbc(1);
+    clap_321();
+    restbc(1);
+
     clap_cue00(0);
     restbc(2);
     clap_cue00(0);

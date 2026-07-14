@@ -15,6 +15,7 @@ spawn_wiper_cue02 = 0x2AA6F0
 spawn_flydisc_cue = 0x18D3F0
 spawn_rope_cue00 = 0x226AA0
 spawn_rope_cue01 = 0x2276A0
+spawn_crab_cue00 = 0x17BFC0
 spawn_crab_cue02 = 0x17D0D0
 spawn_clap_123 = 0x1646F0
 spawn_clap_321 = 0x164B70

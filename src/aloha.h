@@ -15,6 +15,7 @@ extern "C" void spawn_wiper_cue02(long long int);
 extern "C" void spawn_flydisc_cue(long long int, long long int, unsigned int, unsigned int, int, char);
 extern "C" void spawn_rope_cue00(long long int, long long int, int, char);
 extern "C" void spawn_rope_cue01(long long int, long long int, int, char, char);
+extern "C" void spawn_crab_cue00(long long int, long long int, int, int, int);
 extern "C" void spawn_crab_cue02(long long int, long long int, int, int, int);
 extern "C" void spawn_clap_123(long long int);
 extern "C" void spawn_clap_321(long long int);
