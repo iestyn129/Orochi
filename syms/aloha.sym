@@ -71,3 +71,9 @@ sub_7100138CD0 = 0x138CD0
 sub_71001366E0 = 0x1366E0
 sub_7100138FC0 = 0x138FC0
 sub_7100137140 = 0x137140
+
+load_msbt = 0x505EE0
+init_subtitle_box = 0x1399F0
+display_subtitle = 0x139A20
+toggle_force_subtitle_box = 0x139A30
+toggle_subtitle_box = 0x139A10
