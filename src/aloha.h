@@ -22,6 +22,7 @@ extern "C" void spawn_flydisc_cue(long long int, long long int, unsigned int, un
 extern "C" void spawn_rope_cue00(long long int, long long int, int, char);
 extern "C" void spawn_rope_cue01(long long int, long long int, int, char, char);
 extern "C" void spawn_crab_cue00(long long int, long long int, int, int, int);
+extern "C" void spawn_crab_cue01(long long int, long long int, int, int, int);
 extern "C" void spawn_crab_cue02(long long int, long long int, int, int, int);
 extern "C" void spawn_clap_123(long long int);
 extern "C" void spawn_clap_321(long long int);
@@ -33,6 +34,7 @@ extern "C" void spawn_clap_cue04(long long int);
 extern "C" void spawn_bacteria_cue00(long long int, long long int, int, char);
 extern "C" void spawn_bacteria_cue01(long long int, long long int, char);
 extern "C" void spawn_bacteria_cue03(long long int);
+extern "C" void spawn_insect_cue00(long long int, long long int, unsigned int, unsigned int, char);
 extern "C" void spawn_insect_cue01(long long int, long long int, unsigned int, unsigned int, char);
 extern "C" void spawn_insect_cue02(long long int, long long int, unsigned int, unsigned int, char);
 extern "C" void spawn_hungry_cue(long long int, long long int, int);
