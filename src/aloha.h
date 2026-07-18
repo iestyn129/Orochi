@@ -73,3 +73,8 @@ extern "C" long long int sub_7100138CD0(long long int);
 extern "C" long long int sub_71001366E0(long long int);
 extern "C" long long int sub_7100138FC0(long long int);
 extern "C" void sub_7100137140(long long int);
+
+extern "C" void init_subtitle_box(long long int, long long int);
+extern "C" void display_subtitle(long long int, const char*);
+extern "C" void force_subtitle_box(long long int, long long int);
+extern "C" void show_subtitle_box(long long int, char);

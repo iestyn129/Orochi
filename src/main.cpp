@@ -3,6 +3,7 @@
 #include "aloha.h"
 #include "global.h"
 #include "log.h"
+#include "string"
 
 #define check_thread(a2) \
     if (is_thread_stopping(a2)) \
@@ -172,20 +173,117 @@ HkTrampoline mainLoopHook = [](TrampolineStatic(), s32 a1) -> void {
 };
 
 
+HkTrampoline getTextHook = [](TrampolineStatic(), void* a1, const char* a2, void* a3) -> const char* {
+    const auto key = std::string(a2);
+    const char* result = orig(a1, a2, a3);
+
+
+    if (key.ends_with("cold_open_title")) {
+        result = "♪ Cold Open\nVocal：Rin Penrose";
+    } else if (key.ends_with("cold_open_composer")) {
+        result = "Lyricist: Rin Penrose・WUNDER RiKU  Composer: WUNDER RiKU\nCharting: iestyn129";
+    } else if (key.ends_with("cold_open_lyrics00")) {
+        result = "I'm thinking here we'll play ourselves a different song\nWhat a wonderful twist, it's a whim so you'll act upon it";
+    } else if (key.ends_with("cold_open_lyrics01")) {
+        result = "So it's in the script but is that so wrong?\nNow I'm taking the lead, so you might want to play along";
+    } else if (key.ends_with("cold_open_lyrics02")) {
+        result = "To you it's devious, to me you're the liar\nTo you it's nebulous, to me it's inspired";
+    } else if (key.ends_with("cold_open_lyrics03")) {
+        result = "Claw back that relevance, toss out that hesitance\nLet me give you something new to admire";
+    } else if (key.ends_with("cold_open_lyrics04")) {
+        result = "Do you believe in someone like me?\nBreaking, blazing, burning like a laser beam";
+    } else if (key.ends_with("cold_open_lyrics05")) {
+        result = "Oh satellite, don't hide your eyes, 'cause\nI'll be here as long as you've got eyes to see";
+    } else if (key.ends_with("cold_open_lyrics06")) {
+        result = "Fade background sound to mute, directive absolute\nKeep me in focus as the star of the shoot";
+    } else if (key.ends_with("cold_open_lyrics07")) {
+        result = "Until they cue that theme...";
+    } else if (key.ends_with("cold_open_lyrics08")) {
+        result = "Let's make a scene";
+    }
+
+    return result;
+};
+
+
 void remix20Main(s64 a1, s64 a2) {
     //runLuaChart(a1, a2, MAIN_SCRIPT);
+    restb(18);
 
-    restb(462);
+    init_subtitle_box(a1, a1 + 58824);
+    display_subtitle(a1, "cold_open_title");
+    show_subtitle_box(a1, true);
+    //force_subtitle_box(a1, true);
+    restb(15.5); // -0.5
+
+    show_subtitle_box(a1, false);
+    //force_subtitle_box(a1, false);
+    restb(30.5); // +0.5
+
+    display_subtitle(a1, "cold_open_lyrics00");
+    show_subtitle_box(a1, true);
+    restb(17.5); // -0.5
+
+    display_subtitle(a1, "cold_open_lyrics01");
+    restb(16); // +0.5
+    display_subtitle(a1, "");
+    restb(0.5);
+
+    display_subtitle(a1, "cold_open_lyrics02");
+    restb(15.5);
+    display_subtitle(a1, "");
+    restb(0.5);
+
+    display_subtitle(a1, "cold_open_lyrics03");
+    restb(15.5);
+    display_subtitle(a1, "");
+    restb(0.5);
+
+    restb(7); // -1.0
+
+    display_subtitle(a1, "cold_open_lyrics04");
+    restb(15.5);
+    display_subtitle(a1, "");
+    restb(0.5);
+
+    display_subtitle(a1, "cold_open_lyrics05");
+    restb(15.5);
+    display_subtitle(a1, "");
+    restb(0.5);
+    restb(1); // +1.0
+
+    display_subtitle(a1, "cold_open_lyrics06");
+    restb(15); // -0.5
+    display_subtitle(a1, "");
+    restb(0.5);
+
+    display_subtitle(a1, "cold_open_lyrics07");
+    restb(5.5);
+    display_subtitle(a1, "");
+    restb(0.5);
+
+    display_subtitle(a1, "cold_open_lyrics08");
+    restb(4.5); // +0.5
+
+    show_subtitle_box(a1, false);
+    restb(6);
+
+    restb(16 * 14);
+    restb(6);
+
+    show_subtitle_box(a1, false);
+    restb(22);
+
+    display_subtitle(a1, "cold_open_composer");
+    show_subtitle_box(a1, true);
+    restb(10);
+
+    show_subtitle_box(a1, false);
+    restb(1);
 
     sub_7100138CD0(a1);
     sub_71001366E0(a1);
-
-    restb(1);
-
     sub_7100138FC0(a1);
-
-    restb(3);
-
     sub_7100137140(a1);
 }
 
@@ -1014,6 +1112,7 @@ extern "C" void hkMain() {
 
     initHook.installAtMainOffset(0x50CBA0);
     mainLoopHook.installAtMainOffset(0x509E10);
+    getTextHook.installAtMainOffset(0x4EFE80);
 
     constexpr u64 remix20MainOffset = 0x417574;
     hk::hook::a64::assemble<"mov x0, x20">().installAtMainOffset(remix20MainOffset);
