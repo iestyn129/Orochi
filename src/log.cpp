@@ -11,7 +11,7 @@ void initLog() {
        log("\n"); // print a new line if log already exists (assuming that's the only cause for this to fail)
    }
 
-    log("=== Initialising Pyrite ===");
+    log("=== Initialising Orichi ===");
     log("Log initialised!");
 }
 
