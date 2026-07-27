@@ -1,1 +1,51 @@
 #pragma once
+
+#define SCENE_BACTERIA 0
+#define SCENE_GERM_AEROBICS SCENE_BACTERIA
+
+#define SCENE_WINGS 1
+#define SCENE_SYNCHRO_WINGS SCENE_WINGS
+
+#define SCENE_CLAP 4
+#define SCENE_HIGH_FIVE_FEVER SCENE_CLAP
+
+#define SCENE_CRAB 6
+#define SCENE_CRAB_SNACKS SCENE_CRAB
+
+#define SCENE_FLYDISC 8
+#define SCENE_DISC_DOG SCENE_FLYDISC
+
+#define SCENE_GUARDIAN 10
+#define SCENE_SPACE_SENTRY SCENE_GUARDIAN
+
+#define SCENE_HUNGRY 12
+#define SCENE_FEEDING_THE_BEAST SCENE_HUNGRY
+
+#define SCENE_INSECT 14
+#define SCENE_FLUTTER_SPEED SCENE_INSECT
+
+#define SCENE_PARASOL 17
+#define SCENE_BROLLY_GOOD_SHOW SCENE_PARASOL
+
+#define SCENE_ROPE 22
+#define SCENE_SODA_HOP SCENE_ROPE
+
+#define SCENE_TALK 26
+#define SCENE_ALIEN_ALPHABET SCENE_TALK
+
+#define SCENE_WIPER 29
+#define SCENE_WIPER_BOSSES SCENE_WIPER
+
+struct SeqThread {
+    void wait(int ticks);
+    int popUnk270();
+};
+
+struct Stage {
+    void FUN_7100138CD0();
+    void fadeScreen(int ticks, float opacity);
+    void FUN_7100138FC0();
+    void FUN_7100137140();
+};
+
+struct StageRemix : Stage {};

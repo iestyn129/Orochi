@@ -3,8 +3,9 @@
 #include "global.h"
 #include "aloha.h"
 #include "log.h"
-#include "scripting.h"
 #include "string"
+
+#define INIT_SCENE SCENE_GERM_AEROBICS
 
 
 HkTrampoline initHook = [](TrampolineStatic(), u64* a1) -> void {
@@ -27,116 +28,101 @@ HkTrampoline getTextHook = [](TrampolineStatic(), void* a1, const char* a2, void
     const auto key = std::string(a2);
     const char* result = orig(a1, a2, a3);
 
-
-    if (key.ends_with("cold_open_title")) {
-        result = "♪ Cold Open\nVocal：Rin Penrose";
-    } else if (key.ends_with("cold_open_composer")) {
-        result = "Lyricist: Rin Penrose・WUNDER RiKU  Composer: WUNDER RiKU\nCharting: iestyn129";
-    } else if (key.ends_with("cold_open_lyrics00")) {
-        result = "I'm thinking here we'll play ourselves a different song\nWhat a wonderful twist, it's a whim so you'll act upon it";
-    } else if (key.ends_with("cold_open_lyrics01")) {
-        result = "So it's in the script but is that so wrong?\nNow I'm taking the lead, so you might want to play along";
-    } else if (key.ends_with("cold_open_lyrics02")) {
-        result = "To you it's devious, to me you're the liar\nTo you it's nebulous, to me it's inspired";
-    } else if (key.ends_with("cold_open_lyrics03")) {
-        result = "Claw back that relevance, toss out that hesitance\nLet me give you something new to admire";
-    } else if (key.ends_with("cold_open_lyrics04")) {
-        result = "Do you believe in someone like me?\nBreaking, blazing, burning like a laser beam";
-    } else if (key.ends_with("cold_open_lyrics05")) {
-        result = "Oh satellite, don't hide your eyes, 'cause\nI'll be here as long as you've got eyes to see";
-    } else if (key.ends_with("cold_open_lyrics06")) {
-        result = "Fade background sound to mute, directive absolute\nKeep me in focus as the star of the shoot";
-    } else if (key.ends_with("cold_open_lyrics07")) {
-        result = "Until they cue that theme...";
-    } else if (key.ends_with("cold_open_lyrics08")) {
-        result = "Let's make a scene";
-    }
+    //if (key.ends_with("cold_open_title")) {
+    //    result = "♪ Cold Open\nVocal：Rin Penrose";
+    //}
 
     return result;
 };
 
 
-void remix20Main(s64 a1, s64 a2) {
-    runLuaChart(a1, a2, MAIN_SCRIPT);
+void remix20Main(StageRemix* stage, SeqThread* thread) {
+    thread->wait(1 * 480);
 
-    //sub_7100138CD0(a1);
-    //sub_71001366E0(a1);
-    //sub_7100138FC0(a1);
-    //sub_7100137140(a1);
+    stage->fadeScreen(1 * 480, 0.0);
+    thread->wait(2 * 480);
+
+    stage->fadeScreen(0 * 480, 0.5);
+    thread->wait(1 * 480);
+
+    stage->fadeScreen(4 * 480, 1.0);
+    thread->wait(4 * 480);
+
+    stage->fadeScreen(0 * 480, 0.0);
+    thread->wait(0 * 480);
+
+    stage->FUN_7100138CD0();
+    stage->FUN_7100138FC0();
+    stage->FUN_7100137140();
+
+    thread->wait(1 * 480);
 }
 
 
-void remix20Control(s64 a1, s64 a2) {
-    runLuaChart(a1, a2, CONTROL_SCRIPT);
-}
+void remix20Control(StageRemix* stage, SeqThread* thread) {}
 
 
-void remix20Anim(s64 a1, s64 a2) {
-    runLuaChart(a1, a2, ANIM_SCRIPT);
-}
+void remix20Anim(StageRemix* stage, SeqThread* thread) {}
 
 
-HkTrampoline remix20Cues00Hook = [](TrampolineStatic(), s64 a1, s64 a2) -> s64 {
-    runLuaChart(a1, a2, CUES00_SCRIPT);
-
-    return a2;
+HkTrampoline remix20Cues00Hook = [](TrampolineStatic(), StageRemix* stage, SeqThread* thread) -> s64 {
+    return thread->popUnk270();
 };
 
 
-HkTrampoline remix20Cues01Hook = [](TrampolineStatic(), s64 a1, s64 a2) -> s64 {
-    runLuaChart(a1, a2, CUES01_SCRIPT);
-
-    return a2;
+HkTrampoline remix20Cues01Hook = [](TrampolineStatic(), StageRemix* stage, SeqThread* thread) -> s64 {
+    return thread->popUnk270();
 };
 
 
-HkTrampoline remix20Cues02Hook = [](TrampolineStatic(), s64 a1, s64 a2) -> s64 {
-    runLuaChart(a1, a2, CUES02_SCRIPT);
-
-    return a2;
+HkTrampoline remix20Cues02Hook = [](TrampolineStatic(), StageRemix* stage, SeqThread* thread) -> s64 {
+    return thread->popUnk270();
 };
 
 
-HkTrampoline remix20Cues03Hook = [](TrampolineStatic(), s64 a1, s64 a2) -> s64 {
-    runLuaChart(a1, a2, CUES03_SCRIPT);
-
-    return a2;
+HkTrampoline remix20Cues03Hook = [](TrampolineStatic(), StageRemix* stage, SeqThread* thread) -> s64 {
+    return thread->popUnk270();
 };
 
 
-HkTrampoline remix20Cues04Hook = [](TrampolineStatic(), s64 a1, s64 a2) -> s64 {
-    runLuaChart(a1, a2, CUES04_SCRIPT);
-
-    return a2;
+HkTrampoline remix20Cues04Hook = [](TrampolineStatic(), StageRemix* stage, SeqThread* thread) -> s64 {
+    return thread->popUnk270();
 };
 
 
-HkTrampoline remix20Cues05Hook = [](TrampolineStatic(), s64 a1, s64 a2) -> s64 {
-    runLuaChart(a1, a2, CUES05_SCRIPT);
-
-    return a2;
+HkTrampoline remix20Cues05Hook = [](TrampolineStatic(), StageRemix* stage, SeqThread* thread) -> s64 {
+    return thread->popUnk270();
 };
 
 
-HkTrampoline remix20Cues06Hook = [](TrampolineStatic(), s64 a1, s64 a2) -> s64 {
-    runLuaChart(a1, a2, CUES06_SCRIPT);
-
-    return a2;
+HkTrampoline remix20Cues06Hook = [](TrampolineStatic(), StageRemix* stage, SeqThread* thread) -> s64 {
+    return thread->popUnk270();
 };
 
 
-HkTrampoline remix20Cues07Hook = [](TrampolineStatic(), s64 a1, s64 a2) -> s64 {
-    runLuaChart(a1, a2, CUES07_SCRIPT);
-
-    return a2;
+HkTrampoline remix20Cues07Hook = [](TrampolineStatic(), StageRemix* stage, SeqThread* thread) -> s64 {
+    return thread->popUnk270();
 };
+
 
 extern "C" void hkMain() {
-    u64 mainBase = hk::ro::getMainModule()->range().start();
+    const u64 mainBase = hk::ro::getMainModule()->range().start();
 
     initHook.installAtMainOffset(0x50CBA0);
     mainLoopHook.installAtMainOffset(0x509E10);
     getTextHook.installAtMainOffset(0x4EFE80);
+
+    hk::hook::a64::assemble<"mov w1, {}">()
+        .arg(INIT_SCENE)
+        .installAtMainOffset(0x4170B8); // FUN_71004d9dc0
+
+    hk::hook::a64::assemble<"mov w2, {}">()
+        .arg(INIT_SCENE)
+        .installAtMainOffset(0x4170DC); // FUN_71004d9ec0
+
+    hk::hook::a64::assemble<"mov w2, {}">()
+        .arg(INIT_SCENE)
+        .installAtMainOffset(0x417118); // sceneChangeInstant
 
     constexpr u64 remix20MainOffset = 0x417574;
     hk::hook::a64::assemble<"mov x0, x20">().installAtMainOffset(remix20MainOffset);
