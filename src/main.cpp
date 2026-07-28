@@ -37,25 +37,17 @@ HkTrampoline getTextHook = [](TrampolineStatic(), void* a1, const char* a2, void
 
 
 void remix20Main(StageRemix* stage, SeqThread* thread) {
-    thread->wait(1 * 480);
-
-    stage->fadeScreen(1 * 480, 0.0);
-    thread->wait(2 * 480);
-
-    stage->fadeScreen(0 * 480, 0.5);
-    thread->wait(1 * 480);
-
-    stage->fadeScreen(4 * 480, 1.0);
-    thread->wait(4 * 480);
-
-    stage->fadeScreen(0 * 480, 0.0);
-    thread->wait(0 * 480);
+    thread->wait(12 * 480);
 
     stage->FUN_7100138CD0();
-    stage->FUN_7100138FC0();
-    stage->FUN_7100137140();
 
+    stage->fadeScreen(3 * 480, 0.0);
+    thread->wait(3 * 480);
+
+    stage->FUN_7100138FC0();
     thread->wait(1 * 480);
+
+    stage->FUN_7100137140();
 }
 
 
