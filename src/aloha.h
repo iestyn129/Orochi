@@ -94,9 +94,25 @@
 #define SCENE_SHINKAI 30
 #define SCENE_DEEP_SEA SCENE_SHINKAI
 
+typedef enum FilePartitionType {
+    PartitionType_Data=0x00,
+    PartitionType_User=0x01,
+    PartitionType_Demo=0x02,
+    PartitionType_Debug=0x03
+} FilePartitionType;
+
+struct Graph {
+    int startup(const char*, FilePartitionType, void*);
+};
+
 struct SeqThread {
     void wait(int ticks);
+    bool stopRequested();
+
+    int pushUnk270();
     int popUnk270();
+
+    void STUB_7100514ff0(int);
 };
 
 struct Stage {
@@ -107,3 +123,10 @@ struct Stage {
 };
 
 struct StageRemix : Stage {};
+
+struct StageFactory {
+    Stage* create(unsigned int stageID, unsigned long long, unsigned int, unsigned int, unsigned int, unsigned int, unsigned int);
+};
+
+
+extern int sceneChangeInstant(void*, SeqThread*, int sceneID);

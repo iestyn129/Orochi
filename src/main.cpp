@@ -4,8 +4,42 @@
 #include "aloha.h"
 #include "log.h"
 #include "string"
+#include "map"
 
 #define INIT_SCENE SCENE_GERM_AEROBICS
+
+const auto texMap = std::map<std::string, const char*> {
+    {"graph/scene/bacteria/type_00/bg", "graph/scene/bacteria/type_lpr/bg"},
+    {"graph/scene/bacteria/type_00/main", "graph/scene/bacteria/type_lpr/main"},
+
+    {"graph/scene/brush/type_00/actor_00", "graph/scene/brush/type_lpr/actor_00"},
+    {"graph/scene/brush/type_00/actor_01", "graph/scene/brush/type_lpr/actor_01"},
+    {"graph/scene/brush/type_00/actor_02", "graph/scene/brush/type_lpr/actor_02"},
+    {"graph/scene/brush/type_00/actor_03", "graph/scene/brush/type_lpr/actor_03"},
+    {"graph/scene/brush/type_00/stage_000", "graph/scene/brush/type_lpr/stage_000"},
+
+    {"graph/scene/clap/type_00/high_mip/main", "graph/scene/clap/type_lpr/high_mip/main"},
+    {"graph/scene/clap/type_00/high_mip/view_frame_00", "graph/scene/clap/type_lpr/high_mip/view_frame_00"},
+    {"graph/scene/clap/type_00/view_field_00", "graph/scene/clap/type_lpr/view_field_00"},
+    {"graph/scene/clap/type_00/view_tutorial", "graph/scene/clap/type_lpr/view_tutorial"},
+    {"graph/scene/clap/type_00/view_work_03", "graph/scene/clap/type_lpr/view_work_03"},
+
+    {"graph/scene/hammer/type_00/bg", "graph/scene/hammer/type_lpr/bg"},
+    {"graph/scene/hammer/type_00/main", "graph/scene/hammer/type_lpr/main"},
+
+    {"graph/scene/moon/type_00/actor_00", "graph/scene/moon/type_lpr/actor_00"},
+    {"graph/scene/moon/type_00/bg_obj_00", "graph/scene/moon/type_lpr/bg_obj_00"},
+    {"graph/scene/moon/type_00/bg", "graph/scene/moon/type_lpr/bg"},
+    {"graph/scene/moon/type_00/main", "graph/scene/moon/type_lpr/main"},
+
+    {"graph/scene/ring/type_00/main", "graph/scene/ring/type_lpr/main"},
+
+    {"graph/scene/rope/type_00/main", "graph/scene/rope/type_lpr/main"},
+    {"graph/scene/rope/type_00/bg_back", "graph/scene/rope/type_lpr/bg_back"},
+    {"graph/scene/rope/type_00/bg_front", "graph/scene/rope/type_lpr/bg_front"},
+};
+
+bool isRemix20 = false;
 
 
 HkTrampoline initHook = [](TrampolineStatic(), u64* a1) -> void {
@@ -24,6 +58,30 @@ HkTrampoline mainLoopHook = [](TrampolineStatic(), s32 a1) -> void {
 };
 
 
+HkTrampoline stageFactoryCreateHook = [](TrampolineStatic(), u32 stageID, u64 a2, u32 a3, u32 a4, u32 a5, u32 a6, u32 a7) -> Stage* {
+    log("creating stage: %d", stageID);
+
+    isRemix20 = stageID == 107;
+
+    return orig(stageID, a2, a3, a4, a5, a6, a7);
+};
+
+
+HkTrampoline graphStartupHook = [](TrampolineStatic(), Graph* self, const char* name, FilePartitionType type, void* a4) -> s32 {
+    if (isRemix20) {
+        const auto path = std::string(name);
+
+        if (texMap.contains(path)) {
+            name = texMap.at(path);
+        }
+    }
+
+    log("loading tex/spr: %s", name);
+
+    return orig(self, name, type, a4);
+};
+
+
 HkTrampoline getTextHook = [](TrampolineStatic(), void* a1, const char* a2, void* a3) -> const char* {
     const auto key = std::string(a2);
     const char* result = orig(a1, a2, a3);
@@ -37,7 +95,7 @@ HkTrampoline getTextHook = [](TrampolineStatic(), void* a1, const char* a2, void
 
 
 void remix20Main(StageRemix* stage, SeqThread* thread) {
-    thread->wait(12 * 480);
+    thread->wait(20 * 480);
 
     stage->FUN_7100138CD0();
 
@@ -51,7 +109,21 @@ void remix20Main(StageRemix* stage, SeqThread* thread) {
 }
 
 
-void remix20Control(StageRemix* stage, SeqThread* thread) {}
+void remix20Control(StageRemix* stage, SeqThread* thread) {
+    s32 unk270;
+
+    thread->wait(4 * 480);
+
+    unk270 = thread->pushUnk270();
+    sceneChangeInstant(stage + 0x6E08, thread, SCENE_SODA_HOP);
+    thread->STUB_7100514ff0(unk270);
+    thread->wait(4 * 480);
+
+    unk270 = thread->pushUnk270();
+    sceneChangeInstant(stage + 0x6E08, thread, SCENE_HIGH_FIVE_FEVER);
+    thread->STUB_7100514ff0(unk270);
+    thread->wait(4 * 480);
+}
 
 
 void remix20Anim(StageRemix* stage, SeqThread* thread) {}
@@ -102,6 +174,8 @@ extern "C" void hkMain() {
 
     initHook.installAtMainOffset(0x50CBA0);
     mainLoopHook.installAtMainOffset(0x509E10);
+    stageFactoryCreateHook.installAtSym<"_ZN12StageFactory6createEjyjjjjj">();
+    graphStartupHook.installAtSym<"_ZN5Graph7startupEPKc17FilePartitionTypePv">();
     getTextHook.installAtMainOffset(0x4EFE80);
 
     hk::hook::a64::assemble<"mov w1, {}">()
