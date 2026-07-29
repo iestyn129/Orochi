@@ -1,6 +1,6 @@
 #include "chart.h"
 
-const u32 initSceneID = SCENE_HOOP_TRUNDLING;
+const u32 initSceneID = SCENE_GERM_AEROBICS;
 
 
 void chartMain(StageRemix* stage, SeqThread* thread) {
@@ -21,13 +21,22 @@ void chartMain(StageRemix* stage, SeqThread* thread) {
 void chartControl(StageRemix* stage, SeqThread* thread) {
     rest(4);
 
-    change_scene_fade_1_beat(SCENE_SODA_HOP);
+    change_scene_instant(SCENE_HOOP_TRUNDLING);
     rest(4);
 
-    change_scene_fade_1_beat(SCENE_GERM_AEROBICS);
+    change_scene_instant(SCENE_SNEEZY_MOON);
     rest(4);
 
-    change_scene_fade_1_beat(SCENE_HIGH_FIVE_FEVER);
+    change_scene_instant(SCENE_HIGH_FIVE_FEVER);
+    rest(4);
+
+    change_scene_instant(SCENE_SODA_HOP);
+    rest(4);
+
+    change_scene_instant(SCENE_SWEEPER_STAR);
+    rest(4);
+
+    change_scene_instant(SCENE_CAN_DO);
     rest(4);
 }
 
