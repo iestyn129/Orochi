@@ -2,11 +2,10 @@
 #include "nn/fs.h"
 #include "global.h"
 #include "aloha.h"
+#include "chart.h"
 #include "log.h"
 #include "string"
 #include "map"
-
-#define INIT_SCENE SCENE_GERM_AEROBICS
 
 const auto texMap = std::map<std::string, const char*> {
     {"graph/scene/bacteria/type_00/bg", "graph/scene/bacteria/type_lpr/bg"},
@@ -95,76 +94,72 @@ HkTrampoline getTextHook = [](TrampolineStatic(), void* a1, const char* a2, void
 
 
 void remix20Main(StageRemix* stage, SeqThread* thread) {
-    thread->wait(20 * 480);
-
-    stage->FUN_7100138CD0();
-
-    stage->fadeScreen(3 * 480, 0.0);
-    thread->wait(3 * 480);
-
-    stage->FUN_7100138FC0();
-    thread->wait(1 * 480);
-
-    stage->FUN_7100137140();
+    chartMain(stage, thread);
 }
 
 
 void remix20Control(StageRemix* stage, SeqThread* thread) {
-    s32 unk270;
-
-    thread->wait(4 * 480);
-
-    unk270 = thread->pushUnk270();
-    sceneChangeInstant(stage + 0x6E08, thread, SCENE_SODA_HOP);
-    thread->STUB_7100514ff0(unk270);
-    thread->wait(4 * 480);
-
-    unk270 = thread->pushUnk270();
-    sceneChangeInstant(stage + 0x6E08, thread, SCENE_HIGH_FIVE_FEVER);
-    thread->STUB_7100514ff0(unk270);
-    thread->wait(4 * 480);
+    chartControl(stage, thread);
 }
 
 
-void remix20Anim(StageRemix* stage, SeqThread* thread) {}
+void remix20Anim(StageRemix* stage, SeqThread* thread) {
+    chartAnim(stage, thread);
+}
 
 
 HkTrampoline remix20Cues00Hook = [](TrampolineStatic(), StageRemix* stage, SeqThread* thread) -> s64 {
+    chartCues00(stage, thread);
+
     return thread->popUnk270();
 };
 
 
 HkTrampoline remix20Cues01Hook = [](TrampolineStatic(), StageRemix* stage, SeqThread* thread) -> s64 {
+    chartCues01(stage, thread);
+
     return thread->popUnk270();
 };
 
 
 HkTrampoline remix20Cues02Hook = [](TrampolineStatic(), StageRemix* stage, SeqThread* thread) -> s64 {
+    chartCues02(stage, thread);
+
     return thread->popUnk270();
 };
 
 
 HkTrampoline remix20Cues03Hook = [](TrampolineStatic(), StageRemix* stage, SeqThread* thread) -> s64 {
+    chartCues03(stage, thread);
+
     return thread->popUnk270();
 };
 
 
 HkTrampoline remix20Cues04Hook = [](TrampolineStatic(), StageRemix* stage, SeqThread* thread) -> s64 {
+    chartCues04(stage, thread);
+
     return thread->popUnk270();
 };
 
 
 HkTrampoline remix20Cues05Hook = [](TrampolineStatic(), StageRemix* stage, SeqThread* thread) -> s64 {
+    chartCues05(stage, thread);
+
     return thread->popUnk270();
 };
 
 
 HkTrampoline remix20Cues06Hook = [](TrampolineStatic(), StageRemix* stage, SeqThread* thread) -> s64 {
+    chartCues06(stage, thread);
+
     return thread->popUnk270();
 };
 
 
 HkTrampoline remix20Cues07Hook = [](TrampolineStatic(), StageRemix* stage, SeqThread* thread) -> s64 {
+    chartCues07(stage, thread);
+
     return thread->popUnk270();
 };
 
@@ -179,15 +174,15 @@ extern "C" void hkMain() {
     getTextHook.installAtMainOffset(0x4EFE80);
 
     hk::hook::a64::assemble<"mov w1, {}">()
-        .arg(INIT_SCENE)
+        .arg(initSceneID)
         .installAtMainOffset(0x4170B8); // FUN_71004d9dc0
 
     hk::hook::a64::assemble<"mov w2, {}">()
-        .arg(INIT_SCENE)
+        .arg(initSceneID)
         .installAtMainOffset(0x4170DC); // FUN_71004d9ec0
 
     hk::hook::a64::assemble<"mov w2, {}">()
-        .arg(INIT_SCENE)
+        .arg(initSceneID)
         .installAtMainOffset(0x417118); // sceneChangeInstant
 
     constexpr u64 remix20MainOffset = 0x417574;

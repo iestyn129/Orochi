@@ -130,3 +130,7 @@ struct StageFactory {
 
 
 extern int sceneChangeInstant(void*, SeqThread*, int sceneID);
+extern int sceneChangeFade1Beat(void*, SeqThread*, int sceneID, int);
+extern int sceneChangeFade2Beat(void*, SeqThread*, int sceneID, int);
+extern int sceneChangeFade4Beat(void*, SeqThread*, int sceneID, int);
+extern int sceneChangeFade8Beat(void*, SeqThread*, int sceneID, int);
