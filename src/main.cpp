@@ -3,6 +3,7 @@
 #include "global.h"
 #include "aloha.h"
 #include "chart.h"
+#include "evil.h"
 #include "log.h"
 #include "string"
 #include "map"
@@ -191,11 +192,18 @@ extern "C" void hkMain() {
     hk::hook::writeBranchLinkAtMainOffset(remix20MainOffset + 8, &remix20Main);
     hk::hook::writeBranchAtMainOffset(remix20MainOffset + 12, reinterpret_cast<void*>(mainBase + 0x41799C));
 
-    constexpr u64 remix20ControlOffset = 0x41F198;
-    hk::hook::a64::assemble<"mov x0, x21">().installAtMainOffset(remix20ControlOffset);
-    hk::hook::a64::assemble<"mov x1, x19">().installAtMainOffset(remix20ControlOffset + 4);
-    hk::hook::writeBranchLinkAtMainOffset(remix20ControlOffset + 8, &remix20Control);
-    hk::hook::writeBranchAtMainOffset(remix20ControlOffset + 12, reinterpret_cast<void*>(mainBase + 0x42029C));
+    //constexpr u64 remix20ControlOffset = 0x41F198;
+    //hk::hook::a64::assemble<"mov x0, x21">().installAtMainOffset(remix20ControlOffset);
+    //hk::hook::a64::assemble<"mov x1, x19">().installAtMainOffset(remix20ControlOffset + 4);
+    //hk::hook::writeBranchLinkAtMainOffset(remix20ControlOffset + 8, &remix20Control);
+    //hk::hook::writeBranchAtMainOffset(remix20ControlOffset + 12, reinterpret_cast<void*>(mainBase + 0x42029C));
+
+    constexpr u64 remix20ControlOffset = 0x41f1d8;
+    hk::hook::writeBranchAtMainOffset(remix20ControlOffset, evil);
+    hk::hook::writeBranchAtPtr(
+        reinterpret_cast<ptr>(&evil_ret),
+        reinterpret_cast<void*>(mainBase + 0x42029C)
+    );
 
     constexpr u64 remix20AnimOffset = 0x4179F0;
     hk::hook::a64::assemble<"mov x0, x20">().installAtMainOffset(remix20AnimOffset);
