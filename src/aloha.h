@@ -115,14 +115,32 @@ struct SeqThread {
     void STUB_7100514ff0(int);
 };
 
+struct SceneBacteria {
+    void startAerobics(SeqThread*, int beats, bool start);
+    void stopAerobics(SeqThread*, int);
+    void tripleAerobics(SeqThread*);
+};
+
 struct Stage {
     void FUN_7100138CD0();
     void fadeScreen(int ticks, float opacity);
     void FUN_7100138FC0();
     void FUN_7100137140();
+
+    void setComment(const char* comment);
+
+    char _pad[0x2c60];
 };
 
-struct StageRemix : Stage {};
+static_assert(sizeof(Stage) == 0x2C60);
+
+struct StageRemix : Stage {
+    char _pad[0xE2F0 - 0x2C60];
+
+    SceneBacteria* bacteria;
+};
+
+static_assert(offsetof(StageRemix, bacteria) == 0xE2F0);
 
 struct StageFactory {
     Stage* create(unsigned int stageID, unsigned long long, unsigned int, unsigned int, unsigned int, unsigned int, unsigned int);

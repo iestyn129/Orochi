@@ -4,7 +4,7 @@ const u32 initSceneID = SCENE_GERM_AEROBICS;
 
 
 void chartMain(StageRemix* stage, SeqThread* thread) {
-    rest(64);
+    rest(356);
 
     stage->FUN_7100138CD0();
 
@@ -19,25 +19,7 @@ void chartMain(StageRemix* stage, SeqThread* thread) {
 
 
 void chartControl(StageRemix* stage, SeqThread* thread) {
-    rest(4);
 
-    change_scene_instant(SCENE_HOOP_TRUNDLING);
-    rest(4);
-
-    change_scene_instant(SCENE_SNEEZY_MOON);
-    rest(4);
-
-    change_scene_instant(SCENE_HIGH_FIVE_FEVER);
-    rest(4);
-
-    change_scene_instant(SCENE_SODA_HOP);
-    rest(4);
-
-    change_scene_instant(SCENE_SWEEPER_STAR);
-    rest(4);
-
-    change_scene_instant(SCENE_CAN_DO);
-    rest(4);
 }
 
 
@@ -47,7 +29,25 @@ void chartAnim(StageRemix* stage, SeqThread* thread) {
 
 
 void chartCues00(StageRemix* stage, SeqThread* thread) {
+    stage->setComment("basic");
 
+    stage->bacteria->startAerobics(thread, 9, true);
+    rest(9);
+    stage->bacteria->tripleAerobics(thread);
+    rest(2);
+    stage->bacteria->startAerobics(thread, 3, false);
+    rest(3);
+    stage->bacteria->stopAerobics(thread, 0);
+    rest(2);
+
+    stage->bacteria->startAerobics(thread, 9, true);
+    rest(9);
+    stage->bacteria->tripleAerobics(thread);
+    rest(2);
+    stage->bacteria->startAerobics(thread, 3, false);
+    rest(3);
+    stage->bacteria->stopAerobics(thread, 0);
+    rest(2);
 }
 
 
