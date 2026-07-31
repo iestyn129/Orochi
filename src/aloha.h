@@ -115,8 +115,17 @@ struct SeqThread {
     void STUB_7100514ff0(int);
 };
 
+struct SceneChanger {
+    int instant(SeqThread* thread, int sceneID);
+    int fade1Beat(SeqThread* thread, int sceneID, int);
+    int fade2Beat(SeqThread* thread, int sceneID, int);
+    int fade4Beat(SeqThread* thread, int sceneID, int);
+    int fade8Beat(SeqThread* thread, int sceneID, int);
+};
+
 struct SceneBacteria {
     void startAerobics(SeqThread*, int beats, bool start);
+    void startSlowAerobics(SeqThread*, int beats, bool start);
     void stopAerobics(SeqThread*, int);
     void tripleAerobics(SeqThread*);
 };
@@ -129,26 +138,30 @@ struct Stage {
 
     void setComment(const char* comment);
 
-    char _pad[0x2c60];
+    char _pad00[0x2c60];
 };
 
 static_assert(sizeof(Stage) == 0x2C60);
 
 struct StageRemix : Stage {
-    char _pad[0xE2F0 - 0x2C60];
+    void FUN_71004da400(int, int);
 
+    char _pad00[0x3600 - 0x2C60];
+};
+
+static_assert(sizeof(StageRemix) == 0x3600);
+
+struct StageRemix20 : StageRemix {
+    char _pad00[0x6E08 - 0x3600];
+    SceneChanger sceneChanger;
+
+    char _pad01[0xE2F0 - (0x6E08 + sizeof(SceneChanger))];
     SceneBacteria* bacteria;
 };
 
-static_assert(offsetof(StageRemix, bacteria) == 0xE2F0);
+static_assert(offsetof(StageRemix20, sceneChanger) == 0x6E08);
+static_assert(offsetof(StageRemix20, bacteria) == 0xE2F0);
 
 struct StageFactory {
     Stage* create(unsigned int stageID, unsigned long long, unsigned int, unsigned int, unsigned int, unsigned int, unsigned int);
 };
-
-
-extern int sceneChangeInstant(void*, SeqThread*, int sceneID);
-extern int sceneChangeFade1Beat(void*, SeqThread*, int sceneID, int);
-extern int sceneChangeFade2Beat(void*, SeqThread*, int sceneID, int);
-extern int sceneChangeFade4Beat(void*, SeqThread*, int sceneID, int);
-extern int sceneChangeFade8Beat(void*, SeqThread*, int sceneID, int);

@@ -2,26 +2,29 @@
 
 _ZN5Graph7startupEPKc17FilePartitionTypePv = 0x4F3C20
 
-_ZN5Stage14FUN_7100138CD0Ev = 0x138CD0
-_ZN5Stage10fadeScreenEif = 0x1366E0
-_ZN5Stage14FUN_7100138FC0Ev = 0x138FC0
-_ZN5Stage14FUN_7100137140Ev = 0x137140
-_ZN5Stage10setCommentEPKc = 0x1390e0
-
-_ZN12StageFactory6createEjyjjjjj = 0x488940
-
 _ZN9SeqThread4waitEi = 0x514d70
 _ZN9SeqThread9popUnk270Ev = 0x514fd0
 _ZN9SeqThread13stopRequestedEv = 0x514DD0
 _ZN9SeqThread10pushUnk270Ev = 0x514FB0
 _ZN9SeqThread15STUB_7100514ff0Ei = 0x514ff0
 
+_ZN12SceneChanger7instantEP9SeqThreadi = 0x4D7B40
+_ZN12SceneChanger9fade1BeatEP9SeqThreadii = 0x3B86F0
+_ZN12SceneChanger9fade2BeatEP9SeqThreadii = 0x3B8770
+_ZN12SceneChanger9fade4BeatEP9SeqThreadii = 0x3be7d0
+_ZN12SceneChanger9fade8BeatEP9SeqThreadii = 0x3be750
+
 _ZN13SceneBacteria13startAerobicsEP9SeqThreadib = 0x146120
+_ZN13SceneBacteria17startSlowAerobicsEP9SeqThreadib = 0x146B50
 _ZN13SceneBacteria12stopAerobicsEP9SeqThreadi = 0x1473a0
 _ZN13SceneBacteria14tripleAerobicsEP9SeqThread = 0x147CD0
 
-_Z18sceneChangeInstantPvP9SeqThreadi = 0x4D7B40
-_Z20sceneChangeFade1BeatPvP9SeqThreadii = 0x3B86F0
-_Z20sceneChangeFade2BeatPvP9SeqThreadii = 0x3B8770
-_Z20sceneChangeFade4BeatPvP9SeqThreadii = 0x3be7d0
-_Z20sceneChangeFade8BeatPvP9SeqThreadii = 0x3be750
+_ZN5Stage14FUN_7100138CD0Ev = 0x138CD0
+_ZN5Stage10fadeScreenEif = 0x1366E0
+_ZN5Stage14FUN_7100138FC0Ev = 0x138FC0
+_ZN5Stage14FUN_7100137140Ev = 0x137140
+_ZN5Stage10setCommentEPKc = 0x1390e0
+
+_ZN10StageRemix14FUN_71004da400Eii = 0x4da400
+
+_ZN12StageFactory6createEjyjjjjj = 0x488940

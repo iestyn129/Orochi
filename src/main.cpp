@@ -93,71 +93,71 @@ HkTrampoline getTextHook = [](TrampolineStatic(), void* a1, const char* a2, void
 };
 
 
-void remix20Main(StageRemix* stage, SeqThread* thread) {
+void remix20Main(StageRemix20* stage, SeqThread* thread) {
     chartMain(stage, thread);
 }
 
 
-void remix20Control(StageRemix* stage, SeqThread* thread) {
+void remix20Control(StageRemix20* stage, SeqThread* thread) {
     chartControl(stage, thread);
 }
 
 
-void remix20Anim(StageRemix* stage, SeqThread* thread) {
+void remix20Anim(StageRemix20* stage, SeqThread* thread) {
     chartAnim(stage, thread);
 }
 
 
-HkTrampoline remix20Cues00Hook = [](TrampolineStatic(), StageRemix* stage, SeqThread* thread) -> s64 {
+HkTrampoline remix20Cues00Hook = [](TrampolineStatic(), StageRemix20* stage, SeqThread* thread) -> s64 {
     chartCues00(stage, thread);
 
     return thread->popUnk270();
 };
 
 
-HkTrampoline remix20Cues01Hook = [](TrampolineStatic(), StageRemix* stage, SeqThread* thread) -> s64 {
+HkTrampoline remix20Cues01Hook = [](TrampolineStatic(), StageRemix20* stage, SeqThread* thread) -> s64 {
     chartCues01(stage, thread);
 
     return thread->popUnk270();
 };
 
 
-HkTrampoline remix20Cues02Hook = [](TrampolineStatic(), StageRemix* stage, SeqThread* thread) -> s64 {
+HkTrampoline remix20Cues02Hook = [](TrampolineStatic(), StageRemix20* stage, SeqThread* thread) -> s64 {
     chartCues02(stage, thread);
 
     return thread->popUnk270();
 };
 
 
-HkTrampoline remix20Cues03Hook = [](TrampolineStatic(), StageRemix* stage, SeqThread* thread) -> s64 {
+HkTrampoline remix20Cues03Hook = [](TrampolineStatic(), StageRemix20* stage, SeqThread* thread) -> s64 {
     chartCues03(stage, thread);
 
     return thread->popUnk270();
 };
 
 
-HkTrampoline remix20Cues04Hook = [](TrampolineStatic(), StageRemix* stage, SeqThread* thread) -> s64 {
+HkTrampoline remix20Cues04Hook = [](TrampolineStatic(), StageRemix20* stage, SeqThread* thread) -> s64 {
     chartCues04(stage, thread);
 
     return thread->popUnk270();
 };
 
 
-HkTrampoline remix20Cues05Hook = [](TrampolineStatic(), StageRemix* stage, SeqThread* thread) -> s64 {
+HkTrampoline remix20Cues05Hook = [](TrampolineStatic(), StageRemix20* stage, SeqThread* thread) -> s64 {
     chartCues05(stage, thread);
 
     return thread->popUnk270();
 };
 
 
-HkTrampoline remix20Cues06Hook = [](TrampolineStatic(), StageRemix* stage, SeqThread* thread) -> s64 {
+HkTrampoline remix20Cues06Hook = [](TrampolineStatic(), StageRemix20* stage, SeqThread* thread) -> s64 {
     chartCues06(stage, thread);
 
     return thread->popUnk270();
 };
 
 
-HkTrampoline remix20Cues07Hook = [](TrampolineStatic(), StageRemix* stage, SeqThread* thread) -> s64 {
+HkTrampoline remix20Cues07Hook = [](TrampolineStatic(), StageRemix20* stage, SeqThread* thread) -> s64 {
     chartCues07(stage, thread);
 
     return thread->popUnk270();
