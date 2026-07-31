@@ -167,7 +167,12 @@ void chartCues01(StageRemix20* stage, SeqThread* thread) {
 
 
 void chartCues02(StageRemix20* stage, SeqThread* thread) {
+    rest(42);
 
+    stage->setCueScene(thread, SCENE_SNEEZY_MOON);
+    stage->setComment("basic");
+
+    stage->moon->sneezeGreen(thread, true);
 }
 
 

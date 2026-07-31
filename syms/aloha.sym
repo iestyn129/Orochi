@@ -19,6 +19,8 @@ _ZN13SceneBacteria17startSlowAerobicsEP9SeqThreadib = 0x146B50
 _ZN13SceneBacteria12stopAerobicsEP9SeqThreadi = 0x1473a0
 _ZN13SceneBacteria14tripleAerobicsEP9SeqThread = 0x147CD0
 
+_ZN9SceneMoon11sneezeGreenEP9SeqThreadb = 0x1DB630
+
 _ZN9SceneRing9spawnRingEP9SeqThreadi = 0x217960
 
 _ZN5Stage14FUN_7100138CD0Ev = 0x138CD0

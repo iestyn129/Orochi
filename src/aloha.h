@@ -130,6 +130,10 @@ struct SceneBacteria {
     void tripleAerobics(SeqThread*);
 };
 
+struct SceneMoon {
+    void sneezeGreen(SeqThread*, bool windup);
+};
+
 struct SceneRing {
     void spawnRing(SeqThread*, int bubbleState);
 };
@@ -163,12 +167,16 @@ struct StageRemix20 : StageRemix {
     char _pad01[0xE2F0 - (0x6E08 + sizeof(SceneChanger))];
     SceneBacteria* bacteria;
 
-    char _pad02[0xE4D0 - (0xE2F0 + sizeof(SceneBacteria*))];
+    char _pad02[0xE470 - (0xE2F0 + sizeof(SceneBacteria*))];
+    SceneMoon* moon;
+
+    char _pad03[0xE4D0 - (0xE470 + sizeof(SceneMoon*))];
     SceneRing* ring;
 };
 
 static_assert(offsetof(StageRemix20, sceneChanger) == 0x6E08);
 static_assert(offsetof(StageRemix20, bacteria) == 0xE2F0);
+static_assert(offsetof(StageRemix20, moon) == 0xE470);
 static_assert(offsetof(StageRemix20, ring) == 0xE4D0);
 
 struct StageFactory {
