@@ -130,6 +130,10 @@ struct SceneBacteria {
     void tripleAerobics(SeqThread*);
 };
 
+struct SceneRing {
+    void spawnRing(SeqThread*, int bubbleState);
+};
+
 struct Stage {
     void FUN_7100138CD0();
     void fadeScreen(int ticks, float opacity);
@@ -144,7 +148,8 @@ struct Stage {
 static_assert(sizeof(Stage) == 0x2C60);
 
 struct StageRemix : Stage {
-    void FUN_71004da400(int, int);
+    void saveSceneState(int sceneID, int slot); // ??
+    void setCueScene(SeqThread* thread, int sceneID);
 
     char _pad00[0x3600 - 0x2C60];
 };
@@ -157,10 +162,14 @@ struct StageRemix20 : StageRemix {
 
     char _pad01[0xE2F0 - (0x6E08 + sizeof(SceneChanger))];
     SceneBacteria* bacteria;
+
+    char _pad02[0xE4D0 - (0xE2F0 + sizeof(SceneBacteria*))];
+    SceneRing* ring;
 };
 
 static_assert(offsetof(StageRemix20, sceneChanger) == 0x6E08);
 static_assert(offsetof(StageRemix20, bacteria) == 0xE2F0);
+static_assert(offsetof(StageRemix20, ring) == 0xE4D0);
 
 struct StageFactory {
     Stage* create(unsigned int stageID, unsigned long long, unsigned int, unsigned int, unsigned int, unsigned int, unsigned int);

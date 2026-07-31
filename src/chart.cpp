@@ -1,6 +1,7 @@
 #include "chart.h"
 
 const u32 initSceneID = SCENE_GERM_AEROBICS;
+const s32 initRingBubbleState = ring_bubble_mask(true, true, true, true);
 
 
 void chartMain(StageRemix20* stage, SeqThread* thread) {
@@ -19,31 +20,39 @@ void chartMain(StageRemix20* stage, SeqThread* thread) {
 
 
 void chartControl(StageRemix20* stage, SeqThread* thread) {
-    stage->FUN_71004da400(SCENE_GERM_AEROBICS, 1);
+    stage->saveSceneState(SCENE_GERM_AEROBICS, 1);
     rest(36);
-    stage->FUN_71004da400(SCENE_GERM_AEROBICS, 2);
+    stage->saveSceneState(SCENE_GERM_AEROBICS, 2);
 
     change_scene_fade_2_beat(SCENE_HOOP_TRUNDLING);
-    stage->FUN_71004da400(SCENE_HOOP_TRUNDLING, 1);
+    stage->saveSceneState(SCENE_HOOP_TRUNDLING, 1);
     rest(6.75); // -0.25
 
     change_scene_instant(SCENE_SNEEZY_MOON);
-    stage->FUN_71004da400(SCENE_SNEEZY_MOON, 1);
+    stage->saveSceneState(SCENE_SNEEZY_MOON, 1);
     rest(4);
 
     change_scene_instant(SCENE_HOOP_TRUNDLING);
     rest(3);
 
     change_scene_instant(SCENE_HIGH_FIVE_FEVER);
-    stage->FUN_71004da400(SCENE_HIGH_FIVE_FEVER, 1);
-    stage->FUN_71004da400(SCENE_GERM_AEROBICS, 3);
+    stage->saveSceneState(SCENE_HIGH_FIVE_FEVER, 1);
+    stage->saveSceneState(SCENE_GERM_AEROBICS, 3);
     rest(4);
 
     change_scene_instant(SCENE_HOOP_TRUNDLING);
-    rest(3.25); // +0.25
+    stage->saveSceneState(SCENE_GERM_AEROBICS, 1);
+    rest(4);
 
     change_scene_instant(SCENE_GERM_AEROBICS);
-    rest(5);
+    stage->saveSceneState(SCENE_GERM_AEROBICS, 2);
+    rest(4);
+
+    change_scene_instant(SCENE_HOOP_TRUNDLING);
+    stage->saveSceneState(SCENE_GERM_AEROBICS, 3);
+    rest(8);
+
+    change_scene_instant(SCENE_GERM_AEROBICS);
 }
 
 
@@ -53,6 +62,7 @@ void chartAnim(StageRemix20* stage, SeqThread* thread) {
 
 
 void chartCues00(StageRemix20* stage, SeqThread* thread) {
+    stage->setCueScene(thread, SCENE_GERM_AEROBICS);
     stage->setComment("basic");
 
     stage->bacteria->startAerobics(thread, 9, true);
@@ -62,8 +72,10 @@ void chartCues00(StageRemix20* stage, SeqThread* thread) {
     stage->bacteria->startAerobics(thread, 2, false);
     rest(2);
     stage->bacteria->stopAerobics(thread, 0);
-
     rest(3);
+
+    stage->setCueScene(thread, SCENE_GERM_AEROBICS);
+    stage->setComment("basic");
 
     stage->bacteria->startAerobics(thread, 9, true);
     rest(9);
@@ -72,16 +84,22 @@ void chartCues00(StageRemix20* stage, SeqThread* thread) {
     stage->bacteria->startAerobics(thread, 3, false);
     rest(3);
     stage->bacteria->stopAerobics(thread, 0);
-
     rest(25);
 
-    stage->bacteria->tripleAerobics(thread);
+    stage->setCueScene(thread, SCENE_GERM_AEROBICS);
+    stage->setComment("basic");
 
+    stage->bacteria->tripleAerobics(thread);
     rest(43);
 
-    stage->bacteria->tripleAerobics(thread);
+    stage->setCueScene(thread, SCENE_GERM_AEROBICS);
+    stage->setComment("basic");
 
+    stage->bacteria->tripleAerobics(thread);
     rest(32);
+
+    stage->setCueScene(thread, SCENE_GERM_AEROBICS);
+    stage->setComment("basic");
 
     stage->bacteria->startAerobics(thread, 7, true);
     rest(7);
@@ -99,8 +117,10 @@ void chartCues00(StageRemix20* stage, SeqThread* thread) {
     stage->bacteria->startAerobics(thread, 3, false);
     rest(3);
     stage->bacteria->stopAerobics(thread, 0);
-
     rest(162);
+
+    stage->setCueScene(thread, SCENE_GERM_AEROBICS);
+    stage->setComment("basic");
 
     stage->bacteria->startAerobics(thread, 9, true);
     rest(9);
@@ -117,7 +137,32 @@ void chartCues00(StageRemix20* stage, SeqThread* thread) {
 
 
 void chartCues01(StageRemix20* stage, SeqThread* thread) {
+    rest(38);
 
+    stage->setCueScene(thread, SCENE_HOOP_TRUNDLING);
+    stage->setComment("basic");
+
+    stage->ring->spawnRing(thread, -1);
+    rest(8);
+
+    stage->setCueScene(thread, SCENE_HOOP_TRUNDLING);
+    stage->setComment("basic");
+
+    stage->ring->spawnRing(thread, -1);
+    rest(8);
+
+    stage->setCueScene(thread, SCENE_HOOP_TRUNDLING);
+    stage->setComment("basic");
+
+    stage->ring->spawnRing(thread, -1);
+    rest(8);
+
+    stage->setCueScene(thread, SCENE_HOOP_TRUNDLING);
+    stage->setComment("basic");
+
+    stage->ring->spawnRing(thread, ring_bubble_mask(false, false, true, true));
+    rest(2);
+    stage->ring->spawnRing(thread, ring_bubble_mask(true, true, true, true));
 }
 
 

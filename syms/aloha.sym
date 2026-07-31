@@ -19,12 +19,15 @@ _ZN13SceneBacteria17startSlowAerobicsEP9SeqThreadib = 0x146B50
 _ZN13SceneBacteria12stopAerobicsEP9SeqThreadi = 0x1473a0
 _ZN13SceneBacteria14tripleAerobicsEP9SeqThread = 0x147CD0
 
+_ZN9SceneRing9spawnRingEP9SeqThreadi = 0x217960
+
 _ZN5Stage14FUN_7100138CD0Ev = 0x138CD0
 _ZN5Stage10fadeScreenEif = 0x1366E0
 _ZN5Stage14FUN_7100138FC0Ev = 0x138FC0
 _ZN5Stage14FUN_7100137140Ev = 0x137140
 _ZN5Stage10setCommentEPKc = 0x1390e0
 
-_ZN10StageRemix14FUN_71004da400Eii = 0x4da400
+_ZN10StageRemix14saveSceneStateEii = 0x4da400
+_ZN10StageRemix11setCueSceneEP9SeqThreadi = 0x4daa70
 
 _ZN12StageFactory6createEjyjjjjj = 0x488940

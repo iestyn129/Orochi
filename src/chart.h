@@ -37,7 +37,14 @@
     stage->sceneChanger.fade8Beat(thread, scene, 2); \
     check_thread()
 
+#define ring_bubble_mask(pa, pi, pu, pe) ( \
+    ((pa != 0) << 0) | \
+    ((pi != 0) << 1) | \
+    ((pu != 0) << 2) | \
+    ((pe != 0) << 3) )
+
 extern const u32 initSceneID;
+extern const s32 initRingBubbleState;
 
 extern void chartMain(StageRemix20* stage, SeqThread* thread);
 extern void chartControl(StageRemix20* stage, SeqThread* thread);

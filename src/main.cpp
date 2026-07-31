@@ -185,6 +185,10 @@ extern "C" void hkMain() {
         .arg(initSceneID)
         .installAtMainOffset(0x417118); // sceneChangeInstant
 
+    hk::hook::a64::assemble<"mov w1, {}">()
+        .arg(initRingBubbleState)
+        .installAtMainOffset(0x4170a8); // StageRemix::setRingBubbleState
+
     // dont wait to load scenes
     hk::hook::writeBranchAtMainOffset(0x41f084, reinterpret_cast<void*>(mainBase + 0x41f0a8));
 
