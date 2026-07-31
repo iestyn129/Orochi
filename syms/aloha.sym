@@ -37,7 +37,7 @@ _ZN5Stage14FUN_7100138FC0Ev = 0x138FC0
 _ZN5Stage14FUN_7100137140Ev = 0x137140
 _ZN5Stage10setCommentEPKc = 0x1390e0
 
-_ZN10StageRemix14saveSceneStateEii = 0x4da400
+_ZN10StageRemix15sceneStateThingEii = 0x4da400
 _ZN10StageRemix11setCueSceneEP9SeqThreadi = 0x4daa70
 
 _ZN12StageFactory6createEjyjjjjj = 0x488940

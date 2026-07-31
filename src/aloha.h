@@ -94,12 +94,18 @@
 #define SCENE_SHINKAI 30
 #define SCENE_DEEP_SEA SCENE_SHINKAI
 
-typedef enum FilePartitionType {
-    PartitionType_Data=0x00,
-    PartitionType_User=0x01,
-    PartitionType_Demo=0x02,
-    PartitionType_Debug=0x03
-} FilePartitionType;
+enum FilePartitionType : unsigned int {
+    PartitionType_Data  = 0x00,
+    PartitionType_User  = 0x01,
+    PartitionType_Demo  = 0x02,
+    PartitionType_Debug = 0x03
+};
+
+enum SceneCarryoverType : unsigned int {
+    SceneCarryoverAll   = 0x00,
+    SceneCarryoverState = 0x01,
+    SceneCarryoverNone  = 0x02
+};
 
 struct Graph {
     int startup(const char*, FilePartitionType, void*);
@@ -162,7 +168,7 @@ struct Stage {
 static_assert(sizeof(Stage) == 0x2C60);
 
 struct StageRemix : Stage {
-    void saveSceneState(int sceneID, int slot); // ???
+    void setSceneCarryover(int sceneID, SceneCarryoverType carryoverType); // i think
     void setCueScene(SeqThread* thread, int sceneID);
 
     char _pad00[0x3600 - 0x2C60];

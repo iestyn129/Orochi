@@ -20,59 +20,58 @@ void chartMain(StageRemix20* stage, SeqThread* thread) {
 
 
 void chartControl(StageRemix20* stage, SeqThread* thread) {
-    stage->saveSceneState(SCENE_GERM_AEROBICS, 1);
+    stage->setSceneCarryover(SCENE_GERM_AEROBICS, SceneCarryoverNone);
     rest(36);
-    stage->saveSceneState(SCENE_GERM_AEROBICS, 2);
 
     change_scene_fade_2_beat(SCENE_HOOP_TRUNDLING);
-    stage->saveSceneState(SCENE_HOOP_TRUNDLING, 1);
+    stage->setSceneCarryover(SCENE_HOOP_TRUNDLING, SceneCarryoverState);
     rest(6.75); // -0.25
 
     change_scene_instant(SCENE_SNEEZY_MOON);
-    stage->saveSceneState(SCENE_SNEEZY_MOON, 1);
+    stage->setSceneCarryover(SCENE_SNEEZY_MOON, SceneCarryoverState);
     rest(4);
 
     change_scene_instant(SCENE_HOOP_TRUNDLING);
     rest(3);
 
     change_scene_instant(SCENE_HIGH_FIVE_FEVER);
-    stage->saveSceneState(SCENE_HIGH_FIVE_FEVER, 1);
-    stage->saveSceneState(SCENE_GERM_AEROBICS, 3);
+    stage->setSceneCarryover(SCENE_HIGH_FIVE_FEVER, SceneCarryoverState);
     rest(4);
 
     change_scene_instant(SCENE_HOOP_TRUNDLING);
-    stage->saveSceneState(SCENE_GERM_AEROBICS, 1);
     rest(4);
 
     change_scene_instant(SCENE_GERM_AEROBICS);
-    stage->saveSceneState(SCENE_GERM_AEROBICS, 2);
     rest(4);
 
     change_scene_instant(SCENE_HOOP_TRUNDLING);
-    stage->saveSceneState(SCENE_GERM_AEROBICS, 1);
     rest(6.25); // +0.25
 
     change_scene_fade_1_beat(SCENE_HIGH_FIVE_FEVER);
-    stage->saveSceneState(SCENE_GERM_AEROBICS, 2);
     rest(32.75); // -0.25
 
     change_scene_instant(SCENE_GERM_AEROBICS);
-    stage->saveSceneState(SCENE_GERM_AEROBICS, 3);
     rest(4);
 
     change_scene_instant(SCENE_HOOP_TRUNDLING);
     rest(12);
 
     change_scene_instant(SCENE_SNEEZY_MOON);
-    stage->saveSceneState(SCENE_GERM_AEROBICS, 4);
     rest(4);
 
     change_scene_instant(SCENE_HOOP_TRUNDLING);
-    stage->saveSceneState(SCENE_GERM_AEROBICS, 5);
     rest(12);
 
     change_scene_fade_1_beat(SCENE_GERM_AEROBICS);
-    stage->saveSceneState(SCENE_GERM_AEROBICS, 6);
+    stage->setSceneCarryover(SCENE_GERM_AEROBICS, SceneCarryoverState);
+    rest(13.5); // -0.5
+
+    change_scene_fade_1_beat(SCENE_HOOP_TRUNDLING);
+    rest(1.75); // -0.25
+
+    change_scene_fade_1_beat(SCENE_GERM_AEROBICS);
+    stage->setSceneCarryover(SCENE_GERM_AEROBICS, SceneCarryoverNone);
+    rest(0.75); // +0.5 +0.25
 }
 
 
@@ -93,10 +92,11 @@ void chartCues00(StageRemix20* stage, SeqThread* thread) {
     stage->bacteria->startAerobics(thread, 2, false);
     rest(2);
     stage->bacteria->stopAerobics(thread, 0);
-    rest(3);
+    rest(2); // -1.0
 
     stage->setCueScene(thread, SCENE_GERM_AEROBICS);
     stage->setComment("basic");
+    rest(1); // +1.0
 
     stage->bacteria->startAerobics(thread, 9, true);
     rest(9);
@@ -105,22 +105,25 @@ void chartCues00(StageRemix20* stage, SeqThread* thread) {
     stage->bacteria->startAerobics(thread, 3, false);
     rest(3);
     stage->bacteria->stopAerobics(thread, 0);
-    rest(25);
+    rest(24); // -1.0
 
     stage->setCueScene(thread, SCENE_GERM_AEROBICS);
     stage->setComment("basic");
+    rest(1); // +1.0
 
     stage->bacteria->tripleAerobics(thread);
-    rest(43);
+    rest(42); // -1.0
 
     stage->setCueScene(thread, SCENE_GERM_AEROBICS);
     stage->setComment("basic");
+    rest(1); // +1.0
 
     stage->bacteria->tripleAerobics(thread);
-    rest(32);
+    rest(31); // -1.0
 
     stage->setCueScene(thread, SCENE_GERM_AEROBICS);
     stage->setComment("basic");
+    rest(1); // +1.0
 
     stage->bacteria->startAerobics(thread, 7, true);
     rest(7);
@@ -129,7 +132,11 @@ void chartCues00(StageRemix20* stage, SeqThread* thread) {
     stage->bacteria->startAerobics(thread, 2, false);
     rest(2);
     stage->bacteria->stopAerobics(thread, 0);
-    rest(5);
+    rest(3); // -2.0
+
+    stage->setCueScene(thread, SCENE_GERM_AEROBICS);
+    stage->setComment("basic");
+    rest(2); // +2.0
 
     stage->bacteria->startAerobics(thread, 7, true);
     rest(7);
@@ -138,10 +145,11 @@ void chartCues00(StageRemix20* stage, SeqThread* thread) {
     stage->bacteria->startAerobics(thread, 3, false);
     rest(3);
     stage->bacteria->stopAerobics(thread, 0);
-    rest(162);
+    rest(161); // -1.0
 
     stage->setCueScene(thread, SCENE_GERM_AEROBICS);
     stage->setComment("basic");
+    rest(1); // +1.0
 
     stage->bacteria->startAerobics(thread, 9, true);
     rest(9);
@@ -185,6 +193,39 @@ void chartCues01(StageRemix20* stage, SeqThread* thread) {
     stage->ring->spawnRing(thread, ring_bubble_mask(false, false, true, true));
     rest(2);
     stage->ring->spawnRing(thread, ring_bubble_mask(true, true, true, true));
+    rest(39); // -1.0
+
+    stage->setCueScene(thread, SCENE_HOOP_TRUNDLING);
+    stage->setComment("basic");
+    rest(1); // +1.0
+
+    stage->ring->spawnRing(thread, -1);
+    rest(3);
+    stage->ring->spawnRing(thread, -1);
+    rest(3);
+    stage->ring->spawnRing(thread, -1);
+    rest(3);
+    stage->ring->spawnRing(thread, -1);
+    rest(6); // -1.0
+
+    stage->setCueScene(thread, SCENE_HOOP_TRUNDLING);
+    stage->setComment("basic");
+    rest(1); // +1.0
+
+    stage->ring->spawnRing(thread, -1);
+    rest(3);
+    stage->ring->spawnRing(thread, -1);
+    rest(3);
+    stage->ring->spawnRing(thread, -1);
+    rest(3);
+    stage->ring->spawnRing(thread, ring_bubble_mask(false, false, true, true));
+    rest(15); // -1.0
+
+    stage->setCueScene(thread, SCENE_HOOP_TRUNDLING);
+    stage->setComment("basic");
+    rest(1); // +1.0
+
+    stage->ring->spawnRing(thread, ring_bubble_mask(true, true, true, true));
 }
 
 
@@ -196,6 +237,13 @@ void chartCues02(StageRemix20* stage, SeqThread* thread) {
     stage->setComment("basic");
 
     stage->moon->sneezeGreen(thread, true);
+    rest(74);
+
+    stage->setCueScene(thread, SCENE_SNEEZY_MOON);
+    stage->setComment("basic");
+
+    stage->moon->sneezeGreen(thread, true);
+    //rest(74);
 }
 
 
