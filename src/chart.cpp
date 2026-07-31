@@ -49,10 +49,16 @@ void chartControl(StageRemix20* stage, SeqThread* thread) {
     rest(4);
 
     change_scene_instant(SCENE_HOOP_TRUNDLING);
-    stage->saveSceneState(SCENE_GERM_AEROBICS, 3);
-    rest(8);
+    stage->saveSceneState(SCENE_GERM_AEROBICS, 1);
+    rest(6.25); // +0.25
+
+    change_scene_fade_1_beat(SCENE_HIGH_FIVE_FEVER);
+    stage->saveSceneState(SCENE_GERM_AEROBICS, 2);
+    rest(31.75); // -0.25
 
     change_scene_instant(SCENE_GERM_AEROBICS);
+    stage->saveSceneState(SCENE_GERM_AEROBICS, 3);
+    rest(4);
 }
 
 
@@ -61,6 +67,7 @@ void chartAnim(StageRemix20* stage, SeqThread* thread) {
 }
 
 
+// germ aerobics
 void chartCues00(StageRemix20* stage, SeqThread* thread) {
     stage->setCueScene(thread, SCENE_GERM_AEROBICS);
     stage->setComment("basic");
@@ -136,6 +143,7 @@ void chartCues00(StageRemix20* stage, SeqThread* thread) {
 }
 
 
+// hoop trundling
 void chartCues01(StageRemix20* stage, SeqThread* thread) {
     rest(38);
 
@@ -166,6 +174,7 @@ void chartCues01(StageRemix20* stage, SeqThread* thread) {
 }
 
 
+// sneezy moon
 void chartCues02(StageRemix20* stage, SeqThread* thread) {
     rest(42);
 
@@ -176,6 +185,7 @@ void chartCues02(StageRemix20* stage, SeqThread* thread) {
 }
 
 
+// high-five fever
 void chartCues03(StageRemix20* stage, SeqThread* thread) {
     rest(46);
 
@@ -185,6 +195,37 @@ void chartCues03(StageRemix20* stage, SeqThread* thread) {
     stage->clap->cue321(thread);
     rest(3);
     stage->clap->clap(thread, 0);
+    rest(16);
+
+    stage->clap->cue123(thread);
+    rest(3);
+    stage->clap->clap(thread, 0);
+    rest(2);
+
+    stage->clap->clapCueDouble(thread);
+    rest(2);
+    stage->clap->doubleClap(thread);
+    rest(2);
+
+    stage->clap->clap(thread, 0);
+    rest(2);
+
+    stage->clap->clap(thread, 0);
+    rest(1);
+    stage->clap->cue321(thread);
+    rest(1);
+
+    stage->clap->clap(thread, 0);
+    rest(2);
+    stage->clap->clap(thread, 0);
+    rest(8);
+
+    stage->clap->cue321(thread);
+    rest(3);
+    stage->clap->clapCueTriple(thread);
+    rest(2);
+    stage->clap->tripleClap(thread);
+    rest(2);
 }
 
 
