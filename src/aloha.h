@@ -162,7 +162,7 @@ struct Stage {
 static_assert(sizeof(Stage) == 0x2C60);
 
 struct StageRemix : Stage {
-    void saveSceneState(int sceneID, int slot); // ??
+    void saveSceneState(int sceneID, int slot); // ???
     void setCueScene(SeqThread* thread, int sceneID);
 
     char _pad00[0x3600 - 0x2C60];

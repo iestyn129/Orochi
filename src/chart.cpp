@@ -54,11 +54,25 @@ void chartControl(StageRemix20* stage, SeqThread* thread) {
 
     change_scene_fade_1_beat(SCENE_HIGH_FIVE_FEVER);
     stage->saveSceneState(SCENE_GERM_AEROBICS, 2);
-    rest(31.75); // -0.25
+    rest(32.75); // -0.25
 
     change_scene_instant(SCENE_GERM_AEROBICS);
     stage->saveSceneState(SCENE_GERM_AEROBICS, 3);
     rest(4);
+
+    change_scene_instant(SCENE_HOOP_TRUNDLING);
+    rest(12);
+
+    change_scene_instant(SCENE_SNEEZY_MOON);
+    stage->saveSceneState(SCENE_GERM_AEROBICS, 4);
+    rest(4);
+
+    change_scene_instant(SCENE_HOOP_TRUNDLING);
+    stage->saveSceneState(SCENE_GERM_AEROBICS, 5);
+    rest(12);
+
+    change_scene_fade_1_beat(SCENE_GERM_AEROBICS);
+    stage->saveSceneState(SCENE_GERM_AEROBICS, 6);
 }
 
 
