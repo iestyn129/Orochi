@@ -170,7 +170,7 @@ extern "C" void hkMain() {
     initHook.installAtMainOffset(0x50CBA0);
     mainLoopHook.installAtMainOffset(0x509E10);
     stageFactoryCreateHook.installAtSym<"_ZN12StageFactory6createEjyjjjjj">();
-    graphStartupHook.installAtSym<"_ZN5Graph7startupEPKc17FilePartitionTypePv">();
+    //graphStartupHook.installAtSym<"_ZN5Graph7startupEPKc17FilePartitionTypePv">();
     getTextHook.installAtMainOffset(0x4EFE80);
 
     hk::hook::a64::assemble<"mov w1, {}">()
