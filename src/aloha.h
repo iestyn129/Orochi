@@ -136,6 +136,13 @@ struct SceneBacteria {
     void tripleAerobics(SeqThread*);
 };
 
+struct SceneBrush {
+    void sweepContinuous(SeqThread*, int beats, bool, bool, bool);
+    void sweepThree(SeqThread*);
+    void spinSpin(SeqThread*, bool);
+    void spinStop();
+};
+
 struct SceneClap {
     void cue123(SeqThread*);
     void cue321(SeqThread*);
@@ -152,6 +159,11 @@ struct SceneMoon {
 
 struct SceneRing {
     void spawnRing(SeqThread*, int bubbleState);
+};
+
+struct SceneRope {
+    void jump(SeqThread*, int ticks, bool stopping);
+    void doubleUnder(SeqThread*, int ticks, bool, bool);
 };
 
 struct Stage {
@@ -177,27 +189,35 @@ struct StageRemix : Stage {
 static_assert(sizeof(StageRemix) == 0x3600);
 
 struct StageRemix20 : StageRemix {
-    char _pad00[0x6E08 - 0x3600];
+    char _padSceneChanger[0x6E08 - 0x3600];
     SceneChanger sceneChanger;
 
-    char _pad01[0xE2F0 - (0x6E08 + sizeof(SceneChanger))];
+    char _padBacteria[0xE2F0 - (0x6E08 + sizeof(SceneChanger))];
     SceneBacteria* bacteria;
 
-    char _pad02[0xE350 - (0xE2F0 + sizeof(SceneBacteria*))];
+    char _padBrush[0xE320 - (0xE2F0 + sizeof(SceneBacteria*))];
+    SceneBrush* brush;
+
+    char _padClap[0xE350 - (0xE320 + sizeof(SceneBrush*))];
     SceneClap* clap;
 
-    char _pad03[0xE470 - (0xE350 + sizeof(SceneClap*))];
+    char _padMoon[0xE470 - (0xE350 + sizeof(SceneClap*))];
     SceneMoon* moon;
 
-    char _pad04[0xE4D0 - (0xE470 + sizeof(SceneMoon*))];
+    char _padRing[0xE4D0 - (0xE470 + sizeof(SceneMoon*))];
     SceneRing* ring;
+
+    char _padRope[0xE500 - (0xE4D0 + sizeof(SceneRing*))];
+    SceneRope* rope;
 };
 
 static_assert(offsetof(StageRemix20, sceneChanger) == 0x6E08);
 static_assert(offsetof(StageRemix20, bacteria) == 0xE2F0);
+static_assert(offsetof(StageRemix20, brush) == 0xE320);
 static_assert(offsetof(StageRemix20, clap) == 0xE350);
 static_assert(offsetof(StageRemix20, moon) == 0xE470);
 static_assert(offsetof(StageRemix20, ring) == 0xE4D0);
+static_assert(offsetof(StageRemix20, rope) == 0xE500);
 
 struct StageFactory {
     Stage* create(unsigned int stageID, unsigned long long, unsigned int, unsigned int, unsigned int, unsigned int, unsigned int);

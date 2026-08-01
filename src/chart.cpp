@@ -71,7 +71,18 @@ void chartControl(StageRemix20* stage, SeqThread* thread) {
 
     change_scene_fade_1_beat(SCENE_GERM_AEROBICS);
     stage->setSceneCarryover(SCENE_GERM_AEROBICS, SceneCarryoverNone);
-    rest(0.75); // +0.5 +0.25
+    rest(16.75); // +0.5 +0.25
+
+    change_scene_fade_2_beat(SCENE_HOOP_TRUNDLING);
+    rest(29);
+
+    change_scene_fade_1_beat(SCENE_SODA_HOP);
+    stage->setSceneCarryover(SCENE_SODA_HOP, SceneCarryoverState);
+    rest(31);
+
+    change_scene_instant(SCENE_SWEEPER_STAR);
+    stage->setSceneCarryover(SCENE_SWEEPER_STAR, SceneCarryoverState);
+    //rest(0);
 }
 
 
@@ -226,6 +237,23 @@ void chartCues01(StageRemix20* stage, SeqThread* thread) {
     rest(1); // +1.0
 
     stage->ring->spawnRing(thread, ring_bubble_mask(true, true, true, true));
+    rest(20); // -1.0
+
+    stage->setCueScene(thread, SCENE_HOOP_TRUNDLING);
+    stage->setComment("basic");
+    rest(1); // +1.0
+
+    stage->ring->spawnRing(thread, -1);
+    rest(8);
+    stage->ring->spawnRing(thread, -1);
+    rest(8);
+
+    stage->ring->spawnRing(thread, -1);
+    rest(4);
+    stage->ring->spawnRing(thread, -1);
+    rest(4);
+    stage->ring->spawnRing(thread, -1);
+    rest(4);
 }
 
 
@@ -291,16 +319,55 @@ void chartCues03(StageRemix20* stage, SeqThread* thread) {
 }
 
 
+// soda hop
 void chartCues04(StageRemix20* stage, SeqThread* thread) {
+    rest(192); // -1.0
 
+    stage->setCueScene(thread, SCENE_SODA_HOP);
+    stage->setComment("basic");
+    rest(1); // +1.0
+
+    for (s8 i = 0; i < 7; ++i) {
+        stage->rope->jump(thread, 480, false);
+        rest(1);
+    }
+
+    stage->rope->doubleUnder(thread, 480, false, false);
+    rest(1.5);
+
+    for (s8 i = 0; i < 10; ++i) {
+        stage->rope->jump(thread, 480, false);
+        rest(1);
+    }
+
+    stage->rope->doubleUnder(thread, 480, false, false);
+    rest(1.5);
+
+    for (s8 i = 0; i < 7; ++i) {
+        stage->rope->jump(thread, 480, false);
+        rest(1);
+    }
+
+    stage->rope->jump(thread, 480, true);
 }
 
 
+// sweeper star
 void chartCues05(StageRemix20* stage, SeqThread* thread) {
+    rest(224); // -1.0
 
+    stage->setCueScene(thread, SCENE_SWEEPER_STAR);
+    stage->setComment("basic");
+    rest(1); // +1.0
+
+    stage->brush->sweepContinuous(thread, 4, true, true, false);
+    rest(4);
+    stage->brush->sweepThree(thread);
+    rest(4);
 }
 
 
+// can do
 void chartCues06(StageRemix20* stage, SeqThread* thread) {
 
 }

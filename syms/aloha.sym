@@ -19,6 +19,11 @@ _ZN13SceneBacteria17startSlowAerobicsEP9SeqThreadib = 0x146B50
 _ZN13SceneBacteria12stopAerobicsEP9SeqThreadi = 0x1473a0
 _ZN13SceneBacteria14tripleAerobicsEP9SeqThread = 0x147CD0
 
+_ZN10SceneBrush15sweepContinuousEP9SeqThreadibbb = 0x15A560
+_ZN10SceneBrush10sweepThreeEP9SeqThread = 0x15AB00
+_ZN10SceneBrush8spinSpinEP9SeqThreadb = 0x15AF40
+_ZN10SceneBrush8spinStopEv = 0x15B2E0
+
 _ZN9SceneMoon11sneezeGreenEP9SeqThreadb = 0x1DB630
 
 _ZN9SceneClap6cue123EP9SeqThread = 0x1646F0
@@ -31,13 +36,16 @@ _ZN9SceneClap10tripleClapEP9SeqThread = 0x1642F0
 
 _ZN9SceneRing9spawnRingEP9SeqThreadi = 0x217960
 
+_ZN9SceneRope4jumpEP9SeqThreadib = 0x226AA0
+_ZN9SceneRope11doubleUnderEP9SeqThreadibb = 0x2276A0
+
 _ZN5Stage14FUN_7100138CD0Ev = 0x138CD0
 _ZN5Stage10fadeScreenEif = 0x1366E0
 _ZN5Stage14FUN_7100138FC0Ev = 0x138FC0
 _ZN5Stage14FUN_7100137140Ev = 0x137140
 _ZN5Stage10setCommentEPKc = 0x1390e0
 
-_ZN10StageRemix15sceneStateThingEii = 0x4da400
+_ZN10StageRemix17setSceneCarryoverEi18SceneCarryoverType = 0x4da400
 _ZN10StageRemix11setCueSceneEP9SeqThreadi = 0x4daa70
 
 _ZN12StageFactory6createEjyjjjjj = 0x488940
