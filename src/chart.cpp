@@ -82,12 +82,15 @@ void chartControl(StageRemix20* stage, SeqThread* thread) {
 
     change_scene_instant(SCENE_SWEEPER_STAR);
     stage->setSceneCarryover(SCENE_SWEEPER_STAR, SceneCarryoverState);
+    stage->brush->bg->playAction("FinishSceneChange");
+    stage->brush->you->getChildMaybe("you", true)->setAnimationSimple("YOU_B", false);
     //rest(0);
 }
 
 
 void chartAnim(StageRemix20* stage, SeqThread* thread) {
-
+    rest(5);
+    stage->beatAnim(thread, 0, 480, 0);
 }
 
 
@@ -364,6 +367,20 @@ void chartCues05(StageRemix20* stage, SeqThread* thread) {
     rest(4);
     stage->brush->sweepThree(thread);
     rest(4);
+    stage->brush->sweepContinuous(thread, 4, true, false, false);
+    rest(4);
+    stage->brush->sweepThree(thread);
+    rest(4);
+    stage->brush->sweepContinuous(thread, 4, true, false, false);
+    rest(4);
+    stage->brush->sweepThree(thread);
+    rest(4);
+    stage->brush->sweepContinuous(thread, 4, false, false, true);
+    rest(6);
+
+    stage->brush->spinSpin(thread, false);
+    rest(1);
+    stage->brush->spinStop();
 }
 
 

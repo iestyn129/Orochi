@@ -2,6 +2,10 @@
 
 _ZN5Graph7startupEPKc17FilePartitionTypePv = 0x4F3C20
 
+_ZN10GraphAnime10playActionEPKc = 0x4F8260
+_ZN10GraphAnime13getChildMaybeEPKcb = 0x4FBA20
+_ZN10GraphAnime18setAnimationSimpleEPKcb = 0x4F7A80
+
 _ZN9SeqThread4waitEi = 0x514d70
 _ZN9SeqThread9popUnk270Ev = 0x514fd0
 _ZN9SeqThread13stopRequestedEv = 0x514DD0
@@ -44,6 +48,8 @@ _ZN5Stage10fadeScreenEif = 0x1366E0
 _ZN5Stage14FUN_7100138FC0Ev = 0x138FC0
 _ZN5Stage14FUN_7100137140Ev = 0x137140
 _ZN5Stage10setCommentEPKc = 0x1390e0
+_ZN5Stage8beatAnimEP9SeqThreadiii = 0x1379A0
+_ZN5Stage8stopAnimEP9SeqThread = 0x137A80
 
 _ZN10StageRemix17setSceneCarryoverEi18SceneCarryoverType = 0x4da400
 _ZN10StageRemix11setCueSceneEP9SeqThreadi = 0x4daa70

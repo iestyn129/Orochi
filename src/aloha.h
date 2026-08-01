@@ -111,6 +111,20 @@ struct Graph {
     int startup(const char*, FilePartitionType, void*);
 };
 
+struct GraphAnime {
+    bool playAction(const char* action);
+    GraphAnime* getChildMaybe(const char* name, bool);
+    void setAnimationSimple(const char* name, bool);
+
+    char _pad00[0x60];
+    Graph* graph;
+
+    char _pad01[0x368 - (0x60 + sizeof(Graph*))];
+};
+
+static_assert(sizeof(GraphAnime) == 0x368);
+static_assert(offsetof(GraphAnime, graph) == 0x60);
+
 struct SeqThread {
     void wait(int ticks);
     bool stopRequested();
@@ -141,7 +155,14 @@ struct SceneBrush {
     void sweepThree(SeqThread*);
     void spinSpin(SeqThread*, bool);
     void spinStop();
+
+    char _padYou[0x40B8];
+    GraphAnime* you;
+    GraphAnime* bg;
 };
+
+static_assert(offsetof(SceneBrush, you) == 0x40B8);
+static_assert(offsetof(SceneBrush, bg) == 0x40C0);
 
 struct SceneClap {
     void cue123(SeqThread*);
@@ -173,6 +194,9 @@ struct Stage {
     void FUN_7100137140();
 
     void setComment(const char* comment);
+
+    void beatAnim(SeqThread*, int ticks, int alsoTicks, int loops);
+    void stopAnim(SeqThread*);
 
     char _pad00[0x2c60];
 };
