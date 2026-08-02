@@ -109,7 +109,11 @@ enum SceneCarryoverType : unsigned int {
 
 struct Graph {
     int startup(const char*, FilePartitionType, void*);
+
+    char _pad00[0x158];
 };
+
+static_assert(sizeof(Graph) == 0x158);
 
 struct GraphAnime {
     bool playAction(const char* action);
@@ -143,20 +147,26 @@ struct SceneChanger {
     int fade8Beat(SeqThread* thread, int sceneID, int);
 };
 
-struct SceneBacteria {
+struct Scene {
+    char _pad00[0x3880];
+};
+
+static_assert(sizeof(Scene) == 0x3880);
+
+struct SceneBacteria : Scene {
     void startAerobics(SeqThread*, int beats, bool start);
     void startSlowAerobics(SeqThread*, int beats, bool start);
     void stopAerobics(SeqThread*, int);
     void tripleAerobics(SeqThread*);
 };
 
-struct SceneBrush {
+struct SceneBrush : Scene {
     void sweepContinuous(SeqThread*, int beats, bool, bool, bool);
     void sweepThree(SeqThread*);
     void spinSpin(SeqThread*, bool);
     void spinStop();
 
-    char _padYou[0x40B8];
+    char _padYou[0x40B8 - sizeof(Scene)];
     GraphAnime* you;
     GraphAnime* bg;
 };
@@ -164,7 +174,7 @@ struct SceneBrush {
 static_assert(offsetof(SceneBrush, you) == 0x40B8);
 static_assert(offsetof(SceneBrush, bg) == 0x40C0);
 
-struct SceneClap {
+struct SceneClap : Scene {
     void cue123(SeqThread*);
     void cue321(SeqThread*);
     void clap(SeqThread*, int type);
@@ -174,20 +184,20 @@ struct SceneClap {
     void tripleClap(SeqThread*);
 };
 
-struct SceneHammer {
+struct SceneHammer : Scene {
     void spawnCanRed(SeqThread*, int landTicks, bool thrown, int hitTicks);
     void spawnCanBlue(SeqThread*, int landTicks, bool thrown, int hitTicks);
 };
 
-struct SceneMoon {
+struct SceneMoon : Scene {
     void sneezeGreen(SeqThread*, bool windup);
 };
 
-struct SceneRing {
+struct SceneRing : Scene {
     void spawnRing(SeqThread*, int bubbleState);
 };
 
-struct SceneRope {
+struct SceneRope : Scene {
     void jump(SeqThread*, int ticks, bool stopping);
     void doubleUnder(SeqThread*, int ticks, bool, bool);
 };

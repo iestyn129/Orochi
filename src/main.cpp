@@ -67,17 +67,24 @@ HkTrampoline stageFactoryCreateHook = [](TrampolineStatic(), u32 stageID, u64 a2
 
 
 HkTrampoline graphStartupHook = [](TrampolineStatic(), Graph* self, const char* name, FilePartitionType type, void* a4) -> s32 {
-    if (isRemix20) {
+    /*if (isRemix20) {
         const auto path = std::string(name);
 
         if (texMap.contains(path)) {
             name = texMap.at(path);
         }
-    }
+    }*/
 
-    log("loading tex/spr: %s", name);
+    log("loading tex/spr - ptr: %p, graph: %s", self, name);
 
     return orig(self, name, type, a4);
+};
+
+
+HkTrampoline graphAnimeHook = [](TrampolineStatic(), GraphAnime* self, Graph* graph, int animIdx, void* a4, int a5) -> s32 {
+    log("GraphAnime - ptr: %p, graphPtr: %p", self, graph);
+
+    return orig(self, graph, animIdx, a4, a5);
 };
 
 
@@ -171,6 +178,7 @@ extern "C" void hkMain() {
     mainLoopHook.installAtMainOffset(0x509E10);
     stageFactoryCreateHook.installAtSym<"_ZN12StageFactory6createEjyjjjjj">();
     //graphStartupHook.installAtSym<"_ZN5Graph7startupEPKc17FilePartitionTypePv">();
+    //graphAnimeHook.installAtMainOffset(0x4f7400);
     getTextHook.installAtMainOffset(0x4EFE80);
 
     hk::hook::a64::assemble<"mov w1, {}">()
