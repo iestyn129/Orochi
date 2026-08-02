@@ -28,6 +28,9 @@ _ZN10SceneBrush10sweepThreeEP9SeqThread = 0x15AB00
 _ZN10SceneBrush8spinSpinEP9SeqThreadb = 0x15AF40
 _ZN10SceneBrush8spinStopEv = 0x15B2E0
 
+_ZN11SceneHammer11spawnCanRedEP9SeqThreadibi = 0x1AB410
+_ZN11SceneHammer12spawnCanBlueEP9SeqThreadibi = 0x1ABCB0
+
 _ZN9SceneMoon11sneezeGreenEP9SeqThreadb = 0x1DB630
 
 _ZN9SceneClap6cue123EP9SeqThread = 0x1646F0

@@ -84,6 +84,19 @@ void chartControl(StageRemix20* stage, SeqThread* thread) {
     stage->setSceneCarryover(SCENE_SWEEPER_STAR, SceneCarryoverState);
     stage->brush->bg->playAction("FinishSceneChange");
     stage->brush->you->getChildMaybe("you", true)->setAnimationSimple("YOU_B", false);
+    rest(36);
+
+    change_scene_fade_1_beat(SCENE_CAN_DO);
+    stage->setSceneCarryover(SCENE_CAN_DO, SceneCarryoverState);
+    rest(29);
+
+    change_scene_instant(SCENE_HOOP_TRUNDLING);
+    rest(3);
+
+    change_scene_fade_1_beat(SCENE_SNEEZY_MOON);
+    rest(29);
+
+    change_scene_fade_1_beat(SCENE_GERM_AEROBICS);
     //rest(0);
 }
 
@@ -386,7 +399,18 @@ void chartCues05(StageRemix20* stage, SeqThread* thread) {
 
 // can do
 void chartCues06(StageRemix20* stage, SeqThread* thread) {
+    rest(248); // -1.0
 
+    stage->setCueScene(thread, SCENE_CAN_DO);
+    stage->setComment("basic");
+    rest(1); // +1.0
+
+    stage->hammer->spawnCanRed(thread, 480 * 10, true, 480 * 16);
+    stage->hammer->spawnCanRed(thread, 480 * 6.25, true, 480 * 20);
+    stage->hammer->spawnCanBlue(thread, 480 * 0.5, true, 480 * 26);
+    stage->hammer->spawnCanRed(thread, 0, false, 480 * 30);
+    stage->hammer->spawnCanBlue(thread, 0, false, 480 * 34);
+    stage->hammer->spawnCanRed(thread, 480 * -3, true, 480 * 39);
 }
 
 

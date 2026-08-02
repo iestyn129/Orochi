@@ -174,6 +174,11 @@ struct SceneClap {
     void tripleClap(SeqThread*);
 };
 
+struct SceneHammer {
+    void spawnCanRed(SeqThread*, int landTicks, bool thrown, int hitTicks);
+    void spawnCanBlue(SeqThread*, int landTicks, bool thrown, int hitTicks);
+};
+
 struct SceneMoon {
     void sneezeGreen(SeqThread*, bool windup);
 };
@@ -225,7 +230,10 @@ struct StageRemix20 : StageRemix {
     char _padClap[0xE350 - (0xE320 + sizeof(SceneBrush*))];
     SceneClap* clap;
 
-    char _padMoon[0xE470 - (0xE350 + sizeof(SceneClap*))];
+    char _padHammer[0xE3F8 - (0xE350 + sizeof(SceneClap*))];
+    SceneHammer* hammer;
+
+    char _padMoon[0xE470 - (0xE3F8 + sizeof(SceneHammer*))];
     SceneMoon* moon;
 
     char _padRing[0xE4D0 - (0xE470 + sizeof(SceneMoon*))];
@@ -239,6 +247,7 @@ static_assert(offsetof(StageRemix20, sceneChanger) == 0x6E08);
 static_assert(offsetof(StageRemix20, bacteria) == 0xE2F0);
 static_assert(offsetof(StageRemix20, brush) == 0xE320);
 static_assert(offsetof(StageRemix20, clap) == 0xE350);
+static_assert(offsetof(StageRemix20, hammer) == 0xE3F8);
 static_assert(offsetof(StageRemix20, moon) == 0xE470);
 static_assert(offsetof(StageRemix20, ring) == 0xE4D0);
 static_assert(offsetof(StageRemix20, rope) == 0xE500);
