@@ -172,7 +172,7 @@ HkTrampoline remix20Cues07Hook = [](TrampolineStatic(), StageRemix20* stage, Seq
 
 
 extern "C" void hkMain() {
-    const u64 mainBase = hk::ro::getMainModule()->range().start();
+    const ptr mainBase = hk::ro::getMainModule()->range().start();
 
     initHook.installAtMainOffset(0x50CBA0);
     mainLoopHook.installAtMainOffset(0x509E10);

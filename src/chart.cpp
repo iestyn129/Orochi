@@ -293,15 +293,20 @@ void chartCues02(StageRemix20* stage, SeqThread* thread) {
 
 // high-five fever
 void chartCues03(StageRemix20* stage, SeqThread* thread) {
-    rest(46);
+    rest(45); // -1.0
 
     stage->setCueScene(thread, SCENE_HIGH_FIVE_FEVER);
     stage->setComment("basic");
+    rest(1); // +1.0
 
     stage->clap->cue321(thread);
     rest(3);
     stage->clap->clap(thread, 0);
-    rest(16);
+    rest(15); // -1.0
+
+    stage->setCueScene(thread, SCENE_HIGH_FIVE_FEVER);
+    stage->setComment("basic");
+    rest(1); // +1.0
 
     stage->clap->cue123(thread);
     rest(3);
