@@ -212,6 +212,7 @@ struct SceneRope : Scene {
 struct Stage {
     void FUN_7100138CD0();
     void fadeScreen(int ticks, float opacity);
+    void fadeGameplay(int ticks, float opacity);
     void FUN_7100138FC0();
     void FUN_7100137140();
 

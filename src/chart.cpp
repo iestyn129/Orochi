@@ -48,9 +48,12 @@ void chartControl(StageRemix20* stage, SeqThread* thread) {
     rest(6.25); // +0.25
 
     change_scene_fade_1_beat(SCENE_HIGH_FIVE_FEVER);
-    rest(32.75); // -0.25
+    rest(28.75); // -0.25
+    stage->fadeGameplay(0, 0.0);
+    rest(4);
 
     change_scene_instant(SCENE_GERM_AEROBICS);
+    stage->fadeGameplay(0, 1.0);
     rest(4);
 
     change_scene_instant(SCENE_HOOP_TRUNDLING);
@@ -84,17 +87,24 @@ void chartControl(StageRemix20* stage, SeqThread* thread) {
     stage->setSceneCarryover(SCENE_SWEEPER_STAR, SceneCarryoverState);
     stage->brush->bg->playAction("FinishSceneChange");
     stage->brush->you->getChildMaybe("you", true)->setAnimationSimple("YOU_B", false);
-    rest(36);
+    stage->fadeGameplay(0, 0.0);
+    rest(2);
+    stage->fadeGameplay(480, 1.0);
+    rest(34);
 
     change_scene_fade_1_beat(SCENE_CAN_DO);
     stage->setSceneCarryover(SCENE_CAN_DO, SceneCarryoverState);
     stage->ring->anime->playAction("MaskStep");
     stage->ring->anime->playAction("MaskStep");
     stage->ring->anime->playAction("MaskStep");
-    rest(29);
+    rest(28.25); // -0.75
+    stage->fadeGameplay(0, 0.0);
+    rest(0.75); // +0.75
 
     change_scene_instant(SCENE_HOOP_TRUNDLING);
-    rest(3);
+    rest(1);
+    stage->fadeGameplay(480, 1.0);
+    rest(2);
 
     change_scene_fade_1_beat(SCENE_SNEEZY_MOON);
     rest(29);

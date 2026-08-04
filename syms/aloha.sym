@@ -50,6 +50,7 @@ _ZN9SceneRope11doubleUnderEP9SeqThreadibb = 0x2276A0
 
 _ZN5Stage14FUN_7100138CD0Ev = 0x138CD0
 _ZN5Stage10fadeScreenEif = 0x1366E0
+_ZN5Stage12fadeGameplayEif = 0x136710
 _ZN5Stage14FUN_7100138FC0Ev = 0x138FC0
 _ZN5Stage14FUN_7100137140Ev = 0x137140
 _ZN5Stage10setCommentEPKc = 0x1390e0
