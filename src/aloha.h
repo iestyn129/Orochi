@@ -197,7 +197,12 @@ struct SceneMoon : Scene {
 
 struct SceneRing : Scene {
     void spawnRing(SeqThread*, int bubbleState);
+
+    char _padAnime[0x3B60 - sizeof(Scene)];
+    GraphAnime* anime;
 };
+
+static_assert(offsetof(SceneRing, anime) == 0x3B60);
 
 struct SceneRope : Scene {
     void jump(SeqThread*, int ticks, bool stopping);

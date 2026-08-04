@@ -88,6 +88,9 @@ void chartControl(StageRemix20* stage, SeqThread* thread) {
 
     change_scene_fade_1_beat(SCENE_CAN_DO);
     stage->setSceneCarryover(SCENE_CAN_DO, SceneCarryoverState);
+    stage->ring->anime->playAction("MaskStep");
+    stage->ring->anime->playAction("MaskStep");
+    stage->ring->anime->playAction("MaskStep");
     rest(29);
 
     change_scene_instant(SCENE_HOOP_TRUNDLING);
