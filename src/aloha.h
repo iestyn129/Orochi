@@ -129,6 +129,16 @@ struct GraphAnime {
 static_assert(sizeof(GraphAnime) == 0x368);
 static_assert(offsetof(GraphAnime, graph) == 0x60);
 
+struct Message {
+    const char* getText(const char* label, int* size);
+
+    void* _vt;
+    void* fileData;
+    void* message;
+};
+
+static_assert(sizeof(Message) == 0x18);
+
 struct SeqThread {
     void wait(int ticks);
     bool stopRequested();
@@ -182,6 +192,8 @@ struct SceneClap : Scene {
     void doubleClap(SeqThread*);
     void clapCueTriple(SeqThread*);
     void tripleClap(SeqThread*);
+
+    void setTVText(const char* text);
 };
 
 struct SceneHammer : Scene {
@@ -230,13 +242,13 @@ struct StageRemix : Stage {
     void setSceneCarryover(int sceneID, SceneCarryoverType carryoverType); // i think
     void setCueScene(SeqThread* thread, int sceneID);
 
-    char _pad00[0x3600 - 0x2C60];
+    char _pad00[0x3600 - sizeof(Stage)];
 };
 
 static_assert(sizeof(StageRemix) == 0x3600);
 
 struct StageRemix20 : StageRemix {
-    char _padSceneChanger[0x6E08 - 0x3600];
+    char _padSceneChanger[0x6E08 - sizeof(StageRemix)];
     SceneChanger sceneChanger;
 
     char _padBacteria[0xE2F0 - (0x6E08 + sizeof(SceneChanger))];
@@ -259,6 +271,10 @@ struct StageRemix20 : StageRemix {
 
     char _padRope[0xE500 - (0xE4D0 + sizeof(SceneRing*))];
     SceneRope* rope;
+
+    char _padMessage[0xE5C8 - (0xE500 + sizeof(SceneRope*))];
+    Message clapMessage;
+    Message graspMessage;
 };
 
 static_assert(offsetof(StageRemix20, sceneChanger) == 0x6E08);
@@ -269,6 +285,8 @@ static_assert(offsetof(StageRemix20, hammer) == 0xE3F8);
 static_assert(offsetof(StageRemix20, moon) == 0xE470);
 static_assert(offsetof(StageRemix20, ring) == 0xE4D0);
 static_assert(offsetof(StageRemix20, rope) == 0xE500);
+static_assert(offsetof(StageRemix20, clapMessage) == 0xE5C8);
+static_assert(offsetof(StageRemix20, graspMessage) == 0xE5E0);
 
 struct StageFactory {
     Stage* create(unsigned int stageID, unsigned long long, unsigned int, unsigned int, unsigned int, unsigned int, unsigned int);

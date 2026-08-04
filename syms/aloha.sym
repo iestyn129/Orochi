@@ -6,6 +6,8 @@ _ZN10GraphAnime10playActionEPKc = 0x4F8260
 _ZN10GraphAnime13getChildMaybeEPKcb = 0x4FBA20
 _ZN10GraphAnime18setAnimationSimpleEPKcb = 0x4F7A80
 
+_ZN7Message7getTextEPKcPi = 0x4EFE80
+
 _ZN9SeqThread4waitEi = 0x514d70
 _ZN9SeqThread9popUnk270Ev = 0x514fd0
 _ZN9SeqThread13stopRequestedEv = 0x514DD0
@@ -42,6 +44,7 @@ _ZN9SceneClap13clapCueDoubleEP9SeqThread = 0x1634D0
 _ZN9SceneClap10doubleClapEP9SeqThread = 0x163B30
 _ZN9SceneClap13clapCueTripleEP9SeqThread = 0x1634F0
 _ZN9SceneClap10tripleClapEP9SeqThread = 0x1642F0
+_ZN9SceneClap9setTVTextEPKc = 0x162DE0
 
 _ZN9SceneRing9spawnRingEP9SeqThreadi = 0x217960
 

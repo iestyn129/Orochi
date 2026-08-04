@@ -36,6 +36,7 @@ void chartControl(StageRemix20* stage, SeqThread* thread) {
 
     change_scene_instant(SCENE_HIGH_FIVE_FEVER);
     stage->setSceneCarryover(SCENE_HIGH_FIVE_FEVER, SceneCarryoverState);
+    stage->clap->setTVText("THE BACKROOMS\nTV CHANNEL");
     rest(4);
 
     change_scene_instant(SCENE_HOOP_TRUNDLING);
