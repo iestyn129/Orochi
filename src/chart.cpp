@@ -269,25 +269,57 @@ void chartCues01(StageRemix20* stage, SeqThread* thread) {
     stage->ring->spawnRing(thread, -1);
     rest(4);
     stage->ring->spawnRing(thread, -1);
-    rest(4);
+    rest(99); // -1.0
+
+    stage->setCueScene(thread, SCENE_HOOP_TRUNDLING);
+    stage->setComment("basic");
+    rest(1); // +1.0
+
+    stage->ring->spawnRing(thread, -1);
 }
 
 
 // sneezy moon
 void chartCues02(StageRemix20* stage, SeqThread* thread) {
-    rest(42);
+    rest(41); // -1.0
 
     stage->setCueScene(thread, SCENE_SNEEZY_MOON);
     stage->setComment("basic");
+    rest(1); // +1.0
 
     stage->moon->sneezeGreen(thread, true);
-    rest(74);
+    rest(73); // -1.0
 
     stage->setCueScene(thread, SCENE_SNEEZY_MOON);
     stage->setComment("basic");
+    rest(1); // +1.0
 
     stage->moon->sneezeGreen(thread, true);
-    //rest(74);
+    rest(177); // -1.0
+
+    stage->setCueScene(thread, SCENE_SNEEZY_MOON);
+    stage->setComment("basic");
+    rest(1); // +1.0
+
+    stage->moon->sneezeGreen(thread, true);
+    rest(2);
+    stage->moon->sneezeGreen(thread, false);
+    rest(4.5);
+
+    stage->moon->sneezeRed(thread, true);
+    rest(3.5);
+
+    stage->moon->sneezeGreen(thread, true);
+    rest(4);
+    stage->moon->sneezeGreen(thread, true);
+    rest(3);
+
+    stage->moon->sneezeGreen(thread, false);
+    rest(3);
+    stage->moon->sneezeGreen(thread, false);
+    rest(4);
+
+    stage->moon->sneezeGreen(thread, true);
 }
 
 

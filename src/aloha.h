@@ -191,6 +191,8 @@ struct SceneHammer : Scene {
 
 struct SceneMoon : Scene {
     void sneezeGreen(SeqThread*, bool windup);
+    void sneezeRed(SeqThread*, bool windup);
+    void windupGreen(SeqThread*);
 };
 
 struct SceneRing : Scene {

@@ -32,6 +32,8 @@ _ZN11SceneHammer11spawnCanRedEP9SeqThreadibi = 0x1AB410
 _ZN11SceneHammer12spawnCanBlueEP9SeqThreadibi = 0x1ABCB0
 
 _ZN9SceneMoon11sneezeGreenEP9SeqThreadb = 0x1DB630
+_ZN9SceneMoon9sneezeRedEP9SeqThreadb = 0x1DBBC0
+_ZN9SceneMoon11windupGreenEP9SeqThread = 0x1DC030
 
 _ZN9SceneClap6cue123EP9SeqThread = 0x1646F0
 _ZN9SceneClap6cue321EP9SeqThread = 0x164B70
