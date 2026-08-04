@@ -173,7 +173,7 @@ struct SceneBacteria : Scene {
 struct SceneBrush : Scene {
     void sweepContinuous(SeqThread*, int beats, bool, bool, bool);
     void sweepThree(SeqThread*);
-    void spinSpin(SeqThread*, bool);
+    void spinSpin(SeqThread*, bool pauseAnim);
     void spinStop();
 
     char _padYou[0x40B8 - sizeof(Scene)];
