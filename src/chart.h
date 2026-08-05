@@ -9,7 +9,7 @@
         return
 
 #define rest(beats) \
-    thread->wait(beats * 480); \
+    thread->wait((beats) * 480); \
     check_thread()
 
 #define change_scene_instant(scene) \
