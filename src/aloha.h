@@ -217,8 +217,8 @@ struct SceneRing : Scene {
 static_assert(offsetof(SceneRing, anime) == 0x3B60);
 
 struct SceneRope : Scene {
-    void jump(SeqThread*, int ticks, bool stopping);
-    void doubleUnder(SeqThread*, int ticks, bool, bool);
+    void jump(SeqThread*, int animLength, bool stopping);
+    void doubleUnder(SeqThread*, int animLength, bool stopRope, bool cutAudioCue);
 };
 
 struct Stage {
