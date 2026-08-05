@@ -205,7 +205,12 @@ struct SceneMoon : Scene {
     void sneezeGreen(SeqThread*, bool windup);
     void sneezeRed(SeqThread*, bool windup);
     void windupGreen(SeqThread*);
+
+    char _padFastSneeze[0x3E90 - sizeof(Scene)];
+    bool fastSneeze;
 };
+
+static_assert(offsetof(SceneMoon, fastSneeze) == 0x3E90);
 
 struct SceneRing : Scene {
     void spawnRing(SeqThread*, int bubbleState);

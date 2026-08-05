@@ -207,7 +207,6 @@ extern "C" void hkMain() {
     hk::hook::writeBranchAtMainOffset(remix20MainOffset + 12, reinterpret_cast<void*>(mainBase + 0x41799C));
 
     constexpr u64 remix20ControlOffset = 0x41F198;
-    hk::hook::a64::assemble<"mov x2, x21">().installAtMainOffset(0x1d023c);
     hk::hook::a64::assemble<"mov x0, x21">().installAtMainOffset(remix20ControlOffset);
     hk::hook::a64::assemble<"mov x1, x19">().installAtMainOffset(remix20ControlOffset + 4);
     hk::hook::writeBranchLinkAtMainOffset(remix20ControlOffset + 8, &remix20Control);
