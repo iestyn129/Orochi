@@ -47,7 +47,7 @@ HkTrampoline initHook = [](TrampolineStatic(), u64* a1) -> void {
 
     initLog();
 
-    log("=== Orichi Initialised! ===");
+    log("=== Orochi Initialised! ===");
     orig(a1);
 };
 

@@ -1,4 +1,4 @@
-# Orichi
+# Orochi
 
 ## Credits
   - [techmuse8](https://github.com/techmuse8) - [Rhythm-ReGrooved](https://github.com/rhmodding/Rhythm-ReGrooved)
