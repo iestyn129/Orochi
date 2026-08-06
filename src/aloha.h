@@ -276,6 +276,8 @@ struct Stage {
 static_assert(sizeof(Stage) == 0x2C60);
 
 struct StageRemix : Stage {
+    static SceneRing* makeSceneRing(StageRemix*, int version);
+
     void setSceneCarryover(int sceneID, SceneCarryoverType carryoverType); // i think
     void setCueScene(SeqThread* thread, int sceneID);
 
@@ -313,7 +315,10 @@ struct StageRemix20 : StageRemix {
     char _padRope[0xE500 - (0xE4D0 + sizeof(SceneRing*))];
     SceneRope* rope;
 
-    char _padMessage[0xE5C8 - (0xE500 + sizeof(SceneRope*))];
+    char _padShinkai[0xE5C0 - (0xE500 + sizeof(SceneRope*))];
+    SceneRing* shinkai;
+
+    char _padMessage[0xE5C8 - (0xE5C0 + sizeof(SceneRing*))];
     Message clapMessage;
     Message graspMessage;
 };
@@ -327,6 +332,7 @@ static_assert(offsetof(StageRemix20, hammer) == 0xE3F8);
 static_assert(offsetof(StageRemix20, moon) == 0xE470);
 static_assert(offsetof(StageRemix20, ring) == 0xE4D0);
 static_assert(offsetof(StageRemix20, rope) == 0xE500);
+static_assert(offsetof(StageRemix20, shinkai) == 0xE5C0);
 static_assert(offsetof(StageRemix20, clapMessage) == 0xE5C8);
 static_assert(offsetof(StageRemix20, graspMessage) == 0xE5E0);
 

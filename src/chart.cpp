@@ -76,7 +76,7 @@ void chartControl(StageRemix20* stage, SeqThread* thread) {
     effect_b_on_a(SCENE_HOOP_TRUNDLING, 3.25, 480, -240, -1);
     rest(18.5); // +0.5
 
-    change_scene_fade_2_beat(SCENE_HOOP_TRUNDLING);
+    change_scene_fade_2_beat(SCENE_DEEP_SEA);
     rest(29);
 
     change_scene_fade_1_beat(SCENE_SODA_HOP);
@@ -268,20 +268,20 @@ void chartCues01(StageRemix20* stage, SeqThread* thread) {
     stage->ring->spawnRing(thread, ring_bubble_mask(true, true, true, true));
     rest(20); // -1.0
 
-    stage->setCueScene(thread, SCENE_HOOP_TRUNDLING);
+    stage->setCueScene(thread, SCENE_DEEP_SEA);
     stage->setComment("basic");
     rest(1); // +1.0
 
-    stage->ring->spawnRing(thread, -1);
+    stage->shinkai->spawnRing(thread, -1);
     rest(8);
-    stage->ring->spawnRing(thread, -1);
+    stage->shinkai->spawnRing(thread, -1);
     rest(8);
 
-    stage->ring->spawnRing(thread, -1);
+    stage->shinkai->spawnRing(thread, -1);
     rest(4);
-    stage->ring->spawnRing(thread, -1);
+    stage->shinkai->spawnRing(thread, -1);
     rest(4);
-    stage->ring->spawnRing(thread, -1);
+    stage->shinkai->spawnRing(thread, -1);
     rest(99); // -1.0
 
     stage->setCueScene(thread, SCENE_HOOP_TRUNDLING);
