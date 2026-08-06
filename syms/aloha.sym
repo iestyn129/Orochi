@@ -23,6 +23,8 @@ _ZN12SceneChanger9fade8BeatEP9SeqThreadii = 0x3be750
 _ZN11SceneEffect4bOnAEP9SeqThreadiiiii = 0x4D8310
 _ZN11SceneEffect4aOnBEP9SeqThreadii = 0x4D8AF0
 
+_ZN5Scene11scheduleSFXEP9SeqThreadiP10SFXManagerjiff = 0x12BFF0
+
 _ZN13SceneBacteria13startAerobicsEP9SeqThreadib = 0x146120
 _ZN13SceneBacteria17startSlowAerobicsEP9SeqThreadib = 0x146B50
 _ZN13SceneBacteria12stopAerobicsEP9SeqThreadi = 0x1473a0
@@ -39,6 +41,7 @@ _ZN11SceneHammer12spawnCanBlueEP9SeqThreadibi = 0x1ABCB0
 _ZN9SceneMoon11sneezeGreenEP9SeqThreadb = 0x1DB630
 _ZN9SceneMoon9sneezeRedEP9SeqThreadb = 0x1DBBC0
 _ZN9SceneMoon11windupGreenEP9SeqThread = 0x1DC030
+_ZN9SceneMoon4Moon4signEi = 0x1D9D20
 
 _ZN9SceneClap6cue123EP9SeqThread = 0x1646F0
 _ZN9SceneClap6cue321EP9SeqThread = 0x164B70

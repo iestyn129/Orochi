@@ -149,6 +149,9 @@ struct SeqThread {
     void STUB_7100514ff0(int);
 };
 
+// idfk im just gonna name it this
+struct SFXManager {};
+
 struct SceneChanger {
     int instant(SeqThread* thread, int sceneID);
     int fade1Beat(SeqThread* thread, int sceneID, int);
@@ -171,6 +174,8 @@ static_assert(offsetof(SceneEffect, bubbleInTicks) == 0x3A68);
 static_assert(offsetof(SceneEffect, bubbleOutTicks) == 0x3A6C);
 
 struct Scene {
+    void scheduleSFX(SeqThread*, int ticks, SFXManager*, unsigned int sfxID, int, float, float);
+
     char _pad00[0x3880];
 };
 
@@ -219,11 +224,25 @@ struct SceneMoon : Scene {
     void sneezeRed(SeqThread*, bool windup);
     void windupGreen(SeqThread*);
 
-    char _padFastSneeze[0x3E90 - sizeof(Scene)];
+    char _padMoon[0x3E70 - sizeof(Scene)];
+    struct Moon {
+        void sign(int);
+
+        char _padAnime[0x10];
+        GraphAnime* anime;
+    }* moon;
+
+    char _padFastSneeze[0x3E90 - (0x3E70 + sizeof(Moon*))];
     bool fastSneeze;
+
+    char _padSFXManager[0x4238 - (0x3E90 + sizeof(bool))];
+    SFXManager sfxManager;
 };
 
+static_assert(offsetof(SceneMoon, moon) == 0x3E70);
 static_assert(offsetof(SceneMoon, fastSneeze) == 0x3E90);
+static_assert(offsetof(SceneMoon, sfxManager) == 0x4238);
+static_assert(offsetof(SceneMoon::Moon, anime) == 0x10);
 
 struct SceneRing : Scene {
     void spawnRing(SeqThread*, int bubbleState);

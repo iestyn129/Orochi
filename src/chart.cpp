@@ -329,9 +329,18 @@ void chartCues02(StageRemix20* stage, SeqThread* thread) {
     rest(3);
 
     stage->moon->sneezeGreen(thread, false);
-    rest(3);
+    rest(1);
+    stage->moon->scheduleSFX(thread, 480, &stage->moon->sfxManager, 0x10000006, -1, -1.0, -1.0);
+    rest(1);
+    stage->moon->moon->sign(0);
+    rest(1);
+
     stage->moon->sneezeGreen(thread, false);
-    rest(4);
+    rest(1);
+    stage->moon->scheduleSFX(thread, 480, &stage->moon->sfxManager, 0x10000006, -1, -1.0, -1.0);
+    rest(1);
+    stage->moon->moon->sign(0);
+    rest(2);
 
     stage->moon->sneezeGreen(thread, true);
 }
