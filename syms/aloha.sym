@@ -67,6 +67,7 @@ _ZN5Stage8beatAnimEP9SeqThreadiii = 0x1379A0
 _ZN5Stage8stopAnimEP9SeqThread = 0x137A80
 
 _ZN10StageRemix13makeSceneRingEPS_i = 0x4DB680
+_ZN10StageRemix12initSubSceneEiib = 0x4D9DC0
 _ZN10StageRemix17setSceneCarryoverEi18SceneCarryoverType = 0x4da400
 _ZN10StageRemix11setCueSceneEP9SeqThreadi = 0x4daa70
 

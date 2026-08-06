@@ -5,38 +5,66 @@
 #include "chart.h"
 #include "log.h"
 #include "string"
-#include "map"
 
-const auto texMap = std::map<std::string, const char*> {
-    {"graph/scene/bacteria/type_00/bg", "graph/scene/bacteria/type_lpr/bg"},
-    {"graph/scene/bacteria/type_00/main", "graph/scene/bacteria/type_lpr/main"},
-
-    {"graph/scene/brush/type_00/actor_00", "graph/scene/brush/type_lpr/actor_00"},
-    {"graph/scene/brush/type_00/actor_01", "graph/scene/brush/type_lpr/actor_01"},
-    {"graph/scene/brush/type_00/actor_02", "graph/scene/brush/type_lpr/actor_02"},
-    {"graph/scene/brush/type_00/actor_03", "graph/scene/brush/type_lpr/actor_03"},
-    {"graph/scene/brush/type_00/stage_000", "graph/scene/brush/type_lpr/stage_000"},
-
-    {"graph/scene/clap/type_00/high_mip/main", "graph/scene/clap/type_lpr/high_mip/main"},
-    {"graph/scene/clap/type_00/high_mip/view_frame_00", "graph/scene/clap/type_lpr/high_mip/view_frame_00"},
-    {"graph/scene/clap/type_00/view_field_00", "graph/scene/clap/type_lpr/view_field_00"},
-    {"graph/scene/clap/type_00/view_tutorial", "graph/scene/clap/type_lpr/view_tutorial"},
-    {"graph/scene/clap/type_00/view_work_03", "graph/scene/clap/type_lpr/view_work_03"},
-
-    {"graph/scene/hammer/type_00/bg", "graph/scene/hammer/type_lpr/bg"},
-    {"graph/scene/hammer/type_00/main", "graph/scene/hammer/type_lpr/main"},
-
-    {"graph/scene/moon/type_00/actor_00", "graph/scene/moon/type_lpr/actor_00"},
-    {"graph/scene/moon/type_00/bg_obj_00", "graph/scene/moon/type_lpr/bg_obj_00"},
-    {"graph/scene/moon/type_00/bg", "graph/scene/moon/type_lpr/bg"},
-    {"graph/scene/moon/type_00/main", "graph/scene/moon/type_lpr/main"},
-
-    {"graph/scene/ring/type_00/main", "graph/scene/ring/type_lpr/main"},
-
-    {"graph/scene/rope/type_00/main", "graph/scene/rope/type_lpr/main"},
-    {"graph/scene/rope/type_00/bg_back", "graph/scene/rope/type_lpr/bg_back"},
-    {"graph/scene/rope/type_00/bg_front", "graph/scene/rope/type_lpr/bg_front"},
+static const char* graphBacteria[] = {
+    "graph/scene/bacteria/type_lpr/main",
+    "graph/scene/bacteria/type_lpr/bg",
+    "graph/scene/bacteria/type_00/lesson_mark"
 };
+
+static_assert(sizeof(graphBacteria) == sizeof(char*) * 3);
+
+static const char* graphBrush[] = {
+    "graph/scene/brush/type_00/main",
+    "graph/scene/brush/type_lpr/stage_000",
+    "graph/scene/brush/type_lpr/actor_00",
+    "graph/scene/brush/type_lpr/actor_01",
+    "graph/scene/brush/type_lpr/actor_02",
+    "graph/scene/brush/type_lpr/actor_03"
+};
+
+static_assert(sizeof(graphBrush) == sizeof(char*) * 6);
+
+static const char* graphClap[] = {
+    "graph/scene/clap/type_lpr/high_mip/main",
+    "graph/scene/clap/type_lpr/high_mip/view_frame_00",
+    "graph/scene/clap/type_lpr/view_tutorial",
+    "graph/scene/clap/type_00/view_hand_00"
+};
+
+static_assert(sizeof(graphClap) == sizeof(char*) * 4);
+
+static const char* graphHammer[] = {
+    "graph/scene/hammer/type_lpr/main",
+    "graph/scene/hammer/type_lpr/bg"
+};
+
+static_assert(sizeof(graphHammer) == sizeof(char*) * 2);
+
+static const char* graphMoon[] = {
+    "graph/scene/moon/type_lpr/main",
+    "graph/scene/moon/type_lpr/bg",
+    "graph/scene/moon/type_lpr/bg_obj_00",
+    "graph/scene/moon/type_lpr/actor_00"
+};
+
+static_assert(sizeof(graphMoon) == sizeof(char*) * 4);
+
+static const char* graphRing[] = {
+    "graph/scene/ring/type_lpr/main",
+    "graph/scene/ring/type_00/bg"
+};
+
+static_assert(sizeof(graphRing) == sizeof(char*) * 2);
+
+static const char* graphRope[] = {
+    "graph/scene/rope/type_lpr/main",
+    "graph/scene/rope/type_lpr/bg_back",
+    "graph/scene/rope/type_00/bg_middle",
+    "graph/scene/rope/type_lpr/bg_front"
+};
+
+static_assert(sizeof(graphRope) == sizeof(char*) * 4);
 
 bool isRemix20 = false;
 
@@ -66,28 +94,6 @@ HkTrampoline stageFactoryCreateHook = [](TrampolineStatic(), u32 stageID, u64 a2
 };
 
 
-HkTrampoline graphStartupHook = [](TrampolineStatic(), Graph* self, const char* name, FilePartitionType type, void* a4) -> s32 {
-    /*if (isRemix20) {
-        const auto path = std::string(name);
-
-        if (texMap.contains(path)) {
-            name = texMap.at(path);
-        }
-    }*/
-
-    log("loading tex/spr - ptr: %p, graph: %s", self, name);
-
-    return orig(self, name, type, a4);
-};
-
-
-HkTrampoline graphAnimeHook = [](TrampolineStatic(), GraphAnime* self, Graph* graph, int animIdx, void* a4, int a5) -> s32 {
-    log("GraphAnime - ptr: %p, graphPtr: %p", self, graph);
-
-    return orig(self, graph, animIdx, a4, a5);
-};
-
-
 HkTrampoline getTextHook = [](TrampolineStatic(), void* a1, const char* a2, void* a3) -> const char* {
     const auto key = std::string(a2);
     const char* result = orig(a1, a2, a3);
@@ -97,6 +103,41 @@ HkTrampoline getTextHook = [](TrampolineStatic(), void* a1, const char* a2, void
     //}
 
     return result;
+};
+
+
+HkTrampoline getGraphBacteriaHook = [](TrampolineStatic(), int version) -> const char** {
+    return isRemix20 ? graphBacteria : orig(version);
+};
+
+
+HkTrampoline getGraphBrushHook = [](TrampolineStatic(), int version) -> const char** {
+    return isRemix20 ? graphBrush : orig(version);
+};
+
+
+HkTrampoline getGraphClapHook = [](TrampolineStatic(), int version) -> const char** {
+    return isRemix20 ? graphClap : orig(version);
+};
+
+
+HkTrampoline getGraphHammerHook = [](TrampolineStatic(), int version) -> const char** {
+    return isRemix20 ? graphHammer : orig(version);
+};
+
+
+HkTrampoline getGraphMoonHook = [](TrampolineStatic(), int version) -> const char** {
+    return isRemix20 ? graphMoon : orig(version);
+};
+
+
+HkTrampoline getGraphRingHook = [](TrampolineStatic(), int version) -> const char** {
+    return isRemix20 ? graphRing : orig(version);
+};
+
+
+HkTrampoline getGraphRopeHook = [](TrampolineStatic(), int version) -> const char** {
+    return isRemix20 ? graphRope : orig(version);
 };
 
 
@@ -113,6 +154,13 @@ void remix20Control(StageRemix20* stage, SeqThread* thread) {
 void remix20Anim(StageRemix20* stage, SeqThread* thread) {
     chartAnim(stage, thread);
 }
+
+
+HkTrampoline remix20InitSubScenesHook = [](TrampolineStatic(), StageRemix20* stage, SeqThread* thread) -> s64 {
+    chartInitSubScenes(stage, thread);
+
+    return thread->popUnk270();
+};
 
 
 HkTrampoline remix20Cues00Hook = [](TrampolineStatic(), StageRemix20* stage, SeqThread* thread) -> s64 {
@@ -177,9 +225,15 @@ extern "C" void hkMain() {
     initHook.installAtMainOffset(0x50CBA0);
     mainLoopHook.installAtMainOffset(0x509E10);
     stageFactoryCreateHook.installAtSym<"_ZN12StageFactory6createEjyjjjjj">();
-    //graphStartupHook.installAtSym<"_ZN5Graph7startupEPKc17FilePartitionTypePv">();
-    //graphAnimeHook.installAtMainOffset(0x4f7400);
     getTextHook.installAtMainOffset(0x4EFE80);
+
+    getGraphBacteriaHook.installAtMainOffset(0x1434E0);
+    getGraphBrushHook.installAtMainOffset(0x158A00);
+    getGraphClapHook.installAtMainOffset(0x161D40);
+    getGraphHammerHook.installAtMainOffset(0x1A9920);
+    getGraphMoonHook.installAtMainOffset(0x1D8B60);
+    getGraphRingHook.installAtMainOffset(0x216530);
+    getGraphRopeHook.installAtMainOffset(0x224790);
 
     hk::hook::a64::assemble<"mov w1, {}">()
         .arg(initSceneID)
@@ -221,6 +275,7 @@ extern "C" void hkMain() {
     hk::hook::writeBranchLinkAtMainOffset(remix20AnimOffset + 8, &remix20Anim);
     hk::hook::writeBranchAtMainOffset(remix20AnimOffset + 12, reinterpret_cast<void*>(mainBase + 0x41800C));
 
+    remix20InitSubScenesHook.installAtMainOffset(0x41F050);
     remix20Cues00Hook.installAtMainOffset(0x418AE0);
     remix20Cues01Hook.installAtMainOffset(0x4194D0);
     remix20Cues02Hook.installAtMainOffset(0x41A020);

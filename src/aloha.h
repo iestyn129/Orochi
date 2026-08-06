@@ -277,6 +277,7 @@ static_assert(sizeof(Stage) == 0x2C60);
 
 struct StageRemix : Stage {
     static SceneRing* makeSceneRing(StageRemix*, int version);
+    void initSubScene(int sceneID, int, bool);
 
     void setSceneCarryover(int sceneID, SceneCarryoverType carryoverType); // i think
     void setCueScene(SeqThread* thread, int sceneID);

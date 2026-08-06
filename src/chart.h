@@ -54,6 +54,7 @@ extern const s32 initRingBubbleState;
 extern void chartMain(StageRemix20* stage, SeqThread* thread);
 extern void chartControl(StageRemix20* stage, SeqThread* thread);
 extern void chartAnim(StageRemix20* stage, SeqThread* thread);
+extern void chartInitSubScenes(StageRemix20* stage, SeqThread* thread);
 extern void chartCues00(StageRemix20* stage, SeqThread* thread);
 extern void chartCues01(StageRemix20* stage, SeqThread* thread);
 extern void chartCues02(StageRemix20* stage, SeqThread* thread);

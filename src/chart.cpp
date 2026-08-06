@@ -20,6 +20,14 @@ void chartMain(StageRemix20* stage, SeqThread* thread) {
 
 
 void chartControl(StageRemix20* stage, SeqThread* thread) {
+    stage->initSubScene(SCENE_HOOP_TRUNDLING, -1, false);
+    stage->initSubScene(SCENE_SNEEZY_MOON, -1, false);
+    stage->initSubScene(SCENE_HIGH_FIVE_FEVER, -1, false);
+    stage->initSubScene(SCENE_DEEP_SEA, -1, false);
+    stage->initSubScene(SCENE_SODA_HOP, -1, false);
+    stage->initSubScene(SCENE_SWEEPER_STAR, -1, false);
+    stage->initSubScene(SCENE_CAN_DO, -1, false);
+
     // according to FUN_71004d8630, these HAVE to be 480
     stage->sceneEffect.bubbleInTicks = 480;
     stage->sceneEffect.bubbleOutTicks = 480;
@@ -117,6 +125,11 @@ void chartControl(StageRemix20* stage, SeqThread* thread) {
 void chartAnim(StageRemix20* stage, SeqThread* thread) {
     rest(5);
     stage->beatAnim(thread, 0, 480, 0);
+}
+
+
+void chartInitSubScenes(StageRemix20* stage, SeqThread* thread) {
+
 }
 
 
