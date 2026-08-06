@@ -20,6 +20,10 @@ void chartMain(StageRemix20* stage, SeqThread* thread) {
 
 
 void chartControl(StageRemix20* stage, SeqThread* thread) {
+    // according to FUN_71004d8630, these HAVE to be 480
+    stage->sceneEffect.bubbleInTicks = 480;
+    stage->sceneEffect.bubbleOutTicks = 480;
+
     stage->setSceneCarryover(SCENE_GERM_AEROBICS, SceneCarryoverNone);
     rest(36);
 
@@ -67,15 +71,10 @@ void chartControl(StageRemix20* stage, SeqThread* thread) {
     rest(12);
 
     change_scene_fade_1_beat(SCENE_GERM_AEROBICS);
-    stage->setSceneCarryover(SCENE_GERM_AEROBICS, SceneCarryoverState);
     rest(13.5); // -0.5
 
-    change_scene_fade_1_beat(SCENE_HOOP_TRUNDLING);
-    rest(1.75); // -0.25
-
-    change_scene_fade_1_beat(SCENE_GERM_AEROBICS);
-    stage->setSceneCarryover(SCENE_GERM_AEROBICS, SceneCarryoverNone);
-    rest(16.75); // +0.5 +0.25
+    effect_b_on_a(SCENE_HOOP_TRUNDLING, 3.25, 480, -240, -1);
+    rest(18.5); // +0.5
 
     change_scene_fade_2_beat(SCENE_HOOP_TRUNDLING);
     rest(29);

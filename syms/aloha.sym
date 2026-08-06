@@ -20,6 +20,9 @@ _ZN12SceneChanger9fade2BeatEP9SeqThreadii = 0x3B8770
 _ZN12SceneChanger9fade4BeatEP9SeqThreadii = 0x3be7d0
 _ZN12SceneChanger9fade8BeatEP9SeqThreadii = 0x3be750
 
+_ZN11SceneEffect4bOnAEP9SeqThreadiiiii = 0x4D8310
+_ZN11SceneEffect4aOnBEP9SeqThreadii = 0x4D8AF0
+
 _ZN13SceneBacteria13startAerobicsEP9SeqThreadib = 0x146120
 _ZN13SceneBacteria17startSlowAerobicsEP9SeqThreadib = 0x146B50
 _ZN13SceneBacteria12stopAerobicsEP9SeqThreadi = 0x1473a0

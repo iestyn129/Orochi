@@ -37,6 +37,11 @@
     stage->sceneChanger.fade8Beat(thread, scene, 2); \
     check_thread()
 
+#define effect_b_on_a(sceneB, beats, a3, a4, a5) \
+    thread->pushUnk270(); \
+    stage->sceneEffect.bOnA(thread, sceneB, (beats) * 480, a3, a4, a5); \
+    check_thread()
+
 #define ring_bubble_mask(pa, pi, pu, pe) ( \
     ((pa != 0) << 0) | \
     ((pi != 0) << 1) | \

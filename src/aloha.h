@@ -157,6 +157,19 @@ struct SceneChanger {
     int fade8Beat(SeqThread* thread, int sceneID, int);
 };
 
+struct SceneEffect {
+    // _very_ unsure of these names
+    int bOnA(SeqThread* thread, int sceneID, int ticks, int alsoTicks, int maybeTicks, int);
+    int aOnB(SeqThread* thread, int sceneID, int ticks);
+
+    char _padIOTicks[0x3A68];
+    int bubbleInTicks;
+    int bubbleOutTicks;
+};
+
+static_assert(offsetof(SceneEffect, bubbleInTicks) == 0x3A68);
+static_assert(offsetof(SceneEffect, bubbleOutTicks) == 0x3A6C);
+
 struct Scene {
     char _pad00[0x3880];
 };
@@ -253,10 +266,14 @@ struct StageRemix : Stage {
 static_assert(sizeof(StageRemix) == 0x3600);
 
 struct StageRemix20 : StageRemix {
+    // pretty sure scene changer and effect are part of another struct that goes here
     char _padSceneChanger[0x6E08 - sizeof(StageRemix)];
     SceneChanger sceneChanger;
 
-    char _padBacteria[0xE2F0 - (0x6E08 + sizeof(SceneChanger))];
+    char _padSceneEffect[0xA870 - (0x6E08 + sizeof(SceneChanger))];
+    SceneEffect sceneEffect;
+
+    char _padBacteria[0xE2F0 - (0xA870 + sizeof(SceneEffect))];
     SceneBacteria* bacteria;
 
     char _padBrush[0xE320 - (0xE2F0 + sizeof(SceneBacteria*))];
@@ -283,6 +300,7 @@ struct StageRemix20 : StageRemix {
 };
 
 static_assert(offsetof(StageRemix20, sceneChanger) == 0x6E08);
+static_assert(offsetof(StageRemix20, sceneEffect) == 0xA870);
 static_assert(offsetof(StageRemix20, bacteria) == 0xE2F0);
 static_assert(offsetof(StageRemix20, brush) == 0xE320);
 static_assert(offsetof(StageRemix20, clap) == 0xE350);
