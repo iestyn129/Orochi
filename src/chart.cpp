@@ -61,13 +61,13 @@ void chartControl(StageRemix20* stage, SeqThread* thread) {
     rest(6.25); // +0.25
 
     change_scene_fade_1_beat(SCENE_HIGH_FIVE_FEVER);
-    rest(28.75); // -0.25
+    rest(29);
     stage->fadeGameplay(0, 0.0);
     rest(4);
 
     change_scene_instant(SCENE_GERM_AEROBICS);
     stage->fadeGameplay(0, 1.0);
-    rest(4);
+    rest(3.75); // -0.25
 
     change_scene_instant(SCENE_HOOP_TRUNDLING);
     rest(12);
@@ -118,7 +118,8 @@ void chartControl(StageRemix20* stage, SeqThread* thread) {
     rest(28);
 
     change_scene_fade_1_beat(SCENE_GERM_AEROBICS);
-    //rest(0);
+    rest(4.25); // +0.25
+    stage->stopAnim(thread);
 }
 
 
@@ -397,14 +398,15 @@ void chartCues03(StageRemix20* stage, SeqThread* thread) {
     stage->clap->clap(thread, 0);
     rest(2);
     stage->clap->clap(thread, 0);
-    rest(8);
+    rest(5);
 
     stage->clap->cue321(thread);
     rest(3);
-    stage->clap->clapCueTriple(thread);
+    stage->clap->clap(thread, 0);
     rest(2);
-    stage->clap->tripleClap(thread);
-    rest(2);
+    stage->clap->cue321(thread);
+    rest(3);
+    stage->clap->clap(thread, 0);
 }
 
 
