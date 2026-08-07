@@ -126,14 +126,18 @@ void chartControl(StageRemix20* stage, SeqThread* thread) {
     rest(28);
 
     change_scene_fade_1_beat(SCENE_GERM_AEROBICS);
-    rest(4.25); // +0.25
-    stage->stopAnim(thread);
 }
 
 
 void chartAnim(StageRemix20* stage, SeqThread* thread) {
     rest(5);
-    stage->beatAnim(thread, 0, 480, 0);
+    stage->beatAnim(thread, 0, 480 * 1, 0);
+    rest(160);
+    stage->stopAnim(thread);
+    rest(30);
+    stage->beatAnim(thread, 0, 480 * 1, 0);
+    rest(146);
+    stage->stopAnim(thread);
 }
 
 
