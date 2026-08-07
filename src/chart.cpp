@@ -61,7 +61,15 @@ void chartControl(StageRemix20* stage, SeqThread* thread) {
     rest(6.25); // +0.25
 
     change_scene_fade_1_beat(SCENE_HIGH_FIVE_FEVER);
-    rest(29);
+    stage->clap->anime->playAction("View_Title_Off");
+    stage->clap->setBG(0, stage->clap->channels[0]->anime);
+    rest(1);
+    stage->clap->anime->playAction("Disp_ZoomIn");
+    rest(16);
+    SceneClap::ClapChannel* work03 = stage->clap->channels[1];
+    stage->clap->setBG(0, work03->anime);
+    work03->setView("View_ZoomIn_A");
+    rest(12);
     stage->fadeGameplay(0, 0.0);
     rest(4);
 
@@ -129,8 +137,21 @@ void chartAnim(StageRemix20* stage, SeqThread* thread) {
 }
 
 
+// high-five fever channel initialisation
 void chartInitSubScenes(StageRemix20* stage, SeqThread* thread) {
+    rest(4);
 
+    wait_until_unk(true, -1);
+    stage->clap->channels[0] = new SceneClap::ClapChannel(
+        stage->clap,
+        "graph/scene/clap/type_lpr/view_field_00"
+    );
+
+    wait_until_unk(true, -1);
+    stage->clap->channels[1] = new SceneClap::ClapChannel(
+        stage->clap,
+        "graph/scene/clap/type_lpr/view_work_03"
+    );
 }
 
 

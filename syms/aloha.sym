@@ -50,13 +50,16 @@ _ZN9SceneClap13clapCueDoubleEP9SeqThread = 0x1634D0
 _ZN9SceneClap10doubleClapEP9SeqThread = 0x163B30
 _ZN9SceneClap13clapCueTripleEP9SeqThread = 0x1634F0
 _ZN9SceneClap10tripleClapEP9SeqThread = 0x1642F0
+_ZN9SceneClap5setBGEiP10GraphAnime = 0x162A80
 _ZN9SceneClap9setTVTextEPKc = 0x162DE0
+_ZN9SceneClap11ClapChannelC1EPS_PKc = 0x1667D0
 
 _ZN9SceneRing9spawnRingEP9SeqThreadi = 0x217960
 
 _ZN9SceneRope4jumpEP9SeqThreadib = 0x226AA0
 _ZN9SceneRope11doubleUnderEP9SeqThreadibb = 0x2276A0
 
+_ZN5Stage12waitUntilUnkEP9SeqThreadbi = 0x1398B0
 _ZN5Stage14FUN_7100138CD0Ev = 0x138CD0
 _ZN5Stage10fadeScreenEif = 0x1366E0
 _ZN5Stage12fadeGameplayEif = 0x136710

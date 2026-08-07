@@ -110,10 +110,13 @@ enum SceneCarryoverType : unsigned int {
 struct Graph {
     int startup(const char*, FilePartitionType, void*);
 
-    char _pad00[0x158];
+    char _pad00[0x28];
+    char path[0x104];
+    char _pad01[0x2C];
 };
 
 static_assert(sizeof(Graph) == 0x158);
+static_assert(offsetof(Graph, path) == 0x28);
 
 struct GraphAnime {
     bool playAction(const char* action);
@@ -211,8 +214,39 @@ struct SceneClap : Scene {
     void clapCueTriple(SeqThread*);
     void tripleClap(SeqThread*);
 
+    void setBG(int, GraphAnime*);
     void setTVText(const char* text);
+
+    char _padAnime[0x3E10 - sizeof(Scene)];
+    GraphAnime* anime;
+
+    char _padChannels[0x5138 - (0x3E10 + sizeof(GraphAnime*))];
+    // ReSharper disable once CppPolymorphicClassWithNonVirtualPublicDestructor
+    struct ClapChannel {
+        ClapChannel(SceneClap* scene, const char* graphPath);
+        virtual void FUN_00();
+        virtual void FUN_08();
+        virtual void FUN_10();
+        virtual void FUN_18();
+        virtual void setView(const char* view);
+
+        u64 id;
+        void* unk10;
+        SceneClap* scene18;
+        void* unk20;
+        SceneClap* scene28;
+        SceneClap* scene30;
+        Graph graph;
+        GraphAnime* anime{};
+        void* unk198;
+    }* channels[20]; // could be more
 };
+
+static_assert(offsetof(SceneClap, anime) == 0x3E10);
+static_assert(offsetof(SceneClap, channels) == 0x5138);
+static_assert(sizeof(SceneClap::ClapChannel) == 0x1A0);
+static_assert(offsetof(SceneClap::ClapChannel, graph) == 0x38);
+static_assert(offsetof(SceneClap::ClapChannel, anime) == 0x190);
 
 struct SceneHammer : Scene {
     void spawnCanRed(SeqThread*, int landTicks, bool thrown, int hitTicks);
@@ -259,6 +293,8 @@ struct SceneRope : Scene {
 };
 
 struct Stage {
+    void waitUntilUnk(SeqThread*, bool, int); // Stage::FUN_71001398b0
+
     void FUN_7100138CD0();
     void fadeScreen(int ticks, float opacity);
     void fadeGameplay(int ticks, float opacity);

@@ -1,12 +1,16 @@
 #pragma once
 
-#include "hk/prim/traits/Integer.h"
 #include "global.h"
 #include "aloha.h"
 
 #define check_thread() \
     if (thread->stopRequested()) \
         return
+
+#define wait_until_unk(a1, a2) \
+    thread->pushUnk270(); \
+    stage->waitUntilUnk(thread, a1, a2); \
+    check_thread()
 
 #define rest(beats) \
     thread->wait((beats) * 480); \
