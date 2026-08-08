@@ -1,5 +1,7 @@
 #pragma once
 
+#include "cstddef"
+
 #define SCENE_BACTERIA 0
 #define SCENE_GERM_AEROBICS SCENE_BACTERIA
 
@@ -230,7 +232,7 @@ struct SceneClap : Scene {
         virtual void FUN_18();
         virtual void setView(const char* view);
 
-        u64 id;
+        unsigned long id;
         void* unk10;
         SceneClap* scene18;
         void* unk20;
@@ -292,6 +294,14 @@ struct SceneRope : Scene {
     void doubleUnder(SeqThread*, int animLength, bool stopRope, bool cutAudioCue);
 };
 
+struct SceneSkater : Scene {
+    SceneSkater(void*, int version);
+
+    char _pad00[0x4CB8 - sizeof(Scene)];
+};
+
+static_assert(sizeof(SceneSkater) == 0x4CB8);
+
 struct Stage {
     void waitUntilUnk(SeqThread*, bool, int); // Stage::FUN_71001398b0
 
@@ -312,9 +322,11 @@ struct Stage {
 static_assert(sizeof(Stage) == 0x2C60);
 
 struct StageRemix : Stage {
-    static SceneRing* makeSceneRing(StageRemix*, int version);
+    SceneRing* makeSceneRing(StageRemix*, int version);
+    SceneSkater* makeSceneSkater(StageRemix*, int version);
     void initSubScene(int sceneID, int, bool);
 
+    void setRatingInfo(Scene*, int, const char*);
     void setSceneCarryover(int sceneID, SceneCarryoverType carryoverType); // i think
     void setCueScene(SeqThread* thread, int sceneID);
 
@@ -353,7 +365,7 @@ struct StageRemix20 : StageRemix {
     SceneRope* rope;
 
     char _padShinkai[0xE5C0 - (0xE500 + sizeof(SceneRope*))];
-    SceneRing* shinkai;
+    SceneSkater* shinkai;
 
     char _padMessage[0xE5C8 - (0xE5C0 + sizeof(SceneRing*))];
     Message clapMessage;
@@ -376,3 +388,5 @@ static_assert(offsetof(StageRemix20, graspMessage) == 0xE5E0);
 struct StageFactory {
     Stage* create(unsigned int stageID, unsigned long long, unsigned int, unsigned int, unsigned int, unsigned int, unsigned int);
 };
+
+extern SceneSkater* makeSceneSkaterHook(StageRemix* stage, StageRemix* a2, int version);

@@ -251,8 +251,7 @@ extern "C" void hkMain() {
         .arg(initRingBubbleState)
         .installAtMainOffset(0x4170a8); // StageRemix::setRingBubbleState
 
-    // cast of characters (ring02) over deep sea
-    hk::hook::writeBranchLinkAtMainOffset(0x416DF4, &StageRemix::makeSceneRing);
+    hk::hook::writeBranchLinkAtMainOffset(0x416DF4, &makeSceneSkaterHook);
 
     // dont wait to load scenes
     hk::hook::writeBranchAtMainOffset(0x41f084, reinterpret_cast<void*>(mainBase + 0x41f0a8));

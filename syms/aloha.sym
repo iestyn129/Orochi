@@ -59,6 +59,8 @@ _ZN9SceneRing9spawnRingEP9SeqThreadi = 0x217960
 _ZN9SceneRope4jumpEP9SeqThreadib = 0x226AA0
 _ZN9SceneRope11doubleUnderEP9SeqThreadibb = 0x2276A0
 
+_ZN11SceneSkaterC1EPvi = 0x23BBB0
+
 _ZN5Stage12waitUntilUnkEP9SeqThreadbi = 0x1398B0
 _ZN5Stage14FUN_7100138CD0Ev = 0x138CD0
 _ZN5Stage10fadeScreenEif = 0x1366E0
@@ -71,6 +73,7 @@ _ZN5Stage8stopAnimEP9SeqThread = 0x137A80
 
 _ZN10StageRemix13makeSceneRingEPS_i = 0x4DB680
 _ZN10StageRemix12initSubSceneEiib = 0x4D9DC0
+_ZN10StageRemix13setRatingInfoEP5SceneiPKc = 0x136600
 _ZN10StageRemix17setSceneCarryoverEi18SceneCarryoverType = 0x4da400
 _ZN10StageRemix11setCueSceneEP9SeqThreadi = 0x4daa70
 
