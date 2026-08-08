@@ -1,7 +1,7 @@
 #pragma once
 
 #include "global.h"
-#include "aloha.h"
+#include "aloha/Stage.h"
 
 #define check_thread() \
     if (thread->stopRequested()) \

@@ -1,4 +1,4 @@
-#include "aloha.h"
+#include "aloha/Stage.h"
 #include "global.h"
 
 SceneSkater* StageRemix::makeSceneSkater(StageRemix*, s32 version) {
