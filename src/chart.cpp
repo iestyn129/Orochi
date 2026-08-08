@@ -1,7 +1,16 @@
 #include "chart.h"
+#include "log.h"
 
 const u32 initSceneID = SCENE_DEEP_SEA;
 const s32 initRingBubbleState = ring_bubble_mask(true, true, true, true);
+
+
+void evilThread(StageRemix20* stage, SeqThread* thread) {
+    log("hello from the start of this thread");
+    rest(4);
+    log("hello from 4 beats later");
+    stage->shinkai->spawnSugarCubes(thread, 0, 0);
+}
 
 
 void chartMain(StageRemix20* stage, SeqThread* thread) {
@@ -23,6 +32,17 @@ void chartControl(StageRemix20* stage, SeqThread* thread) {
     stage->shinkai->initUFO();
     stage->shinkai->FUN_710023c9f0(50, 100);
     stage->shinkai->initGround(thread, 6, 10, 1);
+
+    stage->runner->appendThread(new SeqThread(
+        stage->runner, stage->seqThreadIndex,
+        reinterpret_cast<void*>(&StageRemix20::invokeSeqCallback),
+        new SeqCallback(
+            &stage->seqCallbackContext,
+            reinterpret_cast<void*>(&evilThread),
+            0
+        ),
+        thread
+    ));
 }
 
 
@@ -37,6 +57,7 @@ void chartInitSubScenes(StageRemix20* stage, SeqThread* thread) {
 
 
 void chartCues00(StageRemix20* stage, SeqThread* thread) {
+    return;
     rest(4);
 
     stage->shinkai->spawnSugarCubes(thread, 0, 0);

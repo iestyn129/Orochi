@@ -251,7 +251,10 @@ extern "C" void hkMain() {
         .arg(initRingBubbleState)
         .installAtMainOffset(0x4170a8); // StageRemix::setRingBubbleState
 
-    hk::hook::writeBranchLinkAtMainOffset(0x416DF4, &makeSceneSkaterHook);
+    // over germ aerobics
+    hk::hook::writeBranchLinkAtMainOffset(0x4169C0, &makeSceneOwl);
+    // over deep sea
+    hk::hook::writeBranchLinkAtMainOffset(0x416DF4, &makeSceneSkater);
 
     // dont wait to load scenes
     hk::hook::writeBranchAtMainOffset(0x41f084, reinterpret_cast<void*>(mainBase + 0x41f0a8));

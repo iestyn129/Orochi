@@ -8,6 +8,9 @@ _ZN10GraphAnime18setAnimationSimpleEPKcb = 0x4F7A80
 
 _ZN7Message7getTextEPKcPi = 0x4EFE80
 
+_ZN13SeqRunnerBase12appendThreadEP13SeqThreadBase = 0x5153A0
+
+_ZN9SeqThreadC1EP9SeqRunneriPvS2_PS_ = 0x514A90
 _ZN9SeqThread4waitEi = 0x514d70
 _ZN9SeqThread9popUnk270Ev = 0x514fd0
 _ZN9SeqThread13stopRequestedEv = 0x514DD0
@@ -67,6 +70,8 @@ _ZN11SceneSkater15spawnSugarCubesEP9SeqThreadii = 0x23D600
 _ZN11SceneSkater8spawnEggEP9SeqThreadii = 0x23D790
 _ZN11SceneSkater16spawnCookieTowerEP9SeqThreadii = 0x23D920
 
+_ZN8SceneOwlC1EPvi = 0x1FE140
+
 _ZN5Stage12waitUntilUnkEP9SeqThreadbi = 0x1398B0
 _ZN5Stage14FUN_7100138CD0Ev = 0x138CD0
 _ZN5Stage10fadeScreenEif = 0x1366E0
@@ -82,5 +87,7 @@ _ZN10StageRemix12initSubSceneEiib = 0x4D9DC0
 _ZN10StageRemix13setRatingInfoEP5SceneiPKc = 0x136600
 _ZN10StageRemix17setSceneCarryoverEi18SceneCarryoverType = 0x4da400
 _ZN10StageRemix11setCueSceneEP9SeqThreadi = 0x4daa70
+
+_ZN12StageRemix2017invokeSeqCallbackEP9SeqThreadP11SeqCallback = 0x416FC0
 
 _ZN12StageFactory6createEjyjjjjj = 0x488940
