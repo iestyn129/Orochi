@@ -11,7 +11,7 @@ file(GLOB_RECURSE SOURCES_C ${PROJECT_SOURCE_DIR}/src/*.c)
 file(GLOB_RECURSE SOURCES_CXX ${PROJECT_SOURCE_DIR}/src/*.cpp)
 set(SOURCES ${SOURCES_ASM} ${SOURCES_C} ${SOURCES_CXX})
 add_executable(${PROJECT_NAME} ${SOURCES})
-include_directories(${PROJECT_SOURCE_DIR}/src)
+include_directories(${PROJECT_SOURCE_DIR}/include)
 include_directories(lib/nnheaders/include)
 
 include(sys/cmake/module.cmake)
