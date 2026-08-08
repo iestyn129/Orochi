@@ -60,6 +60,12 @@ _ZN9SceneRope4jumpEP9SeqThreadib = 0x226AA0
 _ZN9SceneRope11doubleUnderEP9SeqThreadibb = 0x2276A0
 
 _ZN11SceneSkaterC1EPvi = 0x23BBB0
+_ZN11SceneSkater7initUFOEv = 0x23CAE0
+_ZN11SceneSkater14FUN_710023c9f0Eii = 0x23c9f0
+_ZN11SceneSkater10initGroundEP9SeqThreadiic = 0x23db30
+_ZN11SceneSkater15spawnSugarCubesEP9SeqThreadii = 0x23D600
+_ZN11SceneSkater8spawnEggEP9SeqThreadii = 0x23D790
+_ZN11SceneSkater16spawnCookieTowerEP9SeqThreadii = 0x23D920
 
 _ZN5Stage12waitUntilUnkEP9SeqThreadbi = 0x1398B0
 _ZN5Stage14FUN_7100138CD0Ev = 0x138CD0

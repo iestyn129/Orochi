@@ -296,6 +296,13 @@ struct SceneRope : Scene {
 
 struct SceneSkater : Scene {
     SceneSkater(void*, int version);
+    void initUFO();
+    void FUN_710023c9f0(int, int);
+    void initGround(SeqThread*, int, int, char);
+
+    void spawnSugarCubes(SeqThread*, int, int);
+    void spawnEgg(SeqThread*, int, int);
+    void spawnCookieTower(SeqThread*, int, int);
 
     char _pad00[0x4CB8 - sizeof(Scene)];
 };

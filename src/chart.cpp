@@ -20,7 +20,9 @@ void chartMain(StageRemix20* stage, SeqThread* thread) {
 
 
 void chartControl(StageRemix20* stage, SeqThread* thread) {
-    stage->initSubScene(SCENE_DEEP_SEA, -1, false);
+    stage->shinkai->initUFO();
+    stage->shinkai->FUN_710023c9f0(50, 100);
+    stage->shinkai->initGround(thread, 6, 10, 1);
 }
 
 
@@ -29,49 +31,62 @@ void chartAnim(StageRemix20* stage, SeqThread* thread) {
 }
 
 
-// high-five fever channel initialisation
 void chartInitSubScenes(StageRemix20* stage, SeqThread* thread) {
 
 }
 
 
-// germ aerobics
 void chartCues00(StageRemix20* stage, SeqThread* thread) {
+    rest(4);
 
+    stage->shinkai->spawnSugarCubes(thread, 0, 0);
+    rest(8);
+    stage->shinkai->spawnEgg(thread, 0, 0);
+    rest(8);
+    stage->shinkai->spawnCookieTower(thread, 0, 0);
+    rest(8);
+
+    stage->shinkai->spawnSugarCubes(thread, 0, 0);
+    rest(8);
+    stage->shinkai->spawnEgg(thread, 0, 0);
+    rest(8);
+    stage->shinkai->spawnCookieTower(thread, 0, 0);
+    rest(8);
+
+    stage->shinkai->spawnSugarCubes(thread, 0, 0);
+    rest(8);
+    stage->shinkai->spawnEgg(thread, 0, 0);
+    rest(8);
+    stage->shinkai->spawnCookieTower(thread, 0, 0);
+    rest(8);
 }
 
 
-// hoop trundling
 void chartCues01(StageRemix20* stage, SeqThread* thread) {
 
 }
 
 
-// sneezy moon
 void chartCues02(StageRemix20* stage, SeqThread* thread) {
 
 }
 
 
-// high-five fever
 void chartCues03(StageRemix20* stage, SeqThread* thread) {
 
 }
 
 
-// soda hop
 void chartCues04(StageRemix20* stage, SeqThread* thread) {
 
 }
 
 
-// sweeper star
 void chartCues05(StageRemix20* stage, SeqThread* thread) {
 
 }
 
 
-// can do
 void chartCues06(StageRemix20* stage, SeqThread* thread) {
 
 }
