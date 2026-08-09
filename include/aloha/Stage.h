@@ -240,7 +240,8 @@ struct StageRemix20 : StageRemix {
 
     Message clapMessage;
     Message graspMessage;
-    char unkE5F8[8];
+
+    StageRemix20* self; // i think??
 };
 
 static_assert(offsetof(StageRemix20, sceneChanger) == 0x6E08);
