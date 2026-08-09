@@ -160,8 +160,6 @@ static_assert(sizeof(Stage) == 0x2C60);
 
 struct StageRemix : Stage {
     SceneRing* makeSceneRing(StageRemix*, int version);
-    SceneSkater* makeSceneSkater(StageRemix*, int version);
-    SceneOwl* makeSceneOwl(StageRemix*, int version);
     void setUnk3535(bool);
     void setInitRingBubbleState(int bubbleState);
     void initSubScene(int sceneID, int, bool);
@@ -246,5 +244,5 @@ struct StageFactory {
     Stage* create(unsigned int stageID, unsigned long long, unsigned int, unsigned int, unsigned int, unsigned int, unsigned int);
 };
 
-extern SceneSkater* makeSceneSkater(StageRemix* stage, StageRemix* a2, int version);
-extern SceneOwl* makeSceneOwl(StageRemix* stage, StageRemix* a2, int version);
+extern SceneSkater* makeSceneSkater(StageRemix* stage, StageRemix*, int version);
+extern SceneOwl* makeSceneOwl(StageRemix* stage, StageRemix*, int version);
