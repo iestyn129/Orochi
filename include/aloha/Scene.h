@@ -123,6 +123,8 @@ struct SceneRope : Scene {
     void doubleUnder(SeqThread*, int animLength, bool stopRope, bool cutAudioCue);
 };
 
+struct SceneShinkai : Scene {};
+
 struct SceneOwl : Scene {
     SceneOwl(void*, int version);
 

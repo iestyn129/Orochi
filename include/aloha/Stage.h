@@ -186,7 +186,7 @@ struct StageRemix20 : StageRemix {
     SceneEffect sceneEffect;
 
     char _padBacteria[0xE2F0 - (0xA870 + sizeof(SceneEffect))];
-    SceneOwl* bacteria;
+    SceneBacteria* bacteria;
 
     char _padBrush[0xE320 - (0xE2F0 + sizeof(SceneBacteria*))];
     SceneBrush* brush;
@@ -207,9 +207,9 @@ struct StageRemix20 : StageRemix {
     SceneRope* rope;
 
     char _padShinkai[0xE5C0 - (0xE500 + sizeof(SceneRope*))];
-    SceneSkater* shinkai;
+    SceneShinkai* shinkai;
 
-    char _padMessage[0xE5C8 - (0xE5C0 + sizeof(SceneRing*))];
+    char _padMessage[0xE5C8 - (0xE5C0 + sizeof(SceneShinkai*))];
     Message clapMessage;
     Message graspMessage;
 };
