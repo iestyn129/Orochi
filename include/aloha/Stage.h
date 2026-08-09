@@ -3,7 +3,7 @@
 #include "cstddef"
 #include "vector"
 #include "aloha/Message.h"
-#include "aloha/Scene.h"
+#include "aloha/SubScene.h"
 #include "aloha/Seq.h"
 #include "aloha/WavMark.h"
 
@@ -202,103 +202,41 @@ static_assert(sizeof(StageRemix) == 0x3570);
 struct StageRemix20 : StageRemix {
     static void invokeSeqCallback(SeqThread*, SeqCallback*);
 
-    // pretty sure these three are related
     Scene_710013ad00 scene_710013ad00;
     SceneChanger sceneChanger;
     SceneEffect sceneEffect;
 
-    char unkE2E0[16];
-    SceneBacteria* sceneBacteria;
-
-    char unkE2F8[16];
-    SceneBirds* sceneBirds;
-
-    char unkE310[16];
-    SceneBrush* sceneBrush;
-
-    char unkE328[16];
-    SceneCars* sceneCars;
-
-    char unkE340[16];
-    SceneClap* sceneClap;
-
-    char unkE358[16];
-    SceneCooking* sceneCooking;
-
-    char unkE370[16];
-    SceneCrab* sceneCrab;
-
-    char unkE388[16];
-    SceneDancer* sceneDancer;
-
-    char unkE3A0[16];
-    SceneFlydisc* sceneFlydisc;
-
-    char unkE3B8[16];
-    SceneGrasp* sceneGrasp;
-
-    char unkE3D0[16];
-    SceneGuardian* sceneGuardian;
-
-    char unkE3E8[16];
-    SceneHammer* sceneHammer;
-
-    char unkE400[16];
-    SceneHungry* sceneHungry;
-
-    char unkE418[16];
-    SceneHurdle* sceneHurdle;
-
-    char unkE430[16];
-    SceneInsect* sceneInsect;
-
-    char unkE448[16];
-    SceneKaeru* sceneKaeru;
-
-    char unkE460[16];
-    SceneMoon* sceneMoon;
-
-    char unkE478[16];
-    SceneParasol* sceneParasol;
-
-    char unkE490[16];
-    ScenePumpup* scenePumpup;
-
-    char unkE4A8[16];
-    ScenePutilabo* scenePutilabo;
-
-    char unkE4C0[16];
-    SceneRing* sceneRing;
-
-    char unkE4D8[16];
-    SceneRolling* sceneRolling;
-
-    char unkE4F0[16];
-    SceneRope* sceneRope;
-
-    char unkE508[16];
-    SceneSamurai* sceneSamurai;
-
-    char unkE520[16];
-    SceneSoccer* sceneSoccer;
-
-    char unkE538[16];
-    SceneSoftcatch* sceneSoftcatch;
-
-    char unkE550[16];
-    SceneTalk* sceneTalk;
-
-    char unkE568[16];
-    SceneTheA* sceneTheA;
-
-    char unkE580[16];
-    SceneThunder* sceneThunder;
-
-    char unkE598[16];
-    SceneWiper* sceneWiper;
-
-    char unkE5B0[16];
-    SceneShinkai* sceneShinkai;
+    SubSceneBacteria sceneBacteria;
+    SubSceneBirds sceneBirds;
+    SubSceneBrush sceneBrush;
+    SubSceneCars sceneCars;
+    SubSceneClap sceneClap;
+    SubSceneCooking sceneCooking;
+    SubSceneCrab sceneCrab;
+    SubSceneDancer sceneDancer;
+    SubSceneFlydisc sceneFlydisc;
+    SubSceneGrasp sceneGrasp;
+    SubSceneGuardian sceneGuardian;
+    SubSceneHammer sceneHammer;
+    SubSceneHungry sceneHungry;
+    SubSceneHurdle sceneHurdle;
+    SubSceneInsect sceneInsect;
+    SubSceneKaeru sceneKaeru;
+    SubSceneMoon sceneMoon;
+    SubSceneParasol sceneParasol;
+    SubScenePumpup scenePumpup;
+    SubScenePutilabo scenePutilabo;
+    SubSceneRing sceneRing;
+    SubSceneRolling sceneRolling;
+    SubSceneRope sceneRope;
+    SubSceneSamurai sceneSamurai;
+    SubSceneSoccer sceneSoccer;
+    SubSceneSoftcatch sceneSoftcatch;
+    SubSceneTalk sceneTalk;
+    SubSceneTheA sceneTheA;
+    SubSceneThunder sceneThunder;
+    SubSceneWiper sceneWiper;
+    SubSceneShinkai sceneShinkai;
 
     Message clapMessage;
     Message graspMessage;
@@ -307,16 +245,16 @@ struct StageRemix20 : StageRemix {
 
 static_assert(offsetof(StageRemix20, sceneChanger) == 0x6E08);
 static_assert(offsetof(StageRemix20, sceneEffect) == 0xA870);
-static_assert(offsetof(StageRemix20, sceneBacteria) == 0xE2F0);
-static_assert(offsetof(StageRemix20, sceneBirds) == 0xE308);
-static_assert(offsetof(StageRemix20, sceneBrush) == 0xE320);
-static_assert(offsetof(StageRemix20, sceneClap) == 0xE350);
-static_assert(offsetof(StageRemix20, sceneHammer) == 0xE3F8);
-static_assert(offsetof(StageRemix20, sceneMoon) == 0xE470);
-static_assert(offsetof(StageRemix20, sceneRing) == 0xE4D0);
-static_assert(offsetof(StageRemix20, sceneRope) == 0xE500);
-static_assert(offsetof(StageRemix20, sceneTheA) == 0xE578);
-static_assert(offsetof(StageRemix20, sceneShinkai) == 0xE5C0);
+static_assert(offsetof(StageRemix20, sceneBacteria) == 0xE2E0);
+static_assert(offsetof(StageRemix20, sceneBirds) == 0xE2F8);
+static_assert(offsetof(StageRemix20, sceneBrush) == 0xE310);
+static_assert(offsetof(StageRemix20, sceneClap) == 0xE340);
+static_assert(offsetof(StageRemix20, sceneHammer) == 0xE3E8);
+static_assert(offsetof(StageRemix20, sceneMoon) == 0xE460);
+static_assert(offsetof(StageRemix20, sceneRing) == 0xE4C0);
+static_assert(offsetof(StageRemix20, sceneRope) == 0xE4F0);
+static_assert(offsetof(StageRemix20, sceneTheA) == 0xE568);
+static_assert(offsetof(StageRemix20, sceneShinkai) == 0xE5B0);
 static_assert(offsetof(StageRemix20, clapMessage) == 0xE5C8);
 static_assert(offsetof(StageRemix20, graspMessage) == 0xE5E0);
 static_assert(sizeof(StageRemix20) == 0xE600);
