@@ -7,6 +7,21 @@
     if (thread->stopRequested()) \
         return
 
+#define wait_until_scene_ready(sceneID, a2) \
+    thread->pushUnk270(); \
+    stage->waitUntilSceneReady(thread, sceneID, a2); \
+    check_thread()
+
+#define unk_7100139250(a1, a2) \
+    thread->pushUnk270(); \
+    stage->FUN_7100139250(thread, a1, a2); \
+    check_thread()
+
+#define startup_bgm(wavmarkID, ticks, a3, a4, a5) \
+    thread->pushUnk270(); \
+    stage->startupBGM(thread, wavmarkID, ticks, a3, a4, a5); \
+    check_thread()
+
 #define wait_until_unk(a1, a2) \
     thread->pushUnk270(); \
     stage->waitUntilUnk(thread, a1, a2); \

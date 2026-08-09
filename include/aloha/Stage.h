@@ -130,11 +130,19 @@ static_assert(offsetof(SceneEffect, bubbleOutTicks) == 0x3A6C);
 struct Stage {
     void waitUntilUnk(SeqThread*, bool, int); // Stage::FUN_71001398b0
 
+    void FUN_7100137050(bool);
     void FUN_7100138CD0();
     void fadeScreen(int ticks, float opacity);
     void fadeGameplay(int ticks, float opacity);
     void FUN_7100138FC0();
     void FUN_7100137140();
+    void FUN_7100139250(SeqThread*, int, int);
+    void FUN_7100138f80();
+    void FUN_7100137b50(int ticks);
+    void FUN_7100137b60(int);
+    void startupBGM(SeqThread*, unsigned int wavmarkID, unsigned int ticks, int, float, float);
+    void FUN_7100138d20();
+    void FUN_7100138ce0();
 
     void setComment(const char* comment);
 
@@ -150,7 +158,10 @@ struct StageRemix : Stage {
     SceneRing* makeSceneRing(StageRemix*, int version);
     SceneSkater* makeSceneSkater(StageRemix*, int version);
     SceneOwl* makeSceneOwl(StageRemix*, int version);
+    void setUnk3535(bool);
+    void setRingBubbleState(int bubbleState);
     void initSubScene(int sceneID, int, bool);
+    void waitUntilSceneReady(SeqThread*, int sceneID, bool);
 
     void setRatingInfo(Scene*, int, const char*);
     void setSceneCarryover(int sceneID, SceneCarryoverType carryoverType); // i think
