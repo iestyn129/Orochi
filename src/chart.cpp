@@ -1,7 +1,8 @@
 #include "chart.h"
 #include "log.h"
 
-const u32 initSceneID = SCENE_SWEEPER_STAR;
+const WavMarkId chartWavMark = wavmark_stage_showtime_t_dancin;
+const u32 initSceneID = SCENE_BACKUP_SPOTLIGHT;
 const s32 initRingBubbleState = ring_bubble_mask(true, true, true, true);
 
 
@@ -13,10 +14,22 @@ void evilThread(StageRemix20* stage, SeqThread* thread) {
 }
 
 
+void chartEntry(StageRemix20* stage, SeqThread* thread) {
+    stage->fadeScreen(0, 0.0);
+    stage->initWavMark(chartWavMark, true);
+    wait_until_unk(false, -1);
+    stage->prepareWavMark(chartWavMark);
+    thread->pushUnk270();
+    chartMain(stage, thread);
+    check_thread();
+    stage->registerResults();
+}
+
+
 void chartMain(StageRemix20* stage, SeqThread* thread) {
     stage->FUN_7100137050(false);
     stage->setUnk3535(false);
-    stage->setRingBubbleState(initRingBubbleState);
+    stage->setInitRingBubbleState(initRingBubbleState);
     stage->initSubScene(initSceneID, -1, true);
     wait_until_scene_ready(initSceneID, false);
     change_scene_instant(initSceneID);
@@ -27,7 +40,7 @@ void chartMain(StageRemix20* stage, SeqThread* thread) {
     stage->FUN_7100138f80();
     stage->FUN_7100137b50(120);
     stage->FUN_7100137b60(0);
-    startup_bgm(0x80, 960, 0, 1.0, 1.0);
+    startup_bgm(chartWavMark, 960, 0, 1.0, 1.0);
 
     stage->runner->appendThread(new SeqThread(
         stage->runner, stage->seqThreadIndex,

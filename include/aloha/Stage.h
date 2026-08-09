@@ -5,6 +5,7 @@
 #include "aloha/Message.h"
 #include "aloha/Scene.h"
 #include "aloha/Seq.h"
+#include "aloha/WavMark.h"
 
 #define SCENE_BACTERIA 0
 #define SCENE_GERM_AEROBICS SCENE_BACTERIA
@@ -127,9 +128,11 @@ struct SceneEffect {
 static_assert(offsetof(SceneEffect, bubbleInTicks) == 0x3A68);
 static_assert(offsetof(SceneEffect, bubbleOutTicks) == 0x3A6C);
 
-struct Stage {
+struct Stage : IStage {
     void waitUntilUnk(SeqThread*, bool, int); // Stage::FUN_71001398b0
 
+    void initWavMark(WavMarkId, bool);
+    void prepareWavMark(WavMarkId);
     void FUN_7100137050(bool);
     void FUN_7100138CD0();
     void fadeScreen(int ticks, float opacity);
@@ -140,16 +143,17 @@ struct Stage {
     void FUN_7100138f80();
     void FUN_7100137b50(int ticks);
     void FUN_7100137b60(int);
-    void startupBGM(SeqThread*, unsigned int wavmarkID, unsigned int ticks, int, float, float);
+    void startupBGM(SeqThread*, WavMarkId, unsigned int ticks, int, float, float);
     void FUN_7100138d20();
     void FUN_7100138ce0();
+    void registerResults();
 
     void setComment(const char* comment);
 
     void beatAnim(SeqThread*, int ticks, int alsoTicks, int loops);
     void stopAnim(SeqThread*);
 
-    char _pad00[0x2c60];
+    char _pad00[0x2c60 - sizeof(IStage)];
 };
 
 static_assert(sizeof(Stage) == 0x2C60);
@@ -159,7 +163,7 @@ struct StageRemix : Stage {
     SceneSkater* makeSceneSkater(StageRemix*, int version);
     SceneOwl* makeSceneOwl(StageRemix*, int version);
     void setUnk3535(bool);
-    void setRingBubbleState(int bubbleState);
+    void setInitRingBubbleState(int bubbleState);
     void initSubScene(int sceneID, int, bool);
     void waitUntilSceneReady(SeqThread*, int sceneID, bool);
 

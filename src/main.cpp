@@ -139,8 +139,10 @@ HkTrampoline getGraphRopeHook = [](TrampolineStatic(), int version) -> const cha
     return isRemix20 ? graphRope : orig(version);
 };
 
-HkTrampoline remix20Main00Hook = [](TrampolineStatic(), StageRemix20* stage, SeqThread* thread) -> void {
-    chartMain(stage, thread);
+HkTrampoline remix20EntryHook = [](TrampolineStatic(), StageRemix20* stage, SeqThread* thread) -> void {
+    chartEntry(stage, thread);
+
+    thread->popUnk270();
 };
 
 void remix20Main(StageRemix20* stage, SeqThread* thread) {
@@ -229,7 +231,7 @@ extern "C" void hkMain() {
     stageFactoryCreateHook.installAtSym<"_ZN12StageFactory6createEjyjjjjj">();
     getTextHook.installAtMainOffset(0x4EFE80);
 
-    remix20Main00Hook.installAtMainOffset(0x417060);
+    remix20EntryHook.installAtMainOffset(0x416220);
 
 /*
     getGraphBacteriaHook.installAtMainOffset(0x1434E0);

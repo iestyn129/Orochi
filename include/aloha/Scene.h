@@ -7,10 +7,17 @@
 // idfk im just gonna name it this
 struct SFXManager {};
 
-struct Scene {
+// i dislike this name
+struct IStage {
+    char _pad00[0x2978];
+};
+
+static_assert(sizeof(IStage) == 0x2978);
+
+struct Scene : IStage {
     void scheduleSFX(SeqThread*, int ticks, SFXManager*, unsigned int sfxID, int, float, float);
 
-    char _pad00[0x3880];
+    char _pad00[0x3880 - sizeof(IStage)];
 };
 
 static_assert(sizeof(Scene) == 0x3880);
