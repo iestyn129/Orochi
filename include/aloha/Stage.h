@@ -107,13 +107,23 @@ enum SceneCarryoverType : unsigned int {
     SceneCarryoverNone  = 0x02
 };
 
+struct Scene_710013ad00 {
+    char _pad00[0x3898]; // could be 0x3890
+};
+
+static_assert(sizeof(Scene_710013ad00) == 0x3898);
+
 struct SceneChanger {
     int instant(SeqThread* thread, int sceneID);
     int fade1Beat(SeqThread* thread, int sceneID, int);
     int fade2Beat(SeqThread* thread, int sceneID, int);
     int fade4Beat(SeqThread* thread, int sceneID, int);
     int fade8Beat(SeqThread* thread, int sceneID, int);
+
+    char _pad00[0x3A68]; // could be 0x3A60
 };
+
+static_assert(sizeof(SceneChanger) == 0x3A68);
 
 struct SceneEffect {
     // _very_ unsure of these names
@@ -179,70 +189,136 @@ struct StageRemix : Stage {
     int unk355C;
 
     int seqThreadIndex;
-
-    char _pad00[0x3600 - (0x3560 + sizeof(int))];
+    int unk3564;
+    long long unk3568;
 };
 
 static_assert(offsetof(StageRemix, seqCallbackContext) == 0x3548);
 static_assert(offsetof(StageRemix, runner) == 0x3550);
 static_assert(offsetof(StageRemix, seqThreadIndex) == 0x3560);
-static_assert(sizeof(StageRemix) == 0x3600);
+static_assert(sizeof(StageRemix) == 0x3570);
 
 struct StageRemix20 : StageRemix {
     static void invokeSeqCallback(SeqThread*, SeqCallback*);
 
-    // pretty sure scene changer and effect are part of another struct that goes here
-    char _padSceneChanger[0x6E08 - sizeof(StageRemix)];
+    // pretty sure these three are related
+    Scene_710013ad00 scene_710013ad00;
     SceneChanger sceneChanger;
-
-    char _padSceneEffect[0xA870 - (0x6E08 + sizeof(SceneChanger))];
     SceneEffect sceneEffect;
 
-    char _padBacteria[0xE2F0 - (0xA870 + sizeof(SceneEffect))];
+    char unkE2E0[16];
     SceneBacteria* bacteria;
 
-    char _padBrush[0xE320 - (0xE2F0 + sizeof(SceneBacteria*))];
-    SceneBrush* brush;
+    char unkE2F8[16];
+    SceneBirds* sceneBirds;
 
-    char _padClap[0xE350 - (0xE320 + sizeof(SceneBrush*))];
-    SceneClap* clap;
+    char unkE310[16];
+    SceneBrush* sceneBrush;
 
-    char _padHammer[0xE3F8 - (0xE350 + sizeof(SceneClap*))];
-    SceneHammer* hammer;
+    char unkE328[16];
+    SceneCars* sceneCars;
 
-    char _padMoon[0xE470 - (0xE3F8 + sizeof(SceneHammer*))];
-    SceneMoon* moon;
+    char unkE340[16];
+    SceneClap* sceneClap;
 
-    char _padRing[0xE4D0 - (0xE470 + sizeof(SceneMoon*))];
-    SceneRing* ring;
+    char unkE358[16];
+    SceneCooking* sceneCooking;
 
-    char _padRope[0xE500 - (0xE4D0 + sizeof(SceneRing*))];
-    SceneRope* rope;
+    char unkE370[16];
+    SceneCrab* sceneCrab;
 
-    char _padTheA[0xE578 - (0xE500 + sizeof(SceneRope*))];
-    SceneTheA* theA;
+    char unkE388[16];
+    SceneDancer* sceneDancer;
 
-    char _padShinkai[0xE5C0 - (0xE578 + sizeof(SceneTheA*))];
-    SceneShinkai* shinkai;
+    char unkE3A0[16];
+    SceneFlydisc* sceneFlydisc;
 
-    char _padMessage[0xE5C8 - (0xE5C0 + sizeof(SceneShinkai*))];
+    char unkE3B8[16];
+    SceneGrasp* sceneGrasp;
+
+    char unkE3D0[16];
+    SceneGuardian* sceneGuardian;
+
+    char unkE3E8[16];
+    SceneHammer* sceneHammer;
+
+    char unkE400[16];
+    SceneHungry* sceneHungry;
+
+    char unkE418[16];
+    SceneHurdle* sceneHurdle;
+
+    char unkE430[16];
+    SceneInsect* sceneInsect;
+
+    char unkE448[16];
+    SceneKaeru* sceneKaeru;
+
+    char unkE460[16];
+    SceneMoon* sceneMoon;
+
+    char unkE478[16];
+    SceneParasol* sceneParasol;
+
+    char unkE490[16];
+    ScenePumpup* scenePumpup;
+
+    char unkE4A8[16];
+    ScenePutilabo* scenePutilabo;
+
+    char unkE4C0[16];
+    SceneRing* sceneRing;
+
+    char unkE4D8[16];
+    SceneRolling* sceneRolling;
+
+    char unkE4F0[16];
+    SceneRope* sceneRope;
+
+    char unkE508[16];
+    SceneSamurai* sceneSamurai;
+
+    char unkE520[16];
+    SceneSoccer* sceneSoccer;
+
+    char unkE538[16];
+    SceneSoftcatch* sceneSoftcatch;
+
+    char unkE550[16];
+    SceneTalk* sceneTalk;
+
+    char unkE568[16];
+    SceneTheA* sceneTheA;
+
+    char unkE580[16];
+    SceneThunder* sceneThunder;
+
+    char unkE598[16];
+    SceneWiper* sceneWiper;
+
+    char unkE5B0[16];
+    SceneShinkai* sceneShinkai;
+
     Message clapMessage;
     Message graspMessage;
+    char unkE5F8[8];
 };
 
 static_assert(offsetof(StageRemix20, sceneChanger) == 0x6E08);
 static_assert(offsetof(StageRemix20, sceneEffect) == 0xA870);
 static_assert(offsetof(StageRemix20, bacteria) == 0xE2F0);
-static_assert(offsetof(StageRemix20, brush) == 0xE320);
-static_assert(offsetof(StageRemix20, clap) == 0xE350);
-static_assert(offsetof(StageRemix20, hammer) == 0xE3F8);
-static_assert(offsetof(StageRemix20, moon) == 0xE470);
-static_assert(offsetof(StageRemix20, ring) == 0xE4D0);
-static_assert(offsetof(StageRemix20, rope) == 0xE500);
-static_assert(offsetof(StageRemix20, theA) == 0xE578);
-static_assert(offsetof(StageRemix20, shinkai) == 0xE5C0);
+static_assert(offsetof(StageRemix20, sceneBirds) == 0xE308);
+static_assert(offsetof(StageRemix20, sceneBrush) == 0xE320);
+static_assert(offsetof(StageRemix20, sceneClap) == 0xE350);
+static_assert(offsetof(StageRemix20, sceneHammer) == 0xE3F8);
+static_assert(offsetof(StageRemix20, sceneMoon) == 0xE470);
+static_assert(offsetof(StageRemix20, sceneRing) == 0xE4D0);
+static_assert(offsetof(StageRemix20, sceneRope) == 0xE500);
+static_assert(offsetof(StageRemix20, sceneTheA) == 0xE578);
+static_assert(offsetof(StageRemix20, sceneShinkai) == 0xE5C0);
 static_assert(offsetof(StageRemix20, clapMessage) == 0xE5C8);
 static_assert(offsetof(StageRemix20, graspMessage) == 0xE5E0);
+static_assert(sizeof(StageRemix20) == 0xE600);
 
 struct StageFactory {
     Stage* create(unsigned int stageID, unsigned long long, unsigned int, unsigned int, unsigned int, unsigned int, unsigned int);

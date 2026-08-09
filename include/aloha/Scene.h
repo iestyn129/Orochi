@@ -29,6 +29,10 @@ struct SceneBacteria : Scene {
     void tripleAerobics(SeqThread*);
 };
 
+struct SceneBirds : Scene {
+    void flapPattern(SeqThread*, const char* pattern);
+};
+
 struct SceneBrush : Scene {
     void sweepContinuous(SeqThread*, int beats, bool, bool, bool);
     void sweepThree(SeqThread*);
@@ -42,6 +46,8 @@ struct SceneBrush : Scene {
 
 static_assert(offsetof(SceneBrush, you) == 0x40B8);
 static_assert(offsetof(SceneBrush, bg) == 0x40C0);
+
+struct SceneCars : Scene {};
 
 struct SceneClap : Scene {
     void cue123(SeqThread*);
@@ -86,10 +92,30 @@ static_assert(sizeof(SceneClap::ClapChannel) == 0x1A0);
 static_assert(offsetof(SceneClap::ClapChannel, graph) == 0x38);
 static_assert(offsetof(SceneClap::ClapChannel, anime) == 0x190);
 
+struct SceneCooking : Scene {};
+
+struct SceneCrab : Scene {};
+
+struct SceneDancer : Scene {};
+
+struct SceneFlydisc : Scene {};
+
+struct SceneGrasp : Scene {};
+
+struct SceneGuardian : Scene {};
+
 struct SceneHammer : Scene {
     void spawnCanRed(SeqThread*, int landTicks, bool thrown, int hitTicks);
     void spawnCanBlue(SeqThread*, int landTicks, bool thrown, int hitTicks);
 };
+
+struct SceneHungry : Scene {};
+
+struct SceneHurdle : Scene {};
+
+struct SceneInsect : Scene {};
+
+struct SceneKaeru : Scene {};
 
 struct SceneMoon : Scene {
     void sneezeGreen(SeqThread*, bool windup);
@@ -116,6 +142,12 @@ static_assert(offsetof(SceneMoon, fastSneeze) == 0x3E90);
 static_assert(offsetof(SceneMoon, sfxManager) == 0x4238);
 static_assert(offsetof(SceneMoon::Moon, anime) == 0x10);
 
+struct SceneParasol : Scene {};
+
+struct ScenePumpup : Scene {};
+
+struct ScenePutilabo : Scene {};
+
 struct SceneRing : Scene {
     void spawnRing(SeqThread*, int bubbleState);
 
@@ -125,14 +157,28 @@ struct SceneRing : Scene {
 
 static_assert(offsetof(SceneRing, anime) == 0x3B60);
 
+struct SceneRolling : Scene {};
+
 struct SceneRope : Scene {
     void jump(SeqThread*, int animLength, bool stopping);
     void doubleUnder(SeqThread*, int animLength, bool stopRope, bool cutAudioCue);
 };
 
+struct SceneSamurai : Scene {};
+
+struct SceneSoccer : Scene {};
+
+struct SceneSoftcatch : Scene {};
+
+struct SceneTalk : Scene {};
+
 struct SceneTheA : Scene {
     void cueWord(SeqThread*, const char* word, float, void*, const char* background);
 };
+
+struct SceneThunder : Scene {};
+
+struct SceneWiper : Scene {};
 
 struct SceneShinkai : Scene {};
 

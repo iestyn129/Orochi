@@ -90,54 +90,14 @@ void chartAnim(StageRemix20* stage, SeqThread* thread) {
 }
 
 
-void chartInitSubScenes(StageRemix20* stage, SeqThread* thread) {
-    log("chartInitSubScenes");
-}
-
-
 void chartCues00(StageRemix20* stage, SeqThread* thread) {
     log("chartCues00");
 
     rest(4);
-    stage->theA->cueWord(thread, "AKA", 1.0, nullptr, nullptr);
+    stage->sceneTheA->cueWord(thread, "AKA", 1.0, nullptr, nullptr);
     rest(4);
-    stage->theA->cueWord(thread, "AURA", 1.0, nullptr, nullptr);
+    stage->sceneTheA->cueWord(thread, "AURA", 1.0, nullptr, nullptr);
     rest(4);
-    stage->theA->cueWord(thread, "ALOHA", 1.0, nullptr, nullptr);
+    stage->sceneTheA->cueWord(thread, "ALOHA", 1.0, nullptr, nullptr);
     rest(4);
-}
-
-
-void chartCues01(StageRemix20* stage, SeqThread* thread) {
-    log("chartCues01");
-}
-
-
-void chartCues02(StageRemix20* stage, SeqThread* thread) {
-    log("chartCues02");
-}
-
-
-void chartCues03(StageRemix20* stage, SeqThread* thread) {
-    log("chartCues03");
-}
-
-
-void chartCues04(StageRemix20* stage, SeqThread* thread) {
-    log("chartCues04");
-}
-
-
-void chartCues05(StageRemix20* stage, SeqThread* thread) {
-    log("chartCues05");
-}
-
-
-void chartCues06(StageRemix20* stage, SeqThread* thread) {
-    log("chartCues06");
-}
-
-
-void chartCues07(StageRemix20* stage, SeqThread* thread) {
-    log("chartCues07");
 }

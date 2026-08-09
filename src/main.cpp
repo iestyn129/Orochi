@@ -145,6 +145,7 @@ HkTrampoline remix20EntryHook = [](TrampolineStatic(), StageRemix20* stage, SeqT
     thread->popUnk270();
 };
 
+/*
 void remix20Main(StageRemix20* stage, SeqThread* thread) {
     chartMain(stage, thread);
 }
@@ -221,7 +222,7 @@ HkTrampoline remix20Cues07Hook = [](TrampolineStatic(), StageRemix20* stage, Seq
 
     return thread->popUnk270();
 };
-
+*/
 
 extern "C" void hkMain() {
     const ptr mainBase = hk::ro::getMainModule()->range().start();
