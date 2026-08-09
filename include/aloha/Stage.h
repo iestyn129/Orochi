@@ -137,6 +137,7 @@ struct SceneEffect {
 
 static_assert(offsetof(SceneEffect, bubbleInTicks) == 0x3A68);
 static_assert(offsetof(SceneEffect, bubbleOutTicks) == 0x3A6C);
+static_assert(sizeof(SceneEffect) == 0x3A70);
 
 struct Stage : IStage {
     void waitUntilUnk(SeqThread*, bool, int); // Stage::FUN_71001398b0
@@ -207,7 +208,7 @@ struct StageRemix20 : StageRemix {
     SceneEffect sceneEffect;
 
     char unkE2E0[16];
-    SceneBacteria* bacteria;
+    SceneBacteria* sceneBacteria;
 
     char unkE2F8[16];
     SceneBirds* sceneBirds;
@@ -306,7 +307,7 @@ struct StageRemix20 : StageRemix {
 
 static_assert(offsetof(StageRemix20, sceneChanger) == 0x6E08);
 static_assert(offsetof(StageRemix20, sceneEffect) == 0xA870);
-static_assert(offsetof(StageRemix20, bacteria) == 0xE2F0);
+static_assert(offsetof(StageRemix20, sceneBacteria) == 0xE2F0);
 static_assert(offsetof(StageRemix20, sceneBirds) == 0xE308);
 static_assert(offsetof(StageRemix20, sceneBrush) == 0xE320);
 static_assert(offsetof(StageRemix20, sceneClap) == 0xE350);
