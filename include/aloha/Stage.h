@@ -219,7 +219,10 @@ struct StageRemix20 : StageRemix {
     char _padRope[0xE500 - (0xE4D0 + sizeof(SceneRing*))];
     SceneRope* rope;
 
-    char _padShinkai[0xE5C0 - (0xE500 + sizeof(SceneRope*))];
+    char _padTheA[0xE578 - (0xE500 + sizeof(SceneRope*))];
+    SceneTheA* theA;
+
+    char _padShinkai[0xE5C0 - (0xE578 + sizeof(SceneTheA*))];
     SceneShinkai* shinkai;
 
     char _padMessage[0xE5C8 - (0xE5C0 + sizeof(SceneShinkai*))];
@@ -236,6 +239,7 @@ static_assert(offsetof(StageRemix20, hammer) == 0xE3F8);
 static_assert(offsetof(StageRemix20, moon) == 0xE470);
 static_assert(offsetof(StageRemix20, ring) == 0xE4D0);
 static_assert(offsetof(StageRemix20, rope) == 0xE500);
+static_assert(offsetof(StageRemix20, theA) == 0xE578);
 static_assert(offsetof(StageRemix20, shinkai) == 0xE5C0);
 static_assert(offsetof(StageRemix20, clapMessage) == 0xE5C8);
 static_assert(offsetof(StageRemix20, graspMessage) == 0xE5E0);

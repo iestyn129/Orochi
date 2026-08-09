@@ -36,6 +36,8 @@ _ZN9SceneRing9spawnRingEP9SeqThreadi = 0x217960
 _ZN9SceneRope4jumpEP9SeqThreadib = 0x226AA0
 _ZN9SceneRope11doubleUnderEP9SeqThreadibb = 0x2276A0
 
+_ZN9SceneTheA7cueWordEP9SeqThreadPKcfPvS3_ = 0x278fe0
+
 _ZN11SceneSkaterC1EPvi = 0x23BBB0
 _ZN11SceneSkater7initUFOEv = 0x23CAE0
 _ZN11SceneSkater14FUN_710023c9f0Eii = 0x23c9f0

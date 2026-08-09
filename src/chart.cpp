@@ -2,16 +2,8 @@
 #include "log.h"
 
 const WavMarkId chartWavMark = wavmark_stage_showtime_t_dancin;
-const u32 initSceneID = SCENE_BACKUP_SPOTLIGHT;
+const u32 initSceneID = SCENE_A_FOR_EFFORT;
 const s32 initRingBubbleState = ring_bubble_mask(true, true, true, true);
-
-
-void evilThread(StageRemix20* stage, SeqThread* thread) {
-    log("hello from the start of this thread");
-    rest(4);
-    log("hello from 4 beats later");
-    //stage->shinkai->spawnSugarCubes(thread, 0, 0);
-}
 
 
 void chartEntry(StageRemix20* stage, SeqThread* thread) {
@@ -53,9 +45,31 @@ void chartMain(StageRemix20* stage, SeqThread* thread) {
         thread
     ));
 
+    stage->runner->appendThread(new SeqThread(
+        stage->runner, stage->seqThreadIndex,
+        reinterpret_cast<void*>(&StageRemix20::invokeSeqCallback),
+        new SeqCallback(
+            &stage->seqCallbackContext,
+            reinterpret_cast<void*>(&chartAnim),
+            0
+        ),
+        thread
+    ));
+
+    stage->runner->appendThread(new SeqThread(
+        stage->runner, stage->seqThreadIndex,
+        reinterpret_cast<void*>(&StageRemix20::invokeSeqCallback),
+        new SeqCallback(
+            &stage->seqCallbackContext,
+            reinterpret_cast<void*>(&chartCues00),
+            0
+        ),
+        thread
+    ));
+
     stage->FUN_7100138d20();
     stage->FUN_7100138ce0();
-    rest(8);
+    rest(800);
 
     stage->FUN_7100138CD0();
     stage->fadeScreen(1 * 480, 0.0);
@@ -68,20 +82,6 @@ void chartMain(StageRemix20* stage, SeqThread* thread) {
 
 void chartControl(StageRemix20* stage, SeqThread* thread) {
     log("chartControl");
-    //stage->shinkai->initUFO();
-    //stage->shinkai->FUN_710023c9f0(50, 100);
-    //stage->shinkai->initGround(thread, 6, 10, 1);
-
-    stage->runner->appendThread(new SeqThread(
-        stage->runner, stage->seqThreadIndex,
-        reinterpret_cast<void*>(&StageRemix20::invokeSeqCallback),
-        new SeqCallback(
-            &stage->seqCallbackContext,
-            reinterpret_cast<void*>(&evilThread),
-            0
-        ),
-        thread
-    ));
 }
 
 
@@ -97,29 +97,14 @@ void chartInitSubScenes(StageRemix20* stage, SeqThread* thread) {
 
 void chartCues00(StageRemix20* stage, SeqThread* thread) {
     log("chartCues00");
-    return;
+
     rest(4);
-
-    //stage->shinkai->spawnSugarCubes(thread, 0, 0);
-    rest(8);
-    //stage->shinkai->spawnEgg(thread, 0, 0);
-    rest(8);
-    //stage->shinkai->spawnCookieTower(thread, 0, 0);
-    rest(8);
-
-    //stage->shinkai->spawnSugarCubes(thread, 0, 0);
-    rest(8);
-    //stage->shinkai->spawnEgg(thread, 0, 0);
-    rest(8);
-    //stage->shinkai->spawnCookieTower(thread, 0, 0);
-    rest(8);
-
-    //stage->shinkai->spawnSugarCubes(thread, 0, 0);
-    rest(8);
-    //stage->shinkai->spawnEgg(thread, 0, 0);
-    rest(8);
-    //stage->shinkai->spawnCookieTower(thread, 0, 0);
-    rest(8);
+    stage->theA->cueWord(thread, "AKA", 1.0, nullptr, nullptr);
+    rest(4);
+    stage->theA->cueWord(thread, "AURA", 1.0, nullptr, nullptr);
+    rest(4);
+    stage->theA->cueWord(thread, "ALOHA", 1.0, nullptr, nullptr);
+    rest(4);
 }
 
 
