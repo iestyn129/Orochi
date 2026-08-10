@@ -190,17 +190,19 @@ struct StageRemix : Stage {
     int unk355C;
 
     int seqThreadIndex;
-    int unk3564;
-    long long unk3568;
 };
 
 static_assert(offsetof(StageRemix, seqCallbackContext) == 0x3548);
 static_assert(offsetof(StageRemix, runner) == 0x3550);
 static_assert(offsetof(StageRemix, seqThreadIndex) == 0x3560);
-static_assert(sizeof(StageRemix) == 0x3570);
+static_assert(sizeof(StageRemix) == 0x3568);
 
 struct StageRemix20 : StageRemix {
     static void invokeSeqCallback(SeqThread*, SeqCallback*);
+
+    int scenesLoaded;
+    int scenesToLoad;
+    int unk356C;
 
     Scene_710013ad00 scene_710013ad00;
     SceneChanger sceneChanger;
@@ -244,6 +246,8 @@ struct StageRemix20 : StageRemix {
     StageRemix20* self; // i think??
 };
 
+static_assert(offsetof(StageRemix20, scenesLoaded) == 0x3564);
+static_assert(offsetof(StageRemix20, scenesToLoad) == 0x3568);
 static_assert(offsetof(StageRemix20, sceneChanger) == 0x6E08);
 static_assert(offsetof(StageRemix20, sceneEffect) == 0xA870);
 static_assert(offsetof(StageRemix20, sceneBacteria) == 0xE2E0);
