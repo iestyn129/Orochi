@@ -2,7 +2,7 @@
 #include "log.h"
 
 const WavMarkId chartWavMark = wavmark_stage_showtime_t_dancin;
-const u32 initSceneID = SCENE_A_FOR_EFFORT;
+const u32 initSceneID = SCENE_GERM_AEROBICS;
 const s32 initRingBubbleState = ring_bubble_mask(true, true, true, true);
 
 
@@ -93,11 +93,19 @@ void chartAnim(StageRemix20* stage, SeqThread* thread) {
 void chartCues00(StageRemix20* stage, SeqThread* thread) {
     log("chartCues00");
 
-    rest(4);
-    stage->sceneTheA.scene->cueWord(thread, "AKA", 1.0, nullptr, nullptr);
-    rest(4);
-    stage->sceneTheA.scene->cueWord(thread, "AURA", 1.0, nullptr, nullptr);
-    rest(4);
-    stage->sceneTheA.scene->cueWord(thread, "ALOHA", 1.0, nullptr, nullptr);
-    rest(4);
+    rest(7.75);
+    stage->sceneBacteria.scene->FUN_71001fd3e0();
+    while (!stage->sceneBacteria.scene->isOnionHairless()) {
+        //stage->FUN_7100138840(-1, -1);
+        //stage->FUN_7100138a70();
+        stage->sceneBacteria.scene->readyTweezers(thread, 120);
+        stage->sceneBacteria.scene->spawnHairs(thread, 120,
+            0, 6, 6, 6, 6, 6, 6, 6,
+            0, 6, 6, 6, 6, 6, 6, 6,
+            0, 6, 6, 6, 6, 6, 6, 6,
+            0, 6, 6, 6, 6, 6, 6, 6,
+        1, 2);
+        rest(8);
+        stage->sceneBacteria.scene->FUN_71001fd3f0();
+    }
 }

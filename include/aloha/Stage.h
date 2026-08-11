@@ -159,6 +159,9 @@ struct Stage : IStage {
     void FUN_7100138ce0();
     void registerResults();
 
+    void FUN_7100138840(int, int);
+    void FUN_7100138a70();
+
     void setComment(const char* comment);
 
     void beatAnim(SeqThread*, int ticks, int alsoTicks, int loops);
@@ -208,7 +211,7 @@ struct StageRemix20 : StageRemix {
     SceneChanger sceneChanger;
     SceneEffect sceneEffect;
 
-    SubSceneBacteria sceneBacteria;
+    SubSceneOnion sceneBacteria;
     SubSceneBirds sceneBirds;
     SubSceneBrush sceneBrush;
     SubSceneCars sceneCars;
@@ -268,5 +271,6 @@ struct StageFactory {
     Stage* create(unsigned int stageID, unsigned long long, unsigned int, unsigned int, unsigned int, unsigned int, unsigned int);
 };
 
+extern SceneOnion* makeSceneOnion(StageRemix* stage, StageRemix*, int version);
 extern SceneSkater* makeSceneSkater(StageRemix* stage, StageRemix*, int version);
 extern SceneOwl* makeSceneOwl(StageRemix* stage, StageRemix*, int version);

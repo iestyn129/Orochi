@@ -182,6 +182,24 @@ struct SceneWiper : Scene {};
 
 struct SceneShinkai : Scene {};
 
+struct SceneOnion : Scene {
+    SceneOnion(void*, int version);
+    void spawnHairs(SeqThread*, int,
+        char, char, char, char, char, char, char, char,
+        char, char, char, char, char, char, char, char,
+        char, char, char, char, char, char, char, char,
+        char, char, char, char, char, char, char, char,
+    int, int);
+    void FUN_71001fd3e0();
+    bool isOnionHairless();
+    void FUN_71001fd3f0();
+    void readyTweezers(SeqThread*, int);
+
+    char _pad00[0x6ce0 - sizeof(Scene)];
+};
+
+static_assert(sizeof(SceneOnion) == 0x6ce0);
+
 struct SceneOwl : Scene {
     SceneOwl(void*, int version);
 

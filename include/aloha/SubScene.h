@@ -228,3 +228,10 @@ struct SubSceneShinkai : SubSceneBase {
 };
 
 static_assert(sizeof(SubSceneShinkai) == 0x18);
+
+// ReSharper disable once CppPolymorphicClassWithNonVirtualPublicDestructor
+struct SubSceneOnion : SubSceneBase {
+    SceneOnion* scene;
+};
+
+static_assert(sizeof(SubSceneOnion) == 0x18);
