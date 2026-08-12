@@ -1,11 +1,27 @@
 #pragma once
 
 #include "global.h"
-#include "aloha.h"
+#include "aloha/Stage.h"
+#include "aloha/WavMark.h"
 
 #define check_thread() \
     if (thread->stopRequested()) \
         return
+
+#define wait_until_scene_ready(sceneID, a2) \
+    thread->pushUnk270(); \
+    stage->waitUntilSceneReady(thread, sceneID, a2); \
+    check_thread()
+
+#define unk_7100139250(a1, a2) \
+    thread->pushUnk270(); \
+    stage->FUN_7100139250(thread, a1, a2); \
+    check_thread()
+
+#define startup_bgm(wavmarkID, ticks, a3, a4, a5) \
+    thread->pushUnk270(); \
+    stage->startupBGM(thread, wavmarkID, ticks, a3, a4, a5); \
+    check_thread()
 
 #define wait_until_unk(a1, a2) \
     thread->pushUnk270(); \
@@ -52,18 +68,12 @@
     ((pu != 0) << 2) | \
     ((pe != 0) << 3) )
 
+extern const WavMarkId chartWavMark;
 extern const u32 initSceneID;
 extern const s32 initRingBubbleState;
 
+extern void chartEntry(StageRemix20* stage, SeqThread* thread);
 extern void chartMain(StageRemix20* stage, SeqThread* thread);
 extern void chartControl(StageRemix20* stage, SeqThread* thread);
 extern void chartAnim(StageRemix20* stage, SeqThread* thread);
-extern void chartInitSubScenes(StageRemix20* stage, SeqThread* thread);
 extern void chartCues00(StageRemix20* stage, SeqThread* thread);
-extern void chartCues01(StageRemix20* stage, SeqThread* thread);
-extern void chartCues02(StageRemix20* stage, SeqThread* thread);
-extern void chartCues03(StageRemix20* stage, SeqThread* thread);
-extern void chartCues04(StageRemix20* stage, SeqThread* thread);
-extern void chartCues05(StageRemix20* stage, SeqThread* thread);
-extern void chartCues06(StageRemix20* stage, SeqThread* thread);
-extern void chartCues07(StageRemix20* stage, SeqThread* thread);

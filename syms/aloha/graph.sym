@@ -1,0 +1,7 @@
+@aloha:100
+
+_ZN5Graph7startupEPKc17FilePartitionTypePv = 0x4F3C20
+
+_ZN10GraphAnime10playActionEPKc = 0x4F8260
+_ZN10GraphAnime13getChildMaybeEPKcb = 0x4FBA20
+_ZN10GraphAnime18setAnimationSimpleEPKcb = 0x4F7A80
