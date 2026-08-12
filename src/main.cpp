@@ -165,7 +165,7 @@ extern "C" void hkMain() {
     //getGraphRopeHook.installAtMainOffset(0x224790);
 
     // over germ aerobics
-    hk::hook::writeBranchLinkAtMainOffset(0x4169C0, &makeSceneOnion);
+    //hk::hook::writeBranchLinkAtMainOffset(0x4169C0, &makeSceneOnion);
     // over deep sea
     //hk::hook::writeBranchLinkAtMainOffset(0x416DF4, &makeSceneSkater);
 }

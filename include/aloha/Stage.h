@@ -211,7 +211,7 @@ struct StageRemix20 : StageRemix {
     SceneChanger sceneChanger;
     SceneEffect sceneEffect;
 
-    SubSceneOnion sceneBacteria;
+    SubSceneBacteria sceneBacteria;
     SubSceneBirds sceneBirds;
     SubSceneBrush sceneBrush;
     SubSceneCars sceneCars;

@@ -190,10 +190,6 @@ struct SceneOnion : Scene {
         char, char, char, char, char, char, char, char,
         char, char, char, char, char, char, char, char,
     int, int);
-    void FUN_71001fd3e0();
-    bool isOnionHairless();
-    void FUN_71001fd3f0();
-    void readyTweezers(SeqThread*, int);
 
     char _pad00[0x6ce0 - sizeof(Scene)];
 };
