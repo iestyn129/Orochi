@@ -265,7 +265,7 @@ static_assert(offsetof(StageRemix20, sceneTheA) == 0xE568);
 static_assert(offsetof(StageRemix20, sceneShinkai) == 0xE5B0);
 static_assert(offsetof(StageRemix20, clapMessage) == 0xE5C8);
 static_assert(offsetof(StageRemix20, graspMessage) == 0xE5E0);
-static_assert(sizeof(StageRemix20) == 0xE600);
+static_assert(sizeof(StageRemix20) >= 0xE600);
 
 struct StageFactory {
     Stage* create(unsigned int stageID, unsigned long long, unsigned int, unsigned int, unsigned int, unsigned int, unsigned int);

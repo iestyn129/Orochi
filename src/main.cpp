@@ -154,6 +154,10 @@ extern "C" void hkMain() {
     stageFactoryCreateHook.installAtSym<"_ZN12StageFactory6createEjyjjjjj">();
     getTextHook.installAtMainOffset(0x4EFE80);
 
+    hk::hook::a64::assemble<"mov w0, {}">()
+        .arg(sizeof(StageRemix20))
+        .installAtMainOffset(0x489edc); // StageFactory::create+0x159C
+
     remix20EntryHook.installAtMainOffset(0x416220);
 
     //getGraphBacteriaHook.installAtMainOffset(0x1434E0);
