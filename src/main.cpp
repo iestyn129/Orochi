@@ -1,9 +1,10 @@
 #include "hk/hook/Trampoline.h"
 #include "nn/fs.h"
+#include <string>
 #include "global.h"
 #include "chart.h"
 #include "log.h"
-#include "string"
+#include "script.h"
 
 static const char* graphBacteria[] = {
     "graph/scene/bacteria/type_lpr/main",
@@ -76,6 +77,7 @@ HkTrampoline initHook = [](TrampolineStatic(), u64* a1) -> void {
 
     log("=== Orochi Initialised! ===");
     orig(a1);
+    lua_test();
 };
 
 
