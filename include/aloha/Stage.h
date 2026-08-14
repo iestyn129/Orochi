@@ -247,6 +247,7 @@ struct StageRemix20 : StageRemix {
     Message graspMessage;
 
     StageRemix20* self; // i think??
+    SceneTheA::Sub7100276330* tea;
 };
 
 static_assert(offsetof(StageRemix20, scenesLoaded) == 0x3564);
@@ -271,6 +272,8 @@ struct StageFactory {
     Stage* create(unsigned int stageID, unsigned long long, unsigned int, unsigned int, unsigned int, unsigned int, unsigned int);
 };
 
+extern void remix20ExtCtor(StageRemix20* stage);
+extern void remix20ExtDtor(StageRemix20* stage);
 extern SceneOnion* makeSceneOnion(StageRemix* stage, StageRemix*, int version);
 extern SceneSkater* makeSceneSkater(StageRemix* stage, StageRemix*, int version);
 extern SceneOwl* makeSceneOwl(StageRemix* stage, StageRemix*, int version);

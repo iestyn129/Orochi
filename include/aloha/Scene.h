@@ -173,8 +173,18 @@ struct SceneSoftcatch : Scene {};
 struct SceneTalk : Scene {};
 
 struct SceneTheA : Scene {
-    void cueWord(SeqThread*, const char* word, float, void*, const char* background);
+    struct Sub7100276330 {
+        Sub7100276330(SceneTheA* scene, const char* graphPath);
+        virtual void FUN_00();
+        virtual ~Sub7100276330();
+
+        char _pad[0x178 - sizeof(void*)];
+    };
+
+    void cueWord(SeqThread*, const char* word, float, Sub7100276330*, const char* anim);
 };
+
+static_assert(sizeof(SceneTheA::Sub7100276330) == 0x178);
 
 struct SceneThunder : Scene {};
 

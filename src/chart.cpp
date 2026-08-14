@@ -1,12 +1,28 @@
 #include "chart.h"
 #include "log.h"
 
-const WavMarkId chartWavMark = wavmark_stage_showtime_t_dancin;
-const u32 initSceneID = SCENE_GERM_AEROBICS;
+const WavMarkId chartWavMark = wavmark_stage_showtime_m_happou;
+const u32 initSceneID = SCENE_THE_A;
 const s32 initRingBubbleState = ring_bubble_mask(true, true, true, true);
 
 
+void remix20ExtCtor(StageRemix20* stage) {
+
+}
+
+
+void remix20ExtDtor(StageRemix20* stage) {
+    const auto old = stage->tea;
+    stage->tea = nullptr;
+    if (old != nullptr) {
+        old->~Sub7100276330();
+    }
+}
+
+
 void chartEntry(StageRemix20* stage, SeqThread* thread) {
+    log("chartEntry");
+    remix20ExtCtor(stage);
     stage->fadeScreen(0, 0.0);
     stage->initWavMark(chartWavMark, true);
     wait_until_unk(false, -1);
@@ -19,6 +35,7 @@ void chartEntry(StageRemix20* stage, SeqThread* thread) {
 
 
 void chartMain(StageRemix20* stage, SeqThread* thread) {
+    log("chartMain");
     stage->FUN_7100137050(false);
     stage->setUnk3535(false);
     stage->setInitRingBubbleState(initRingBubbleState);
@@ -82,6 +99,11 @@ void chartMain(StageRemix20* stage, SeqThread* thread) {
 
 void chartControl(StageRemix20* stage, SeqThread* thread) {
     log("chartControl");
+
+    stage->tea = new SceneTheA::Sub7100276330(
+        stage->sceneTheA.scene,
+        "graph/scene/the_a/type_00/tea_00"
+    );
 }
 
 
@@ -92,4 +114,6 @@ void chartAnim(StageRemix20* stage, SeqThread* thread) {
 
 void chartCues00(StageRemix20* stage, SeqThread* thread) {
     log("chartCues00");
+    rest(4);
+    stage->sceneTheA.scene->cueWord(thread, "TEA", 1.0, stage->tea, "IMAGE_00");
 }
