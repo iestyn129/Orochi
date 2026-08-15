@@ -116,4 +116,18 @@ void chartCues00(StageRemix20* stage, SeqThread* thread) {
     log("chartCues00");
     rest(4);
     stage->sceneTheA.scene->cueWord(thread, "TEA", 1.0, stage->tea, "IMAGE_00");
+    rest(4);
+    stage->sceneTheA.scene->cueWord(thread, "TEA", 1.0, stage->tea, "IMAGE_01");
+    rest(4);
+    stage->sceneTheA.scene->cueWord(thread, "TEA", 1.0, stage->tea, "IMAGE_02");
+    rest(4);
+    stage->sceneTheA.scene->cueWord(thread, "TEA", 1.0, stage->tea, "IMAGE_03");
+    rest(4);
+    stage->sceneTheA.scene->cueWord(thread, "TEA", 1.0, stage->tea, "IMAGE_04");
+    rest(4);
+    stage->sceneTheA.scene->cueWord(thread, "TEA", 1.0, stage->tea, "IMAGE_05");
+    rest(4);
+    stage->sceneTheA.scene->cueWord(thread, "TEA", 1.0, stage->tea, "IMAGE_06");
+    rest(4);
+    stage->sceneTheA.scene->cueWord(thread, "TEA", 1.0, stage->tea, "IMAGE_07");
 }
