@@ -1,8 +1,8 @@
 #include "chart.h"
 #include "log.h"
 
-const WavMarkId chartWavMark = wavmark_stage_showtime_m_happou;
-const u32 initSceneID = SCENE_THE_A;
+const WavMarkId chartWavMark = wavmark_stage_showtime_t_dancer;
+const u32 initSceneID = SCENE_BACKUP_SPOTLIGHT;
 const s32 initRingBubbleState = ring_bubble_mask(true, true, true, true);
 
 
@@ -104,6 +104,8 @@ void chartControl(StageRemix20* stage, SeqThread* thread) {
         stage->sceneTheA.scene,
         "graph/scene/the_a/type_00/tea_00"
     );
+
+    stage->sceneDancer.scene->layout->playAction("SingerAppear");
 }
 
 
@@ -115,19 +117,4 @@ void chartAnim(StageRemix20* stage, SeqThread* thread) {
 void chartCues00(StageRemix20* stage, SeqThread* thread) {
     log("chartCues00");
     rest(4);
-    stage->sceneTheA.scene->cueWord(thread, "TEA", 1.0, stage->tea, "IMAGE_00");
-    rest(4);
-    stage->sceneTheA.scene->cueWord(thread, "TEA", 1.0, stage->tea, "IMAGE_01");
-    rest(4);
-    stage->sceneTheA.scene->cueWord(thread, "TEA", 1.0, stage->tea, "IMAGE_02");
-    rest(4);
-    stage->sceneTheA.scene->cueWord(thread, "TEA", 1.0, stage->tea, "IMAGE_03");
-    rest(4);
-    stage->sceneTheA.scene->cueWord(thread, "TEA", 1.0, stage->tea, "IMAGE_04");
-    rest(4);
-    stage->sceneTheA.scene->cueWord(thread, "TEA", 1.0, stage->tea, "IMAGE_05");
-    rest(4);
-    stage->sceneTheA.scene->cueWord(thread, "TEA", 1.0, stage->tea, "IMAGE_06");
-    rest(4);
-    stage->sceneTheA.scene->cueWord(thread, "TEA", 1.0, stage->tea, "IMAGE_07");
 }

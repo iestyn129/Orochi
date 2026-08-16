@@ -96,7 +96,20 @@ struct SceneCooking : Scene {};
 
 struct SceneCrab : Scene {};
 
-struct SceneDancer : Scene {};
+struct SceneDancer : Scene {
+    char _padAnime[0x3e08 - sizeof(Scene)];
+    GraphAnime* cut;
+    GraphAnime* layout;
+    GraphAnime* bg;
+    GraphAnime* fg;
+    GraphAnime* sign;
+};
+
+static_assert(offsetof(SceneDancer, cut) == 0x3e08);
+static_assert(offsetof(SceneDancer, layout) == 0x3e10);
+static_assert(offsetof(SceneDancer, bg) == 0x3e18);
+static_assert(offsetof(SceneDancer, fg) == 0x3e20);
+static_assert(offsetof(SceneDancer, sign) == 0x3e28);
 
 struct SceneFlydisc : Scene {};
 
