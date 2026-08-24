@@ -181,7 +181,7 @@ struct StageRemix : Stage {
 
     void setRatingInfo(Scene*, int, const char*);
     void setSceneCarryover(int sceneID, SceneCarryoverType carryoverType); // i think
-    void setCueScene(SeqThread* thread, int sceneID);
+    void subSceneEnableCues(SeqThread* thread, int sceneID);
 
     char _padSeqCallbackContext[0x3548 - sizeof(Stage)];
     void** seqCallbackContext;
