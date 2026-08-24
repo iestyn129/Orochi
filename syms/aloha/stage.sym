@@ -39,7 +39,7 @@ _ZN10StageRemix12initSubSceneEiib = 0x4D9DC0
 _ZN10StageRemix19waitUntilSceneReadyEP9SeqThreadib = 0x4d9ec0
 _ZN10StageRemix13setRatingInfoEP5SceneiPKc = 0x136600
 _ZN10StageRemix17setSceneCarryoverEi18SceneCarryoverType = 0x4da400
-_ZN10StageRemix11setCueSceneEP9SeqThreadi = 0x4daa70
+_ZN10StageRemix18subSceneEnableCuesEP9SeqThreadi = 0x4daa70
 
 _ZN12StageRemix2017invokeSeqCallbackEP9SeqThreadP11SeqCallback = 0x416FC0
 
