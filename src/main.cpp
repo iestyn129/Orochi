@@ -77,7 +77,11 @@ HkTrampoline initHook = [](TrampolineStatic(), u64* a1) -> void {
 
     log("=== Orochi Initialised! ===");
     orig(a1);
-    lua_test();
+
+    sol::state lua = init_state();
+    lua.safe_script(R"""(
+print(tostring(wavmark_stage_showtime_n_remix_03))
+)""");
 };
 
 
