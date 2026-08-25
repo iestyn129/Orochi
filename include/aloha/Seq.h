@@ -1,7 +1,7 @@
 #pragma once
 
-#include "cstddef"
-#include "vector"
+#include <cstddef>
+#include <vector>
 
 enum SeqThreadState : unsigned int {
     THREAD_NOT_STARTED     = 0x00,

@@ -1,6 +1,6 @@
 #pragma once
 
-#include "cstddef"
+#include <cstddef>
 
 enum FilePartitionType : unsigned int {
     PartitionType_Data  = 0x00,

@@ -1,5 +1,5 @@
-#include "hk/hook/Trampoline.h"
-#include "nn/fs.h"
+#include <hk/hook/Trampoline.h>
+#include <nn/fs.h>
 #include <string>
 #include "global.h"
 #include "chart.h"
@@ -77,11 +77,6 @@ HkTrampoline initHook = [](TrampolineStatic(), u64* a1) -> void {
 
     log("=== Orochi Initialised! ===");
     orig(a1);
-
-    sol::state lua = init_state();
-    lua.safe_script(R"""(
-print(tostring(wavmark_stage_showtime_n_remix_03))
-)""");
 };
 
 
@@ -146,7 +141,11 @@ HkTrampoline getGraphRopeHook = [](TrampolineStatic(), int version) -> const cha
 };
 
 HkTrampoline remix20EntryHook = [](TrampolineStatic(), StageRemix20* stage, SeqThread* thread) -> void {
-    chartEntry(stage, thread);
+    sol::state lua = init_state();
+
+    auto result = run_script(lua, CHART_FILE);
+
+    chartEntry(result.get<Chart>(), stage, thread);
 
     thread->popUnk270();
 };

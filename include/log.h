@@ -2,7 +2,6 @@
 
 #include <cstdarg>
 #include <cstdio>
-#include "hk/prim/traits/Integer.h"
 #include "global.h"
 
 extern void initLog();

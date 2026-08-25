@@ -1,6 +1,5 @@
 #pragma once
 
-#include "cstddef"
 #include "aloha/Scene.h"
 
 // ReSharper disable once CppPolymorphicClassWithNonVirtualPublicDestructor

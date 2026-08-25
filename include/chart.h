@@ -68,12 +68,11 @@
     ((pu != 0) << 2) | \
     ((pe != 0) << 3) )
 
-extern const WavMarkId chartWavMark;
-extern const u32 initSceneID;
+struct Chart {
+    WavMarkId wavmark;
+    Remix20SceneID init_scene;
+    f32 length;
+};
 extern const s32 initRingBubbleState;
 
-extern void chartEntry(StageRemix20* stage, SeqThread* thread);
-extern void chartMain(StageRemix20* stage, SeqThread* thread);
-extern void chartControl(StageRemix20* stage, SeqThread* thread);
-extern void chartAnim(StageRemix20* stage, SeqThread* thread);
-extern void chartCues00(StageRemix20* stage, SeqThread* thread);
+extern void chartEntry(Chart chart, StageRemix20* stage, SeqThread* thread);
