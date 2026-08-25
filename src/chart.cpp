@@ -1,10 +1,12 @@
 #include "chart.h"
+
 #include "log.h"
+#include "script.h"
 
 const s32 initRingBubbleState = ring_bubble_mask(true, true, true, true);
 
 
-void chartEntry(Chart chart, StageRemix20* stage, SeqThread* thread) {
+void chartEntry(const Chart& chart, StageRemix20* stage, SeqThread* thread) {
     stage->fadeScreen(0, 0.0);
     stage->initWavMark(chart.wavmark, true);
     wait_until_unk(false, -1);
@@ -25,6 +27,10 @@ void chartEntry(Chart chart, StageRemix20* stage, SeqThread* thread) {
     stage->FUN_7100137b50(120);
     stage->FUN_7100137b60(0);
     startup_bgm(chart.wavmark, 960, 0, 1.0, 1.0);
+
+    for (const auto& lua_thread : chart.threads) {
+        auto result = lua_thread(new LuaStage(stage, thread));
+    }
 
     /*stage->runner->appendThread(new SeqThread(
         stage->runner, stage->seqThreadIndex,

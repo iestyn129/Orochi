@@ -15,6 +15,10 @@ static FILE dummy_stdout{};
 FILE* const stdin  = &dummy_stdin;
 FILE* const stdout = &dummy_stdout;
 
+void LuaStage::restb(const f32 beats) const {
+    rest(beats);
+}
+
 sol::state init_state() {
     sol::state lua;
     lua.open_libraries(
@@ -24,14 +28,19 @@ sol::state init_state() {
         sol::lib::table
     );
 
-    lua.set_function("print", [](const char* a) {
-        log("LUA: %s", a);
-    });
-
     load_enum(WavMarkId)
     load_enum(Remix20SceneID)
     load_enum(Remix20SceneIDAlias)
     load_enum(Remix20SceneIDAliasEU)
+
+    lua.set_function("print", [](const char* a) {
+        log("LUA: %s", a);
+    });
+
+    lua.new_usertype<LuaStage>(
+        "LuaStage",
+        "restb", &LuaStage::restb
+    );
 
     return lua;
 }

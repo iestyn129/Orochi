@@ -1,7 +1,6 @@
 #pragma once
 
 #include <cstddef>
-#include <vector>
 #include "aloha/Message.h"
 #include "aloha/SubScene.h"
 #include "aloha/Seq.h"
@@ -21,7 +20,6 @@ enum Remix20SceneID : int {
     SCENE_GRASP = 9,
     SCENE_GUARDIAN = 10,
     SCENE_HAMMER = 11,
-    SCENE_CAN_DO = SCENE_HAMMER,
     SCENE_HUNGRY = 12,
     SCENE_HURDLE = 13,
     SCENE_INSECT = 14,
@@ -55,6 +53,7 @@ enum Remix20SceneIDAlias : int {
     SCENE_DISC_DOG = SCENE_FLYDISC,
     SCENE_QUICK_HANDS = SCENE_GRASP,
     SCENE_SPACE_SENTRY = SCENE_GUARDIAN,
+    SCENE_CAN_DO = SCENE_HAMMER,
     SCENE_FEEDING_THE_BEAST = SCENE_HUNGRY,
     SCENE_HOP_N_SLIDE = SCENE_HURDLE,
     SCENE_FLUTTER_SPEED = SCENE_INSECT,

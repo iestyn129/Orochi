@@ -1,6 +1,7 @@
 #pragma once
 
 #include "global.h"
+#include <sol/sol.hpp>
 #include "aloha/Stage.h"
 #include "aloha/WavMark.h"
 
@@ -72,7 +73,9 @@ struct Chart {
     WavMarkId wavmark;
     Remix20SceneID init_scene;
     f32 length;
+    std::vector<sol::protected_function> threads;
 };
+
 extern const s32 initRingBubbleState;
 
-extern void chartEntry(Chart chart, StageRemix20* stage, SeqThread* thread);
+extern void chartEntry(const Chart& chart, StageRemix20* stage, SeqThread* thread);

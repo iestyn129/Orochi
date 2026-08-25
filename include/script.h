@@ -6,6 +6,13 @@
 #include "aloha/Stage.h"
 #include "chart.h"
 
+struct LuaStage {
+    StageRemix20* stage;
+    SeqThread* thread;
+
+    void restb(f32 beats) const;
+};
+
 template <typename E> E get_enum_or(sol::table& tbl, const char* name, E fallback) {
     auto value = tbl.get<std::underlying_type_t<E>>(name);
 
@@ -19,17 +26,28 @@ namespace sol {
     inline Chart sol_lua_get(types<Chart>, lua_State* L, int index, stack::record& tracking) {
         auto tbl = sol::stack::get<table>(L, index);
 
-        WavMarkId wavmark = get_enum_or<WavMarkId>(tbl, "wavmark", wavmark_invalid);
-        Remix20SceneID init_scene = get_enum_or<Remix20SceneID>(tbl, "init_scene", SCENE_INVALID);
-        f32 length = tbl.get<f32>("length");
+        auto wavmark = get_enum_or<WavMarkId>(tbl, "wavmark", wavmark_invalid);
+        auto init_scene = get_enum_or<Remix20SceneID>(tbl, "init_scene", SCENE_INVALID);
+        auto length = tbl.get<f32>("length");
+        std::vector<protected_function> threads;
+
+        if (auto thread_table = tbl["threads"].get<optional<table>>()) {
+            for (auto& pair : *thread_table) {
+                object value = pair.second;
+                if (value.is<protected_function>()) {
+                    threads.emplace_back(value.as<protected_function>());
+                }
+            }
+        }
 
         tracking.use(1);
 
-        return Chart{
-            .wavmark = wavmark,
-            .init_scene = init_scene,
-            .length = length
-        };
+        return Chart(
+            wavmark,
+            init_scene,
+            length,
+            std::move(threads)
+        );
     }
 }
 
