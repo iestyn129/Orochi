@@ -45,7 +45,7 @@ namespace sol {
         auto wavmark = get_enum_or<WavMarkId>(tbl, "wavmark", wavmark_invalid);
         auto swingSubdivision = tbl.get<s32>("swingSubdivision");
         auto swingRatio = tbl.get<s32>("swingRatio");
-        auto init_scene = get_enum_or<Remix20SceneID>(tbl, "init_scene", SCENE_INVALID);
+        auto initScene = get_enum_or<Remix20SceneID>(tbl, "initScene", SCENE_INVALID);
         auto length = tbl.get<f32>("length");
         std::vector<protected_function> threads;
 
@@ -64,7 +64,7 @@ namespace sol {
             wavmark,
             swingSubdivision,
             swingRatio,
-            init_scene,
+            initScene,
             length,
             std::move(threads)
         );

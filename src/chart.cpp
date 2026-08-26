@@ -16,9 +16,9 @@ void chartEntry(const Chart& chart, StageRemix20* stage, SeqThread* thread) {
     stage->FUN_7100137050(false);
     stage->setUnk3535(false);
     stage->setInitRingBubbleState(initRingBubbleState);
-    stage->initSubScene(chart.init_scene, -1, true);
-    wait_until_scene_ready(chart.init_scene, false);
-    change_scene_instant(chart.init_scene);
+    stage->initSubScene(chart.initScene, -1, true);
+    wait_until_scene_ready(chart.initScene, false);
+    change_scene_instant(chart.initScene);
     stage->fadeScreen(480, 1.0);
     unk_7100139250(-1, 0);
     rest(1);
