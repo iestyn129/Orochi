@@ -21,6 +21,11 @@ bool LuaStage::restb(const f32 beats) const {
     return true;
 }
 
+
+void LuaStage::yellowLightning(int amount) const {
+    stage->sceneThunder.scene->yellowLightning(thread, amount, nullptr);
+}
+
 sol::state init_state() {
     sol::state lua;
     lua.open_libraries(
@@ -45,7 +50,8 @@ sol::state init_state() {
             if (!self.restb(beats)) {
                 luaL_error(ts, "thread stopping");
             }
-        }
+        },
+        "yellowLightning", &LuaStage::yellowLightning
     );
 
     return lua;

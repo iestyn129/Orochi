@@ -19,6 +19,7 @@ struct LuaStage {
     SeqThread* thread;
 
     [[nodiscard]] bool restb(f32 beats) const;
+    void yellowLightning(int amount) const;
 };
 
 struct LuaStageCallback {

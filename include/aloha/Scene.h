@@ -176,7 +176,9 @@ struct SceneTheA : Scene {
     void cueWord(SeqThread*, const char* word, float, void*, const char* background);
 };
 
-struct SceneThunder : Scene {};
+struct SceneThunder : Scene {
+    void yellowLightning(SeqThread*, int amount, void*);
+};
 
 struct SceneWiper : Scene {};
 
