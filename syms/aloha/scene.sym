@@ -2,7 +2,7 @@
 
 _ZN5Scene11scheduleSFXEP9SeqThreadiP10SFXManagerjiff = 0x12BFF0
 
-_ZN13SceneBacteria13startAerobicsEP9SeqThreadib = 0x146120
+_ZN13SceneBacteria15regularAerobicsEP9SeqThreadib = 0x146120
 _ZN13SceneBacteria17startSlowAerobicsEP9SeqThreadib = 0x146B50
 _ZN13SceneBacteria12stopAerobicsEP9SeqThreadi = 0x1473a0
 _ZN13SceneBacteria14tripleAerobicsEP9SeqThread = 0x147CD0
@@ -12,31 +12,93 @@ _ZN10SceneBrush10sweepThreeEP9SeqThread = 0x15AB00
 _ZN10SceneBrush8spinSpinEP9SeqThreadb = 0x15AF40
 _ZN10SceneBrush8spinStopEv = 0x15B2E0
 
-_ZN11SceneHammer11spawnCanRedEP9SeqThreadibi = 0x1AB410
-_ZN11SceneHammer12spawnCanBlueEP9SeqThreadibi = 0x1ABCB0
+_ZN9SceneCars10accelerateEP9SeqThreadbb = 0x1601d0
+_ZN9SceneCars5brakeEP9SeqThreadllb = 0x1608f0
+
+_ZN9SceneClap7countInEP9SeqThread = 0x1646F0
+_ZN9SceneClap8countOutEP9SeqThread = 0x164B70
+_ZN9SceneClap14singleHighFiveEP9SeqThreadi = 0x1632D0
+_ZN9SceneClap17preDoubleHighFiveEP9SeqThread = 0x1634D0
+_ZN9SceneClap14doubleHighFiveEP9SeqThread = 0x163B30
+_ZN9SceneClap17preTripleHighFiveEP9SeqThread = 0x1634F0
+_ZN9SceneClap14tripleHighFiveEP9SeqThread = 0x1642F0
+_ZN9SceneClap5setBGEiP10GraphAnime = 0x162A80
+_ZN9SceneClap9setTVTextEPKc = 0x162DE0
+_ZN9SceneClap11ClapChannelC1EPS_PKc = 0x1667D0
+
+_ZN12SceneCooking12singleVeggieEP9SeqThreadii = 0x178880
+_ZN12SceneCooking8broccoliEP9SeqThreadiiii = 0x178DC0
+
+_ZN9SceneCrab7macaronEP9SeqThreadiii = 0x17bfc0
+_ZN9SceneCrab8favaBeanEP9SeqThreadiii = 0x17d0d0
+_ZN9SceneCrab10mangosteenEP9SeqThreadiii = 0x17c770
+
+_ZN11SceneDancer10startDanceEP9SeqThreadiibb = 0x181c70
+_ZN11SceneDancer8fastTurnEP9SeqThreadb = 0x182460
+
+_ZN12SceneFlydisc9throwDiscEP9SeqThreadiiib = 0x18d3f0
+_ZN12SceneFlydisc13setBackgroundEPKc = 0x18C730
+_ZN12SceneFlydisc16changeBackgroundEPKc = 0x18CBD0
+
+_ZN10SceneGrasp11throwObjectEP9SeqThreadib = 0x1a4070
+_ZN10SceneGrasp12doubleCatchBEP9SeqThreadb = 0x1a50b0
+
+_ZN11SceneHammer11spawnRedCanEP9SeqThreadibi = 0x1AB410
+_ZN11SceneHammer12spawnBlueCanEP9SeqThreadibi = 0x1ABCB0
+
+_ZN11SceneHungry3cueEP9SeqThreadi = 0x1af800
+
+_ZN11SceneHurdle3cueEP9SeqThreadb = 0x1b1fc0
+_ZN11SceneHurdle12spawnFlowersEP9SeqThread = 0x1b24d0
+
+_ZN10SceneKaeru9greenFrogEP9SeqThreadi = 0x1b8db0
 
 _ZN9SceneMoon11sneezeGreenEP9SeqThreadb = 0x1DB630
 _ZN9SceneMoon9sneezeRedEP9SeqThreadb = 0x1DBBC0
 _ZN9SceneMoon11windupGreenEP9SeqThread = 0x1DC030
 _ZN9SceneMoon4Moon4signEi = 0x1D9D20
 
-_ZN9SceneClap6cue123EP9SeqThread = 0x1646F0
-_ZN9SceneClap6cue321EP9SeqThread = 0x164B70
-_ZN9SceneClap4clapEP9SeqThreadi = 0x1632D0
-_ZN9SceneClap13clapCueDoubleEP9SeqThread = 0x1634D0
-_ZN9SceneClap10doubleClapEP9SeqThread = 0x163B30
-_ZN9SceneClap13clapCueTripleEP9SeqThread = 0x1634F0
-_ZN9SceneClap10tripleClapEP9SeqThread = 0x1642F0
-_ZN9SceneClap5setBGEiP10GraphAnime = 0x162A80
-_ZN9SceneClap9setTVTextEPKc = 0x162DE0
-_ZN9SceneClap11ClapChannelC1EPS_PKc = 0x1667D0
+_ZN12SceneParasol3cueEP9SeqThreadiiii = 0x204970
+_ZN12SceneParasol12openTogetherEP9SeqThreadii = 0x205030
+_ZN12SceneParasol6encoreEP9SeqThreadi = 0x2057d0
+
+_ZN11ScenePumpup5appleEP9SeqThreadiii = 0x209b80
+_ZN11ScenePumpup5lemonEP9SeqThreadiii = 0x20a170
+
+_ZN13ScenePutilabo10hardBubbleEP9SeqThreadii = 0x20c190
+_ZN13ScenePutilabo13regularBubbleEP9SeqThreadi = 0x20bf90
 
 _ZN9SceneRing9spawnRingEP9SeqThreadi = 0x217960
+
+_ZN12SceneRolling4rollEP9SeqThreadi = 0x223350
+_ZN12SceneRolling3hopEP9SeqThreadi = 0x222fa0
 
 _ZN9SceneRope4jumpEP9SeqThreadib = 0x226AA0
 _ZN9SceneRope11doubleUnderEP9SeqThreadibb = 0x2276A0
 
+_ZN12SceneSamurai11doubleSliceEP9SeqThreadll = 0x22aff0
+_ZN12SceneSamurai11singleSliceEP9SeqThreadll = 0x22ad50
+
+_ZN12SceneShinkai9singleRowEP9SeqThreadlPKcS3_ = 0x22E330
+_ZN12SceneShinkai9tripleRowEP9SeqThreadlPKcS3_ = 0x22E6D0
+
+_ZN11SceneSoccer4kickEP9SeqThreadi = 0x246760
+_ZN11SceneSoccer8trapKickEP9SeqThreadi = 0x246b80
+
+_ZN9SceneTalk3chaEP9SeqThread = 0x254a70
+_ZN9SceneTalk6bomBomEP9SeqThread = 0x255100
+
 _ZN9SceneTheA7cueWordEP9SeqThreadPKcfPvS3_ = 0x278fe0
+
+_ZN12SceneThunder15yellowLightningEP9SeqThreadil = 0x27dba0
+_ZN12SceneThunder13pinkLightningEP9SeqThreadil = 0x27E6C0
+_ZN12SceneThunder19yellowLightningFastEP9SeqThreadl = 0x27e130
+_ZN12SceneThunder17pinkLightningFastEP9SeqThreadl = 0x27EC00
+_ZN12SceneThunder10spawnAlienEii = 0x27B980
+
+_ZN10SceneWiper9quickBothEP9SeqThread = 0x2aa6f0
+_ZN10SceneWiper10quickRightEP9SeqThread = 0x2aa2f0
+_ZN10SceneWiper8slowLeftEP9SeqThreadi = 0x2a9900
 
 _ZN11SceneSkaterC1EPvi = 0x23BBB0
 _ZN11SceneSkater7initUFOEv = 0x23CAE0
