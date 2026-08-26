@@ -130,8 +130,8 @@ struct Stage : IStage {
     void FUN_7100137140();
     void FUN_7100139250(SeqThread*, int, int);
     void FUN_7100138f80();
-    void FUN_7100137b50(int ticks);
-    void FUN_7100137b60(int);
+    void setSwingSubdivision(int ticks);
+    void setSwingRatio(int ticks);
     void startupBGM(SeqThread*, WavMarkId, unsigned int ticks, int, float, float);
     void FUN_7100138d20();
     void FUN_7100138ce0();

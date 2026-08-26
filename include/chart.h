@@ -71,6 +71,8 @@
 
 struct Chart {
     WavMarkId wavmark;
+    s32 swingSubdivision;
+    s32 swingRatio;
     Remix20SceneID init_scene;
     f32 length;
     std::vector<sol::protected_function> threads;

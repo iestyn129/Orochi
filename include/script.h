@@ -43,6 +43,8 @@ namespace sol {
         auto tbl = sol::stack::get<table>(L, index);
 
         auto wavmark = get_enum_or<WavMarkId>(tbl, "wavmark", wavmark_invalid);
+        auto swingSubdivision = tbl.get<s32>("swingSubdivision");
+        auto swingRatio = tbl.get<s32>("swingRatio");
         auto init_scene = get_enum_or<Remix20SceneID>(tbl, "init_scene", SCENE_INVALID);
         auto length = tbl.get<f32>("length");
         std::vector<protected_function> threads;
@@ -60,6 +62,8 @@ namespace sol {
 
         return Chart(
             wavmark,
+            swingSubdivision,
+            swingRatio,
             init_scene,
             length,
             std::move(threads)

@@ -24,8 +24,8 @@ void chartEntry(const Chart& chart, StageRemix20* stage, SeqThread* thread) {
     rest(1);
 
     stage->FUN_7100138f80();
-    stage->FUN_7100137b50(120);
-    stage->FUN_7100137b60(0);
+    stage->setSwingSubdivision(chart.swingSubdivision);
+    stage->setSwingRatio(chart.swingRatio);
     startup_bgm(chart.wavmark, 960, 0, 1.0, 1.0);
 
     for (const auto& lua_thread : chart.threads) {
