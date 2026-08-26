@@ -15,8 +15,10 @@ static FILE dummy_stdout{};
 FILE* const stdin  = &dummy_stdin;
 FILE* const stdout = &dummy_stdout;
 
-void LuaStage::restb(const f32 beats) const {
-    rest(beats);
+bool LuaStage::restb(const f32 beats) const {
+    restL(beats);
+
+    return true;
 }
 
 sol::state init_state() {
@@ -39,7 +41,11 @@ sol::state init_state() {
 
     lua.new_usertype<LuaStage>(
         "LuaStage",
-        "restb", &LuaStage::restb
+        "restb", [](LuaStage& self, f32 beats, sol::this_state ts) {
+            if (!self.restb(beats)) {
+                luaL_error(ts, "thread stopping");
+            }
+        }
     );
 
     return lua;

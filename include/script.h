@@ -6,12 +6,27 @@
 #include "aloha/Stage.h"
 #include "chart.h"
 
+#define check_threadL() \
+    if (thread->stopRequested()) \
+        return false;
+
+#define restL(beats) \
+    thread->wait((beats) * 480); \
+    check_threadL()
+
 struct LuaStage {
     StageRemix20* stage;
     SeqThread* thread;
 
-    void restb(f32 beats) const;
+    [[nodiscard]] bool restb(f32 beats) const;
 };
+
+struct LuaStageCallback {
+    StageRemix20* stage;
+    sol::protected_function func;
+};
+
+void invokeLuaStageCallback(SeqThread* thread, LuaStageCallback* callback);
 
 template <typename E> E get_enum_or(sol::table& tbl, const char* name, E fallback) {
     auto value = tbl.get<std::underlying_type_t<E>>(name);

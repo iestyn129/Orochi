@@ -29,19 +29,16 @@ void chartEntry(const Chart& chart, StageRemix20* stage, SeqThread* thread) {
     startup_bgm(chart.wavmark, 960, 0, 1.0, 1.0);
 
     for (const auto& lua_thread : chart.threads) {
-        auto result = lua_thread(new LuaStage(stage, thread));
+        stage->runner->appendThread(new SeqThread(
+            stage->runner, stage->seqThreadIndex,
+            reinterpret_cast<void*>(&invokeLuaStageCallback),
+            new LuaStageCallback(
+                stage,
+                lua_thread
+            ),
+            thread
+        ));
     }
-
-    /*stage->runner->appendThread(new SeqThread(
-        stage->runner, stage->seqThreadIndex,
-        reinterpret_cast<void*>(&StageRemix20::invokeSeqCallback),
-        new SeqCallback(
-            &stage->seqCallbackContext,
-            reinterpret_cast<void*>(&chartControl),
-            0
-        ),
-        thread
-    ));*/
 
     stage->FUN_7100138d20();
     stage->FUN_7100138ce0();
@@ -56,4 +53,11 @@ void chartEntry(const Chart& chart, StageRemix20* stage, SeqThread* thread) {
 
     check_thread();
     stage->registerResults();
+}
+
+
+void invokeLuaStageCallback(SeqThread* thread, LuaStageCallback* callback) {
+    auto result = callback->func(LuaStage(callback->stage, thread));
+
+    thread->popUnk270();
 }
