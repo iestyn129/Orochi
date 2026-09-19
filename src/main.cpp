@@ -145,6 +145,11 @@ HkTrampoline remix20EntryHook = [](TrampolineStatic(), StageRemix20* stage, SeqT
     thread->popUnk270();
 };
 
+// HkTrampoline funnyDiscDog = [](TrampolineStatic(), void* a1, void* a2, int color, int length, int soundID, char unk) -> void {
+
+//     return orig(a1, a2, color, 480 * 2, soundID, unk);
+// };
+
 
 extern "C" void hkMain() {
     //const ptr mainBase = hk::ro::getMainModule()->range().start();
@@ -155,6 +160,8 @@ extern "C" void hkMain() {
     getTextHook.installAtMainOffset(0x4EFE80);
 
     remix20EntryHook.installAtMainOffset(0x416220);
+
+    // funnyDiscDog.installAtMainOffset(0x18d3f0);
 
     //getGraphBacteriaHook.installAtMainOffset(0x1434E0);
     //getGraphBrushHook.installAtMainOffset(0x158A00);

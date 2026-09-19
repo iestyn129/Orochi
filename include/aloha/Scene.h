@@ -23,9 +23,9 @@ struct Scene : IStage {
 static_assert(sizeof(Scene) == 0x3880);
 
 struct SceneBacteria : Scene {
-    void quickAerobics(SeqThread*);
     void regularAerobics(SeqThread*, int beats, bool countin);
     void slowAerobics(SeqThread*, int beats, bool countin);
+    void quickAerobics(SeqThread*);
     void stopAerobics(SeqThread*, int);
 };
 
@@ -195,8 +195,8 @@ struct SceneParasol : Scene {
 };
 
 struct ScenePumpup : Scene {
-    void apple(SeqThread*, int interval, int, int);
-    void lemon(SeqThread*, int interval, int, int);
+    void apple(SeqThread*, int, int);
+    void lemon(SeqThread*, int, int);
 };
 
 struct ScenePutilabo : Scene {
