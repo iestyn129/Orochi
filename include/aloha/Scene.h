@@ -23,21 +23,21 @@ struct Scene : IStage {
 static_assert(sizeof(Scene) == 0x3880);
 
 struct SceneBacteria : Scene {
-    void startAerobics(SeqThread*, int beats, bool start);
-    void startSlowAerobics(SeqThread*, int beats, bool start);
+    void regularAerobics(SeqThread*, int beats, bool countin);
+    void slowAerobics(SeqThread*, int beats, bool countin);
+    void quickAerobics(SeqThread*);
     void stopAerobics(SeqThread*, int);
-    void tripleAerobics(SeqThread*);
 };
 
 struct SceneBirds : Scene {
-    void flapPattern(SeqThread*, const char* pattern);
+    void pattern(SeqThread*, const char* pattern);
 };
 
 struct SceneBrush : Scene {
-    void sweepContinuous(SeqThread*, int beats, bool, bool, bool);
-    void sweepThree(SeqThread*);
+    void continuousSweeping(SeqThread*, int beats, bool playUn, bool fadeUn, bool countout);
     void spinSpin(SeqThread*, bool pauseAnim);
-    void spinStop();
+    void stopSpinning(SeqThread*);
+    void sweepThree(SeqThread*);
 
     char _padYou[0x40B8 - sizeof(Scene)];
     GraphAnime* you;
@@ -47,16 +47,19 @@ struct SceneBrush : Scene {
 static_assert(offsetof(SceneBrush, you) == 0x40B8);
 static_assert(offsetof(SceneBrush, bg) == 0x40C0);
 
-struct SceneCars : Scene {};
+struct SceneCars : Scene {
+    void accelerate(SeqThread*, bool pointCue, bool largeBoost);
+    void brake(SeqThread*, long, long, bool);
+};
 
 struct SceneClap : Scene {
-    void cue123(SeqThread*);
-    void cue321(SeqThread*);
-    void clap(SeqThread*, int type);
-    void clapCueDouble(SeqThread*);
-    void doubleClap(SeqThread*);
-    void clapCueTriple(SeqThread*);
-    void tripleClap(SeqThread*);
+    void countIn(SeqThread*);
+    void countOut(SeqThread*);
+    void singleHighFive(SeqThread*, int type);
+    void preDoubleHighFive(SeqThread*);
+    void doubleHighFive(SeqThread*);
+    void preTripleHighFive(SeqThread*);
+    void tripleHighFive(SeqThread*);
 
     void setBG(int, GraphAnime*);
     void setTVText(const char* text);
@@ -92,35 +95,78 @@ static_assert(sizeof(SceneClap::ClapChannel) == 0x1A0);
 static_assert(offsetof(SceneClap::ClapChannel, graph) == 0x38);
 static_assert(offsetof(SceneClap::ClapChannel, anime) == 0x190);
 
-struct SceneCooking : Scene {};
-
-struct SceneCrab : Scene {};
-
-struct SceneDancer : Scene {};
-
-struct SceneFlydisc : Scene {};
-
-struct SceneGrasp : Scene {};
-
-struct SceneGuardian : Scene {};
-
-struct SceneHammer : Scene {
-    void spawnCanRed(SeqThread*, int landTicks, bool thrown, int hitTicks);
-    void spawnCanBlue(SeqThread*, int landTicks, bool thrown, int hitTicks);
+struct SceneCooking : Scene {
+    void singleVeggie(SeqThread*, int, int);
+    void broccoli(SeqThread*, int, int, int, int);
 };
 
-struct SceneHungry : Scene {};
+struct SceneCrab : Scene {
+    void macaron(SeqThread*, int, int, int);
+    void mangosteen(SeqThread*, int, int, int);
+    void favaBean(SeqThread*, int, int, int);
+};
 
-struct SceneHurdle : Scene {};
+struct SceneDancer : Scene {
+    void startDance(SeqThread*, int beats, int voice, bool startInPosition, bool stayInPosition);
+    void startTurnAndDance(SeqThread*, int beats, int voice, bool stayInPosition);
+    void fastTurn(SeqThread*, bool);
+};
 
-struct SceneInsect : Scene {};
+struct SceneFlydisc : Scene {
+    void throwDisc(SeqThread*, int color, int length, int soundID, bool);
+    void setBackground(const char* background);
+    void changeBackground(const char* background);
+};
 
-struct SceneKaeru : Scene {};
+struct SceneGrasp : Scene {
+    void throwObject(SeqThread*, int, bool);
+    void doubleCatchA(SeqThread*);
+    void doubleCatchB(SeqThread*, bool);
+};
+
+struct SceneGuardian : Scene {
+    void normalMeteor(SeqThread*, int, int);
+    void nearMeteor(SeqThread*, int, int);
+    void farMeteor(SeqThread*, int, int);
+
+};
+
+struct SceneHammer : Scene {
+    /* landTicks = usually a negative number. determines where on the conveyer the can spawns/lands
+    hitTicks = how many ticks it takes from the moment you spawn the can to the moment hammer liftup begins. usually 7680 (16 beats)
+    when a can is thrown, it takes 1.5 beats to land? */
+    void spawnRedCan(SeqThread*, int landTicks, bool throwCan, int hitTicks);
+    void spawnBlueCan(SeqThread*, int landTicks, bool throwCan, int hitTicks);
+};
+
+struct SceneHungry : Scene {
+    // 0 = yellow flower, 1 = purple flower
+    void spawnFlower(SeqThread*, int type);
+};
+
+struct SceneHurdle : Scene {
+    void spawnObstacle(SeqThread*, bool slide);
+    void spawnFlowers(SeqThread*);
+};
+
+struct SceneInsect : Scene {
+    void butterfly(SeqThread*, int interval, int, int);
+    void grasshopper(SeqThread*, int interval, int, int);
+    void dragonfly(SeqThread*, int interval, int, int);
+};
+
+struct SceneKaeru : Scene {
+    /* startingLilypad can be a number 0-4, starting at the
+    lilypad left of the player and continuing left to the
+    farthest offscreen lilypad */
+    void greenFrog(SeqThread*, int startingLilypad);
+    void redFrog(SeqThread*, int startingLilypad);
+};
 
 struct SceneMoon : Scene {
-    void sneezeGreen(SeqThread*, bool windup);
-    void sneezeRed(SeqThread*, bool windup);
-    void windupGreen(SeqThread*);
+    void greenSneeze(SeqThread*, bool windup);
+    void greenWindup(SeqThread*);
+    void redSneeze(SeqThread*, bool windup);
 
     char _padMoon[0x3E70 - sizeof(Scene)];
     struct Moon {
@@ -142,14 +188,24 @@ static_assert(offsetof(SceneMoon, fastSneeze) == 0x3E90);
 static_assert(offsetof(SceneMoon, sfxManager) == 0x4238);
 static_assert(offsetof(SceneMoon::Moon, anime) == 0x10);
 
-struct SceneParasol : Scene {};
+struct SceneParasol : Scene {
+    void cue(SeqThread*, int interval, int type, int, int); // type 0 = close, type 1 = open
+    void openTogether(SeqThread*, int, int);
+    void encore(SeqThread*, int interval);
+};
 
-struct ScenePumpup : Scene {};
+struct ScenePumpup : Scene {
+    void apple(SeqThread*, int, int);
+    void lemon(SeqThread*, int, int);
+};
 
-struct ScenePutilabo : Scene {};
+struct ScenePutilabo : Scene {
+    void regularBubble(SeqThread*, int);
+    void hardBubble(SeqThread*, int holdTicks, int);
+};
 
 struct SceneRing : Scene {
-    void spawnRing(SeqThread*, int bubbleState);
+    void hoop(SeqThread*, int bubbleState);
 
     char _padAnime[0x3B60 - sizeof(Scene)];
     GraphAnime* anime;
@@ -157,30 +213,62 @@ struct SceneRing : Scene {
 
 static_assert(offsetof(SceneRing, anime) == 0x3B60);
 
-struct SceneRolling : Scene {};
+struct SceneRolling : Scene {
+    void roll(SeqThread*, int);
+    void hop(SeqThread*, int type); // 1 = count-in hop, 0 = normal hop, 2 = count-out hop, 3 = count-out hop w/o jump (unused?)
+};
 
 struct SceneRope : Scene {
-    void jump(SeqThread*, int animLength, bool stopping);
-    void doubleUnder(SeqThread*, int animLength, bool stopRope, bool cutAudioCue);
+    void singleJump(SeqThread*, int animLength, bool countout);
+    void doubleUnder(SeqThread*, int animLength, bool stopRope, bool cutCue);
 };
 
-struct SceneSamurai : Scene {};
+struct SceneSamurai : Scene {
+    void singleSlice(SeqThread*, long slashNumber, long totalSlashesInChain);
+    void doubleSlice(SeqThread*, long slashNumber, long totalSlashesInChain);
+};
 
-struct SceneSoccer : Scene {};
+struct SceneShinkai : Scene {
+    void singleRow(SeqThread*, long, const char*, const char*);
+    void tripleRow(SeqThread*, long, const char*, const char*);
+};
 
-struct SceneSoftcatch : Scene {};
+struct SceneSoccer : Scene {
+    void kick(SeqThread*, int);
+    void trapKick(SeqThread*, int);
+    void trapJumpKick(SeqThread*, int);
+};
 
-struct SceneTalk : Scene {};
+struct SceneSoftcatch : Scene {
+    void pudding(SeqThread*, long type, int ticksBetweenNotes);
+};
+
+struct SceneTalk : Scene {
+    void bomBom(SeqThread*);
+    void cha(SeqThread*);
+    void bomCha(SeqThread*);
+};
 
 struct SceneTheA : Scene {
-    void cueWord(SeqThread*, const char* word, float, void*, const char* background);
+    void word(SeqThread*, const char* cueWord, float, void*, const char* background);
 };
 
-struct SceneThunder : Scene {};
+struct SceneThunder : Scene {
+    void yellowLightning(SeqThread*, int numberOfCues, long);
+    void yellowLightningFast(SeqThread*, long);
+    void pinkLightning(SeqThread*, int numberOfCues, long);
+    void pinkLightningFast(SeqThread*, long);
+    void spawnAlien(int, int);
+};
 
-struct SceneWiper : Scene {};
-
-struct SceneShinkai : Scene {};
+struct SceneWiper : Scene {
+    void quickBoth(SeqThread*);
+    void quickLeft(SeqThread*);
+    void quickRight(SeqThread*);
+    void slowBoth(SeqThread*);
+    void slowLeft(SeqThread*, int sound);
+    void slowRight(SeqThread*, int sound);
+};
 
 struct SceneOnion : Scene {
     SceneOnion(void*, int version);
