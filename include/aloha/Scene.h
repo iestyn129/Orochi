@@ -34,7 +34,7 @@ struct SceneBirds : Scene {
 };
 
 struct SceneBrush : Scene {
-    void continuousSweeping(SeqThread*, int beats, bool playUn, bool fadeUn, bool countout);
+    void continuousSweeping(SeqThread*, int beats, bool playUn, bool countin, bool countout);
     void spinSpin(SeqThread*, bool pauseAnim);
     void stopSpinning(SeqThread*);
     void sweepThree(SeqThread*);
